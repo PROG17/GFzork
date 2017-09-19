@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +15,7 @@ namespace Zork
         public string Odenplan { get; set; }
         public string Cab { get; set; }
         public string Train { get; set; }
+        Inventory inventory = new Inventory();
+
     }
 }

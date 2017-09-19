@@ -17,6 +17,17 @@ namespace Zork
         public int BusCardMoney { get; set; }
         public int WalletMoney { get; set; }
 
+        public Inventory()
+        {
+            BusCard = false;
+            Wallet = false;
+            Coffe = false;
+            Keys = false;
+            SmartPhone = false;
+            Food = false;
+            BusCardMoney = 0;
+            WalletMoney = 0;
+        }
     }
 
 }
