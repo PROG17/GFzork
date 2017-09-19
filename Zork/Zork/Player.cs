@@ -8,34 +8,33 @@ namespace Zork
 {
     class Player
     {
-        private string bio;
-
+        private string _bio;
         public string Name { get; set; }
-
-
+        public List<Inventory> InventoryList = new List<Inventory>();
+        
         //Val 1,2,3
         public string Bio {
             get
             {
-                return bio;
+                return _bio;
             }
             private set
             {
                 if (value == CharacterIs.Mimmi.ToString())
                 {
-                   bio = "Mimmi, fruktad i orten! Känd för att alltid vara i tid";
+                   _bio = "Mimmi, fruktad i orten! Känd för att alltid vara i tid";
                 }
                 else if (value == CharacterIs.Markus.ToString())
                 {
-                    bio = "Markus delar plats med Mimmi";
+                    _bio = "Markus delar plats med Mimmi";
                 }
                 else if (value == CharacterIs.Ahmad.ToString())
                 {
-                    bio = "Ahmad är bäst";
+                    _bio = "Ahmad är bäst";
                 }
                 else
                 {
-                    bio = "default";
+                    _bio = "default";
                 }
             }
         }
@@ -45,7 +44,12 @@ namespace Zork
         {
             Bio = player.ToString();
         }
+    }
 
-
+    public enum CharacterIs
+    {
+        Mimmi,
+        Markus,
+        Ahmad
     }
 }

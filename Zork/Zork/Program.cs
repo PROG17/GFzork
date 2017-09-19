@@ -10,7 +10,7 @@ namespace Zork
     {
         static void Main(string[] args)
         {
-            //Menu
+            //Declaration
             Player mimmi = new Player(CharacterIs.Mimmi);
             Player markus = new Player(CharacterIs.Markus);
             Player ahmad = new Player(CharacterIs.Ahmad);
@@ -19,7 +19,7 @@ namespace Zork
             //Title Screen
             Console.WriteLine("\n\n\n\n");
             WriteTextAndCenter("Welcome to Travel Adventure");
-            WriteTextAndCenter("Choose a your character bio\n\n");
+            WriteTextAndCenter("Choose your character bio\n\n");
             WriteTextAndCenter("Character (1)");
             WriteTextAndCenter(mimmi.Bio + "\n");
             WriteTextAndCenter("Character (2)");
