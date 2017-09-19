@@ -10,7 +10,9 @@ namespace Zork
     {
         private string _bio;
         public string Name { get; set; }
-        public List<Inventory> InventoryList = new List<Inventory>();
+        public CharacterIs Character { get; private set; }
+
+        Inventory inventory = new Inventory();
         
         //Val 1,2,3
         public string Bio {
@@ -42,9 +44,46 @@ namespace Zork
         // Constructor
         public Player(CharacterIs player)
         {
+            Character = player;
             Bio = player.ToString();
+            CreateInventoryList(player);
         }
+
+        private void CreateInventoryList(CharacterIs character)
+        {
+            switch (character)
+            {
+                case CharacterIs.Mimmi:
+                    inventory.BusCard = false;
+                    inventory.Coffe = false;
+                    inventory.Food = false;
+                    inventory.Keys = false;
+                    inventory.SmartPhone = false;
+                    inventory.Wallet = false;
+                    break;
+                case CharacterIs.Ahmad:
+                    inventory.BusCard = false;
+                    inventory.Coffe = false;
+                    inventory.Food = false;
+                    inventory.Keys = false;
+                    inventory.SmartPhone = false;
+                    inventory.Wallet = false;
+                    break;
+                case CharacterIs.Markus:
+                    inventory.BusCard = false;
+                    inventory.Coffe = false;
+                    inventory.Food = false;
+                    inventory.Keys = false;
+                    inventory.SmartPhone = false;
+                    inventory.Wallet = false;
+                    break;
+            }            
+        }
+
+
     }
+
+
 
     public enum CharacterIs
     {

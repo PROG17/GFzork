@@ -14,7 +14,7 @@ namespace Zork
             Player mimmi = new Player(CharacterIs.Mimmi);
             Player markus = new Player(CharacterIs.Markus);
             Player ahmad = new Player(CharacterIs.Ahmad);
-            Player chosenCharacter;
+            Player chosenCharacter = null;
 
             //Title Screen
             Console.WriteLine("\n\n\n\n");
@@ -52,7 +52,9 @@ namespace Zork
             Console.Clear();
             Console.WriteLine("\n\n\n");
             WriteTextAndCenter("Name your character");
-            string namn = Console.ReadLine();
+            string name = ReadTextAndCenter(5);
+            chosenCharacter.Name = name;
+
             Console.Clear();
 
             //Console.Write(MyString.PadLeft(20, '-') + Markus.PadLeft(20, '-'));
@@ -67,9 +69,9 @@ namespace Zork
             Console.WriteLine(text);
         }
 
-        private static string ReadTextAndCenter()
+        private static string ReadTextAndCenter(int lenght = 1)
         {
-            Console.SetCursorPosition((Console.WindowWidth - 1) / 2, Console.CursorTop);
+            Console.SetCursorPosition((Console.WindowWidth - lenght) / 2, Console.CursorTop);
             return Console.ReadLine();
         }
 
