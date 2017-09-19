@@ -11,23 +11,25 @@ namespace Zork
         private string bio;
 
         public string Name { get; set; }
+
+
         //Val 1,2,3
         public string Bio {
             get
             {
                 return bio;
             }
-            set
+            private set
             {
-                if (value=="mimmi")
+                if (value == CharacterIs.Mimmi.ToString())
                 {
-                   bio= "Mimmi, fruktad i orten! Känd för att alltid vara i tid";
+                   bio = "Mimmi, fruktad i orten! Känd för att alltid vara i tid";
                 }
-                else if (value == "markus")
+                else if (value == CharacterIs.Markus.ToString())
                 {
-                    bio = "Marcus är delar plats med Mimmi";
+                    bio = "Markus delar plats med Mimmi";
                 }
-                else if (value == "ahmad")
+                else if (value == CharacterIs.Ahmad.ToString())
                 {
                     bio = "Ahmad är bäst";
                 }
@@ -37,6 +39,13 @@ namespace Zork
                 }
             }
         }
+
+        // Constructor
+        public Player(CharacterIs player)
+        {
+            Bio = player.ToString();
+        }
+
 
     }
 }

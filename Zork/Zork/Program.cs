@@ -11,22 +11,14 @@ namespace Zork
         static void Main(string[] args)
         {
             //Menu
-            Player Mimmi = new Player();
-            Player Markus = new Player();
-            Player Ahmad = new Player();
-
-            Mimmi.Bio = "mimmi";
-            Markus.Bio = "markus";
-            Ahmad.Bio = "ahmad";
-
+            Player mimmi = new Player(CharacterIs.Mimmi);
+            Player markus = new Player(CharacterIs.Markus);
+            Player ahmad = new Player(CharacterIs.Ahmad);
 
             Console.WriteLine("Välkommen till zork\nVälj en spelare: ");
-            Console.WriteLine(Mimmi.Bio);
-            Console.WriteLine(Markus.Bio);
-            Console.WriteLine(Ahmad.Bio);
-
-
-            //Console.Write(MyString.PadLeft(20, '-') + Markus.PadLeft(20, '-'));
+            Console.WriteLine(mimmi.Bio);
+            Console.WriteLine(markus.Bio);
+            Console.WriteLine(ahmad.Bio);
 
 
             Console.ReadLine();
