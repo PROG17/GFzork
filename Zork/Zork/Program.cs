@@ -10,7 +10,6 @@ namespace Zork
     {
         static void Main(string[] args)
         {
-            //Menu
             Player Mimmi = new Player();
             Player Markus = new Player();
             Player Ahmad = new Player();
@@ -19,17 +18,41 @@ namespace Zork
             Markus.Bio = "markus";
             Ahmad.Bio = "ahmad";
 
+            //Title Screen
+            Console.WriteLine("\n\n\n\n");
+            WriteTextAndCenter("Welcome to Travel Adventure");
+            WriteTextAndCenter("Choose a your character bio\n\n");
+            WriteTextAndCenter("Character 1");
+            WriteTextAndCenter(Mimmi.Bio+"\n");
+            WriteTextAndCenter("Character 2");
+            WriteTextAndCenter(Markus.Bio+"\n");
+            WriteTextAndCenter("Character 3");
+            WriteTextAndCenter(Ahmad.Bio+"\n");
+            
+            string charChoice = ReadTextAndCenter();
 
-            Console.WriteLine("Välkommen till zork\nVälj en spelare: ");
-            Console.WriteLine(Mimmi.Bio);
-            Console.WriteLine(Markus.Bio);
-            Console.WriteLine(Ahmad.Bio);
-
+            Console.Clear();
+            Console.WriteLine("\n\n\n");
+            WriteTextAndCenter("Name your character");
+            string namn = Console.ReadLine();
+            Console.Clear();
 
             //Console.Write(MyString.PadLeft(20, '-') + Markus.PadLeft(20, '-'));
 
 
             Console.ReadLine();
         }
+
+        private static void WriteTextAndCenter(string text) {
+            Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.CursorTop);
+            Console.WriteLine(text);
+        }
+
+        private static string ReadTextAndCenter()
+        {
+            Console.SetCursorPosition((Console.WindowWidth-1) / 2, Console.CursorTop);
+            return Console.ReadLine();
+        }
+
     }
 }
