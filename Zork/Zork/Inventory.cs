@@ -8,12 +8,14 @@ namespace Zork
 {
     class Inventory
     {
-        public string BusCard { get; set; }
-        public string Money { get; set; }
-        public string Coffe { get; set; }
-        public string Keys { get; set; }
-        public string SmartPhone { get; set; }
-        public string Food { get; set; }
+        public bool BusCard { get; set; }
+        public bool Wallet { get; set; }
+        public bool Coffe { get; set; }
+        public bool Keys { get; set; }
+        public bool SmartPhone { get; set; }
+        public bool Food { get; set; }
+        public int BusCardMoney { get; set; }
+        public int WalletMoney { get; set; }
 
     }
 
