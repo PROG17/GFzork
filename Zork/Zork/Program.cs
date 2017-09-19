@@ -10,13 +10,10 @@ namespace Zork
     {
         static void Main(string[] args)
         {
-            Player Mimmi = new Player();
-            Player Markus = new Player();
-            Player Ahmad = new Player();
-
-            Mimmi.Bio = "mimmi";
-            Markus.Bio = "markus";
-            Ahmad.Bio = "ahmad";
+            //Menu
+            Player mimmi = new Player(CharacterIs.Mimmi);
+            Player markus = new Player(CharacterIs.Markus);
+            Player ahmad = new Player(CharacterIs.Ahmad);
 
             //Title Screen
             Console.WriteLine("\n\n\n\n");
