@@ -15,7 +15,9 @@ namespace Zork
             var charMarkus = new CharMarkus();
             var charAhmad = new CharAhmad();
             Player chosenCharacter = null;
+            Play game = new Play();
 
+           
 
             //Title Screen
             Console.WriteLine("\n\n\n\n");
@@ -60,6 +62,7 @@ namespace Zork
 
             //Console.Write(MyString.PadLeft(20, '-') + Markus.PadLeft(20, '-'));
 
+            game.Playing(charChoice);
 
             Console.ReadLine();
         }

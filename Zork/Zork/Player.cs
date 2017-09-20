@@ -33,36 +33,36 @@ namespace Zork
         }
 
 
-        //private void CreateInventoryList(CharacterIs character)
-        //{
-        //    switch (character)
-        //    {
-        //        case CharacterIs.Mimmi:
-        //            inventory.BusCard = false;
-        //            inventory.Coffe = false;
-        //            inventory.Food = false;
-        //            inventory.Keys = false;
-        //            inventory.SmartPhone = false;
-        //            inventory.Wallet = false;
-        //            break;
-        //        case CharacterIs.Ahmad:
-        //            inventory.BusCard = false;
-        //            inventory.Coffe = false;
-        //            inventory.Food = false;
-        //            inventory.Keys = false;
-        //            inventory.SmartPhone = false;
-        //            inventory.Wallet = false;
-        //            break;
-        //        case CharacterIs.Markus:
-        //            inventory.BusCard = false;
-        //            inventory.Coffe = false;
-        //            inventory.Food = false;
-        //            inventory.Keys = false;
-        //            inventory.SmartPhone = false;
-        //            inventory.Wallet = false;
-        //            break;
-        //    }            
-        //}
+        private void CreateInventoryList(CharacterIs character)
+        {
+            //switch (character)
+            //{
+            //    case CharacterIs.Mimmi:
+            //        inventory.BusCard = false;
+            //        inventory.Coffe = false;
+            //        inventory.Food = false;
+            //        inventory.Keys = false;
+            //        inventory.SmartPhone = false;
+            //        inventory.Wallet = false;
+            //        break;
+            //    case CharacterIs.Ahmad:
+            //        inventory.BusCard = false;
+            //        inventory.Coffe = false;
+            //        inventory.Food = false;
+            //        inventory.Keys = false;
+            //        inventory.SmartPhone = false;
+            //        inventory.Wallet = false;
+            //        break;
+            //    case CharacterIs.Markus:
+            //        inventory.BusCard = false;
+            //        inventory.Coffe = false;
+            //        inventory.Food = false;
+            //        inventory.Keys = false;
+            //        inventory.SmartPhone = false;
+            //        inventory.Wallet = false;
+            //        break;
+            //}
+        }
 
 
 

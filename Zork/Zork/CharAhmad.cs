@@ -13,9 +13,9 @@ namespace Zork
             CreateInventory();
         }
 
-        public override void CreateInventory()
-        {
-            inventory.Keys = true;
-        }
+        //public override void CreateInventory()
+        //{
+        //    inventory.Keys = true;
+        //}
     }
 }
