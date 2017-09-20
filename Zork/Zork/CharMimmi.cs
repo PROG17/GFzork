@@ -11,10 +11,6 @@ namespace Zork
             base.Character = CharacterIs.Mimmi;
         }
 
-        public override void CreateInventory()
-        {
-            throw new System.NotImplementedException();
-        }
     }
     
 }

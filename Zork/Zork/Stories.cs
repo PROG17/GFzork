@@ -8,16 +8,6 @@ namespace Zork
 {
     class Stories
     {
-        //Text strängar som ska kallas på
-
-        //Hem
-        //
-        //Buss/Tåg/helikopter
-        //
-        //Odenplan
-        //
-        //Buss/Tåg
-        //
-        //Skolan
+        
     }
 }

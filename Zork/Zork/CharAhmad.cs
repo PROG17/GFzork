@@ -2,7 +2,7 @@
 
 namespace Zork
 {
-    public class CharAhmad: Player
+    public class CharAhmad : Player
     {
         Inventory inventory = new Inventory();
 
@@ -10,12 +10,6 @@ namespace Zork
         {
             this.Bio = "Ahmad är bäst";
             this.Character = CharacterIs.Ahmad;
-            CreateInventory();
         }
-
-        //public override void CreateInventory()
-        //{
-        //    inventory.Keys = true;
-        //}
     }
 }

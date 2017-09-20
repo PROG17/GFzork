@@ -8,9 +8,5 @@
             this.Character = CharacterIs.Markus;
         }
 
-        public override void CreateInventory()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

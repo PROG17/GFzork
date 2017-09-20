@@ -18,28 +18,38 @@ namespace Zork
             Room position = new Room();
             Inventory items = new Inventory();
             Stories story = new Stories();
+            var centerText = new CenterText();
 
             //Mimmis värld
             if (player == 1)
             {
 
                 //Startposition        
-
                 yourPosition = position.Home;
-                Console.WriteLine(position.Home);
+                centerText.WriteTextAndCenter(yourPosition);
+
                 //Inspect eller välj inventory
-                Console.WriteLine("look where you are [inspect] | pick your inventory [pick]");
-                commando = Console.ReadLine();
+                centerText.WriteTextAndCenter("look where you are [inspect] | pick your inventory [pick]");
+                commando = centerText.ReadTextAndCenter(5);
 
-                if (commando == "inspect") { if (yourPosition == position.Home) position.Describe(position.Home); }
-
-                else if (commando == "pick")
-                { position.ItemsHome(); }
-
-                else
+                while (true)
                 {
-                    Console.WriteLine("Try again");
+                    if (commando == "inspect")
+                    {
+                        if (yourPosition == position.Home) position.Describe(position.Home);
+                    }
+
+                    else if (commando == "pick")
+                    {
+                        position.ItemsHome();
+                    }
+
+                    else
+                    {
+                        centerText.WriteTextAndCenter("Try again");
+                    }
                 }
+  
                 //Markus värld
                 if (player == 2)
                 { }
