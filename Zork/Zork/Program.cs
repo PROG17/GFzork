@@ -11,21 +11,22 @@ namespace Zork
         static void Main(string[] args)
         {
             //Declaration
-            Player mimmi = new Player(CharacterIs.Mimmi);
-            Player markus = new Player(CharacterIs.Markus);
-            Player ahmad = new Player(CharacterIs.Ahmad);
+            var charMimmi = new CharMimmi();
+            var charMarkus = new CharMarkus();
+            var charAhmad = new CharAhmad();
             Player chosenCharacter = null;
+
 
             //Title Screen
             Console.WriteLine("\n\n\n\n");
             WriteTextAndCenter("Welcome to Travel Adventure");
             WriteTextAndCenter("Choose your character bio\n\n");
             WriteTextAndCenter("Character (1)");
-            WriteTextAndCenter(mimmi.Bio + "\n");
+            WriteTextAndCenter(charMimmi.Bio + "\n");
             WriteTextAndCenter("Character (2)");
-            WriteTextAndCenter(markus.Bio + "\n");
+            WriteTextAndCenter(charMarkus.Bio + "\n");
             WriteTextAndCenter("Character (3)");
-            WriteTextAndCenter(ahmad.Bio + "\n");
+            WriteTextAndCenter(charAhmad.Bio + "\n");
 
             //Väljer story att gå efter
             int charChoice;
@@ -33,9 +34,9 @@ namespace Zork
             {
                 if (int.TryParse(ReadTextAndCenter(), out charChoice))
                 {
-                    if (charChoice == 1) chosenCharacter = new Player(CharacterIs.Mimmi);
-                    if (charChoice == 2) chosenCharacter = new Player(CharacterIs.Markus);
-                    if (charChoice == 3) chosenCharacter = new Player(CharacterIs.Ahmad);
+                    if (charChoice == 1) chosenCharacter = charMimmi;
+                    if (charChoice == 2) chosenCharacter = charMarkus;
+                    if (charChoice == 3) chosenCharacter = charAhmad;
                     if (charChoice != 1 && charChoice != 2 && charChoice != 3)
                     {
                         WriteTextAndCenter("Try a number between 1-3!");
