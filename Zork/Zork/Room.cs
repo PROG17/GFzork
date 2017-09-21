@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-
-    class Room
+    class Room: ContainerForBasicInfo
     {
         // Alla room
         string home = "This is your home";
@@ -16,35 +15,25 @@ namespace Zork
         string train = "This is a train";
         string school = "This is the school";
         string bus = "This is a bus";
-        string homeInspect = "You see a door, and the bed.. Do you want do exit the door or go back to bed?\n" +
-            "[exit] | [go back to bed]";
-        string trainInspect = "You are now a the train station, do you have your buscard?" +
-            "[show buscard] | [forgot it]";
+        string homeInspect = "You see a door, and the bed.. Do you want do exit the door or go back to bed?";
 
         //Vilka items finns
         Inventory items = new Inventory();
 
-        
+        Dictionary<int, string> itemsHome = new Dictionary<int, string> { };
 
         public void ItemsHome()
         {
-            List<string> itemsHome = new List<string>();
-            itemsHome.Add(items.SmartPhone);
-            itemsHome.Add(items.BusCard);
-            itemsHome.Add(items.Wallet);
-            itemsHome.Add(items.Coffee);
-            itemsHome.Add(items.Keys);
-            itemsHome.Add(items.Food);
-            itemsHome.Add(items.Money);
+            
+            itemsHome.Add(1, items.SmartPhone);
+            itemsHome.Add(2, items.BusCard);
+            itemsHome.Add(3, items.Wallet);
+            itemsHome.Add(4, items.Coffee);
 
-            foreach (string item in itemsHome)
-            {
-
-                     
-                Console.Write(item + " ");
-                
+            foreach(KeyValuePair<int, string> sample in itemsHome)
+     {
+                Console.WriteLine(sample.ToString());
             }
-           
         }
         //Detaljerade rumbeskrivningar
         public string Home
@@ -64,54 +53,7 @@ namespace Zork
                 value = home;
             }
         }
-        public string Cab
-        {
-            get
-            {
-                return cab;
-            }
-            set
-            {
 
-                value = cab;
-            }
-        }
-        public string Train
-        {
-            get
-            {
-                return train;
-            }
-            set
-            {
-
-                value = train;
-            }
-        }
-        public string School
-        {
-            get
-            {
-                return school;
-            }
-            set
-            {
-
-                value = school;
-            }
-        }
-        public string Bus
-        {
-            get
-            {
-                return bus;
-            }
-            set
-            {
-
-                value = bus;
-            }
-        }
 
 
 
@@ -119,11 +61,10 @@ namespace Zork
         public void Describe(string position)
         {
             if (position == home) Console.WriteLine(homeInspect);
-            if (position == train) Console.WriteLine(trainInspect);
 
 
 
-        }
+
     }
 }
 
