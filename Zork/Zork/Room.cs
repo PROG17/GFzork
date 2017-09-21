@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class Room: ContainerForBasicInfo
+    class Room : ContainerForBasicInfo
     {
         // Alla room
         string _home = "This is your home";
         string _homeInspect = "You see a door, and the bed.. Do you want do exit the door or go back to bed?";
+        string _trainInspect = "You're at the train station. Use your buscard";
         public string Cab { get; set; } = "This is a cab";
         public string Train { get; set; } = "This is a train";
         public string School { get; set; } = "This is the school";
@@ -37,16 +38,16 @@ namespace Zork
 
         public void ItemsHome()
         {
-            
+
             itemsHome.Add(items.SmartPhone);
             itemsHome.Add(items.BusCard);
             itemsHome.Add(items.Wallet);
             itemsHome.Add(items.Coffee);
 
-            foreach(string item in itemsHome)
+            foreach (string item in itemsHome)
             {
                 centerText.WriteTextAndCenter(item);
-                
+
             }
         }
 
@@ -57,6 +58,7 @@ namespace Zork
         public void Describe(string position)
         {
             if (position == _home) centerText.WriteTextAndCenter(_homeInspect);
+            if (position == Train) centerText.WriteTextAndCenter(_trainInspect);
         }
 
     }

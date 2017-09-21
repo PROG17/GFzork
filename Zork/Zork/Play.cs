@@ -43,12 +43,17 @@ namespace Zork
                     commando = centerText.ReadTextAndCenter(5);
 
 
-                    story.Home(ref commando, yourPosition);
+                    story.Home(ref commando, ref yourPosition);
 
 
 
                     if (commando == "pick")
-                    {  }
+                    {
+                        position.ItemsHome();
+
+                    }
+                    else if (commando == "exit"){ story.Train(ref commando, yourPosition); }
+
 
                     else
                     {

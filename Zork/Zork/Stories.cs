@@ -21,9 +21,10 @@ namespace Zork
         //Skolan
         public List<string> myInventory = new List<string>();
         Room position = new Room();
+        CenterText centerText = new CenterText();
 
-        
-        public void Home(ref string commando, string yourPosition)
+
+        public void Home(ref string commando, ref string yourPosition)
         {
             if (commando == "inspect")
             {
@@ -31,13 +32,19 @@ namespace Zork
                 {
                     position.Describe(position.Home);
                     commando = Console.ReadLine();
+
+                    if (commando == "exit")
+                    {
+                        commando = "exit";
+                        yourPosition = position.Train;
+
+                    }
+
                 }
+               
             }
-            if (commando == "exit")
-            {
-                commando = "exit";
-                
-            }
+            
+           
         
             else if (commando == "pick")
             {
@@ -52,11 +59,29 @@ namespace Zork
             else
             {
                 Console.WriteLine("Try again");
+                
             }
 
 
 
         }
 
+        public void Train(ref string commando, string yourPosition)
+        {
+            centerText.WriteTextAndCenter("look where you are [inspect]");
+            if (commando == "inspect")
+            {
+                if (yourPosition == position.Train)
+                {
+                    position.Describe(position.Train);
+                    commando = Console.ReadLine();
+                }
+            } 
+
+                    Console.WriteLine("train");
+            Console.ReadLine();
+
+
+        }
     }
 }
