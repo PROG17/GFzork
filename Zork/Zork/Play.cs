@@ -10,7 +10,7 @@ namespace Zork
     {
         public string commando;
         string yourPosition;
-        
+
         Stories story = new Stories();
 
 
@@ -32,27 +32,28 @@ namespace Zork
                 Console.WriteLine(position.Home);
                 while (alive)
                 {
-                    
-                    //Inspect eller välj inventory
-                    Console.WriteLine("look where you are [inspect] | pick your inventory [pick]");
-                    commando = Console.ReadLine();
-                centerText.WriteTextAndCenter(yourPosition);
 
-                //Inspect eller välj inventory
-                centerText.WriteTextAndCenter("look where you are [inspect] | pick your inventory [pick]");
-                commando = centerText.ReadTextAndCenter(5);
+                    //Inspect eller välj inventory
+                    //Console.WriteLine("look where you are [inspect] | pick your inventory [pick]");
+                    //commando = Console.ReadLine();
+                    //centerText.WriteTextAndCenter(yourPosition);
+
+                    //Inspect eller välj inventory
+                    centerText.WriteTextAndCenter("look where you are [inspect] | pick your inventory [pick]");
+                    commando = centerText.ReadTextAndCenter(5);
 
 
                     story.Home(ref commando, yourPosition);
-                    Console.WriteLine("Exit");
 
 
-                else if (commando == "pick")
-                { position.ItemsHome(); }
 
-                else
-                {
-                    Console.WriteLine("Try again");
+                    if (commando == "pick")
+                    {  }
+
+                    else
+                    {
+                        Console.WriteLine("Try again");
+                    }
                 }
                 //Markus värld
                 if (player == 2)
@@ -63,9 +64,10 @@ namespace Zork
 
 
 
-            
-        }
 
+            }
+
+        }
     }
 }
 

@@ -33,19 +33,20 @@ namespace Zork
 
         //Vilka items finns
         Inventory items = new Inventory();
-        Dictionary<int, string> itemsHome = new Dictionary<int, string>();
+        List<string> itemsHome = new List<string>();
 
-        public void ItemsHome(CharacterIs name)
+        public void ItemsHome()
         {
             
-            itemsHome.Add(1, items.SmartPhone);
-            itemsHome.Add(2, items.BusCard);
-            itemsHome.Add(3, items.Wallet);
-            itemsHome.Add(4, items.Coffee);
+            itemsHome.Add(items.SmartPhone);
+            itemsHome.Add(items.BusCard);
+            itemsHome.Add(items.Wallet);
+            itemsHome.Add(items.Coffee);
 
-            foreach(KeyValuePair<int, string> sample in itemsHome)
+            foreach(string item in itemsHome)
             {
-                centerText.WriteTextAndCenter(sample.ToString());
+                centerText.WriteTextAndCenter(item);
+                
             }
         }
 
