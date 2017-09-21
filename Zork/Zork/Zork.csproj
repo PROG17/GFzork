@@ -42,10 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CenterText.cs" />
     <Compile Include="CharAhmad.cs" />
     <Compile Include="CharMarkus.cs" />
     <Compile Include="CharMimmi.cs" />
-    <Compile Include="IInventory.cs" />
+    <Compile Include="ContainerForBasicInfo.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Play.cs" />
     <Compile Include="Player.cs" />
