@@ -8,10 +8,11 @@ namespace Zork
 {
     public class Play
     {
-        string commando;
+        public string commando;
         string yourPosition;
         
-        
+        Stories story = new Stories();
+
 
         public void Playing(int player)
         {
@@ -19,27 +20,33 @@ namespace Zork
             Inventory items = new Inventory();
             Stories story = new Stories();
 
+
             //Mimmis värld
             if (player == 1)
             {
+                bool alive = true;
 
                 //Startposition        
-
                 yourPosition = position.Home;
                 Console.WriteLine(position.Home);
-                //Inspect eller välj inventory
-                Console.WriteLine("look where you are [inspect] | pick your inventory [pick]");
-                commando = Console.ReadLine();
-
-                if (commando == "inspect") { if (yourPosition == position.Home) position.Describe(position.Home); }
-
-                else if (commando == "pick")
-                { position.ItemsHome(); }
-
-                else
+                while (alive)
                 {
-                    Console.WriteLine("Try again");
+                    
+                    //Inspect eller välj inventory
+                    Console.WriteLine("look where you are [inspect] | pick your inventory [pick]");
+                    commando = Console.ReadLine();
+
+
+                    story.Home(ref commando, yourPosition);
+                    Console.WriteLine("Exit");
+
+
+
+
+
                 }
+            }
+
                 //Markus värld
                 if (player == 2)
                 { }
@@ -49,8 +56,9 @@ namespace Zork
 
 
 
-            }
+            
         }
 
     }
 }
+

@@ -16,26 +16,35 @@ namespace Zork
         string train = "This is a train";
         string school = "This is the school";
         string bus = "This is a bus";
-        string homeInspect = "You see a door, and the bed.. Do you want do exit the door or go back to bed?";
-
+        string homeInspect = "You see a door, and the bed.. Do you want do exit the door or go back to bed?\n" +
+            "[exit] | [go back to bed]";
+        string trainInspect = "You are now a the train station, do you have your buscard?" +
+            "[show buscard] | [forgot it]";
 
         //Vilka items finns
         Inventory items = new Inventory();
 
-        Dictionary<int, string> itemsHome = new Dictionary<int, string> { };
+        
 
         public void ItemsHome()
         {
-            
-            itemsHome.Add(1, items.SmartPhone);
-            itemsHome.Add(2, items.BusCard);
-            itemsHome.Add(3, items.Wallet);
-            itemsHome.Add(4, items.Coffee);
+            List<string> itemsHome = new List<string>();
+            itemsHome.Add(items.SmartPhone);
+            itemsHome.Add(items.BusCard);
+            itemsHome.Add(items.Wallet);
+            itemsHome.Add(items.Coffee);
+            itemsHome.Add(items.Keys);
+            itemsHome.Add(items.Food);
+            itemsHome.Add(items.Money);
 
-            foreach(KeyValuePair<int, string> sample in itemsHome)
-     {
-                Console.WriteLine(sample.ToString());
+            foreach (string item in itemsHome)
+            {
+
+                     
+                Console.Write(item + " ");
+                
             }
+           
         }
         //Detaljerade rumbeskrivningar
         public string Home
@@ -110,7 +119,7 @@ namespace Zork
         public void Describe(string position)
         {
             if (position == home) Console.WriteLine(homeInspect);
-
+            if (position == train) Console.WriteLine(trainInspect);
 
 
 

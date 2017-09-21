@@ -64,7 +64,7 @@ namespace Zork
 
             game.Playing(charChoice);
 
-            Console.ReadLine();
+            Console.ReadLine();   
         }
 
         private static void WriteTextAndCenter(string text)

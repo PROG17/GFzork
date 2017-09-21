@@ -12,99 +12,19 @@ namespace Zork
      public class Inventory
     {
 
-        string buscard = "Buscard";
-        string coffee = "Coffee";
-        string keys = "Keys";
-        string smartphone = "Smartphone";
-        string food = "Food";
-        string money = "Money";
-        string wallet = "Wallet";
+
+        public string BusCard { get; set; } = "Buscard";
+        public string Coffee { get; set; } = "Coffee";
+        public string Keys { get; set; } = "Keys";
+        public string SmartPhone { get; set; } = "Smartphone";
+        public string Food { get; set; } = "Food";
+        public string Money { get; set; } = "Money";
+        public string Wallet { get; set; } = "Wallet";
 
 
 
-        public string BusCard
-        {
-            get
-            {
-                return buscard;
-            }
-            set
-            {
 
-                value = buscard;
-            }
-        }
-        public string Money
-        {
-            get
-            {
-                return money;
 
-            }
-            set
-            {
-                value = money;
-            }
-        }
-        public string Coffee
-        {
-            get
-            {
-                return coffee;
-            }
-            set
-            {
-                value = coffee;
-            }
-        }
-        public string Keys
-        {
-            get
-            {
-                return keys;
-            }
-            set
-            {
-                value = keys;
-            }
-        }
-        public string SmartPhone
-        {
-            get
-            {
-                return smartphone;
-
-            }
-            set
-            {
-                value = smartphone;
-
-            }
-        }
-        public string Food
-        {
-            get
-            {
-                return food;
-
-            }
-            set
-            {
-                value = food;
-            }
-        }
-        public string Wallet
-        {
-            get
-            {
-                return wallet;
-
-            }
-            set
-            {
-                value = Wallet;
-            }
-        }
 
         public int BusCardMoney { get; set; }
         public int WalletMoney { get; set; }
