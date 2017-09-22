@@ -9,7 +9,8 @@ namespace Zork
 {
 
 
-    public class Room : ContainerForBasicInfo
+
+    public class Room : ContainerForBasicInfo, IRoom
     {
    
 

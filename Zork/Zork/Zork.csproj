@@ -65,7 +65,11 @@
     <Compile Include="Inventory\SmartPhone.cs" />
     <Compile Include="Room\School.cs" />
     <Compile Include="Room\Train.cs" />
+    <Compile Include="Stories\BusToSchool.cs" />
+    <Compile Include="Stories\HomeToTrain.cs" />
     <Compile Include="Stories\Stories.cs" />
+    <Compile Include="Stories\TrainToBus.cs" />
+    <Compile Include="Stories\TrainToCab.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -6,17 +6,6 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    public class HomeToTrain: Stories
-    {
-        public HomeToTrain()
-        {
-            Name = "Going from Home to Train";
-            Bio = "Story for home";
-        }
-    }
-
-
-
     public class Stories: ContainerForBasicInfo
     {
         // Skapa dict i dict!!
@@ -25,7 +14,6 @@ namespace Zork
         public List<string> myInventory = new List<string>();
 
 
-        // Markus-----
         public void CreateStories()
         {
             CharAhmad charAhmad = new CharAhmad();
