@@ -8,8 +8,8 @@ namespace Zork
 
         public CharAhmad()
         {
-            this.Bio = "Ahmad är bäst";
-            this.Character = CharacterIs.Ahmad;
+            Bio = "Ahmad är bäst";
+            Character = CharacterIs.Ahmad;
         }
     }
 }
