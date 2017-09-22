@@ -4,8 +4,8 @@
     {
         public SmartPhone()
         {
-            base.Name = "SmartPhone";
-            base.Bio = "A smartphone can be used to get at cab";
+            Name = "SmartPhone";
+            Bio = "A smartphone can be used to get at cab";
         }
     }
 }

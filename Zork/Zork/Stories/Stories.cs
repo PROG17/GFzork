@@ -6,25 +6,38 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class Stories
+    public class HomeToTrain: Stories
+    {
+        public HomeToTrain()
+        {
+            base.Name = "Going from Home to Train";
+            base.Bio = "Story for home";
+        }
+    }
+    public class Stories: ContainerForBasicInfo
     {
         // Skapa dict i dict!!
+        Dictionary<Player, Dictionary<Room, List<Stories>>> storiesDictionary = new Dictionary<Player, Dictionary<Room, List<Stories>>>();
 
-        //Text strängar som ska kallas på
-
-        //Hem
-        //
-        //Buss/Tåg/helikopter
-        //
-        //Odenplan
-        //
-        //Buss/Tåg
-        //
-        //Skolan
         public List<string> myInventory = new List<string>();
-        Room position = new Room();
-        CenterText centerText = new CenterText();
 
+
+        // Markus-----
+        public void CreateStories()
+        {
+            CharAhmad charAhmad = new CharAhmad();
+            Room room = new Room();
+
+            List<Stories> storiesListForAhmad = new List<Stories>();
+            Dictionary<Room, List<Stories>> roomDictionary = new Dictionary<Room, List<Stories>>();
+            
+
+            storiesDictionary.Add(charAhmad, roomDictionary);
+        }
+
+
+        CenterText centerText = new CenterText();
+        Room position = new Room();
 
         public void Home(ref string commando, ref string yourPosition)
         {

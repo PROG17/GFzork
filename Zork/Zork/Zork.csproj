@@ -42,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Inventory\BusCard.cs" />
+    <Compile Include="Inventory\Coffe.cs" />
+    <Compile Include="Inventory\Food.cs" />
+    <Compile Include="Inventory\Keys.cs" />
+    <Compile Include="Inventory\Wallet.cs" />
     <Compile Include="Room\Cab.cs" />
     <Compile Include="CenterText.cs" />
     <Compile Include="Player\CharAhmad.cs" />

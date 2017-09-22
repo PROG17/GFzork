@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-
     public class Room : ContainerForBasicInfo
     {
         // Alla room

@@ -20,17 +20,17 @@ namespace Zork
         public void Playing(int player)
         {
             // -----------Markus
-            room.CreateStartingPointForRooms();
-            Room current;
-            current = new Cab();
-            Console.WriteLine(current.Name);
-            Console.WriteLine(current.Bio);
+            //room.CreateStartingPointForRooms();
+            //Room current;
+            //current = new Cab();
+            //Console.WriteLine(current.Name);
+            //Console.WriteLine(current.Bio);
 
-            if (current is Cab)
-            {
-                var cab = current as Cab;
-                cab.DescribeTest();
-            }
+            //if (current is Cab)
+            //{
+            //    var cab = current as Cab;
+            //    cab.DescribeTest();
+            //}
 
             //BaseClass myBaseObject = new BaseClass();
             //DerivedClass myDerivedObject = myBaseObject as DerivedClass;
@@ -68,6 +68,8 @@ namespace Zork
 
                     //Inspect eller välj inventory
                     centerText.WriteTextAndCenter("look where you are [inspect] | pick your inventory [pick]");
+
+
                     commando = centerText.ReadTextAndCenter(5);
 
 

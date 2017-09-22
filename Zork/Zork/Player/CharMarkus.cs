@@ -4,8 +4,8 @@
     {
         public CharMarkus()
         {
-            this.Bio = "Markus delar plats med Mimmi";
-            this.Character = CharacterIs.Markus;
+            Bio = "Markus delar plats med Mimmi";
+            Character = CharacterIs.Markus;
         }
 
     }
