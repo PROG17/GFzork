@@ -7,30 +7,32 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
+
+
     public class Room : ContainerForBasicInfo
     {
         // Alla room
-        public string _home = "This is your home";
+        //public string _home = "This is your home";
         string _homeInspect = "You see a door, and the bed.. Do you want do exit the door or go back to bed?";
         string _trainInspect = "You're at the train station. Use your buscard";
         //public string Cab { get; } = "This is a cab";
-        public string Train { get; } = "This is a train";
-        public string School { get; } = "This is the school";
-        public string Bus { get; } = "This is a bus";
+        //public string Train { get; } = "This is a train";
+        //public string School { get; } = "This is the school";
+        //public string Bus { get; } = "This is a bus";
 
-        public string Home
-        {
-            get => _home;
-            set
-            {
-                if (true)
-                {
-                    _homeInspect = value;
+        //public string Home
+        //{
+        //    //get => _home;
+        //    set
+        //    {
+        //        if (true)
+        //        {
+        //            _homeInspect = value;
 
-                }
-                _home = value;
-            }
-        }
+        //        }
+        //        _home = value;
+        //    }
+        //}
 
         CenterText centerText = new CenterText();
 
