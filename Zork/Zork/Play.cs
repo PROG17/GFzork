@@ -11,32 +11,12 @@ namespace Zork
         public string commando;
         string yourPosition;
 
-        Stories story = new Stories();
-        Room room = new Room();
+        Dictionary<Room, List<Inventory>> dictOfRoomAndInventory = new Dictionary<Room, List<Inventory>>();
+        CenterText centerText = new CenterText();
 
 
-
-
-        public void Playing(int player)
+        public void Playing(CharacterIs player)
         {
-            // -----------Markus
-            //room.CreateStartingPointForRooms();
-            //Room current;
-            //current = new Cab();
-            //Console.WriteLine(current.Name);
-            //Console.WriteLine(current.Bio);
-
-            //if (current is Cab)
-            //{
-            //    var cab = current as Cab;
-            //    cab.DescribeTest();
-            //}
-
-            //BaseClass myBaseObject = new BaseClass();
-            //DerivedClass myDerivedObject = myBaseObject as DerivedClass;
-
-            //myDerivedObject.MyDerivedProperty = true;
-
 
             Room position = new Room();
             Inventory items = new Inventory();
@@ -46,7 +26,7 @@ namespace Zork
 
 
             //Mimmis värld
-            if (player == 1)
+            if (player == CharacterIs.Mimmi)
             {
 
 
@@ -60,7 +40,7 @@ namespace Zork
                 //centerText.WriteTextAndCenter(position.Home);
                 while (alive)
                 {
-
+                    CreateStartingPointForRooms();
                     //Inspect eller välj inventory
                     //Console.WriteLine("look where you are [inspect] | pick your inventory [pick]");
                     //commando = Console.ReadLine();
@@ -73,16 +53,17 @@ namespace Zork
                     commando = centerText.ReadTextAndCenter(5);
 
 
-                    story.Home(ref commando, ref yourPosition);
 
 
 
                     if (commando == "pick")
                     {
                         // Skriv ut vilka inventories som finns 
-
+                        Home home = new Home();
                         //position.ItemsHome();
-                        position.GetInventoryFrom(new Home());
+                        GetInventoryFrom(home);
+
+                        story.Home(ref commando, ref yourPosition);
 
                     }
                     else if (commando == "exit"){ story.Train(ref commando, yourPosition); }
@@ -94,10 +75,10 @@ namespace Zork
                     }
                 }
                 //Markus värld
-                if (player == 2)
+                if (player == CharacterIs.Markus)
                 { }
                 // Ahmads värld
-                if (player == 3)
+                if (player == CharacterIs.Ahmad)
                 { }
 
 
@@ -125,25 +106,44 @@ namespace Zork
 
             // Inventory for Home
             List<Inventory> inventoryHome = new List<Inventory> { smartPhone, busCard, wallet, keys, wallet, food, coffe };
-            room.dictOfRoomAndInventory.Add(home, inventoryHome);
+            dictOfRoomAndInventory.Add(home, inventoryHome);
 
             // Inventory for Cab
             List<Inventory> inventoryCab = new List<Inventory> { smartPhone };
-            room.dictOfRoomAndInventory.Add(cab, inventoryCab);
+            dictOfRoomAndInventory.Add(cab, inventoryCab);
 
             // Inventory for Bus
             List<Inventory> inventoryBus = new List<Inventory> { smartPhone, busCard, wallet, keys };
-            room.dictOfRoomAndInventory.Add(bus, inventoryBus);
+            dictOfRoomAndInventory.Add(bus, inventoryBus);
 
             // Inventory for Train
             List<Inventory> inventoryTrain = new List<Inventory> { };
-            room.dictOfRoomAndInventory.Add(train, inventoryTrain);
+            dictOfRoomAndInventory.Add(train, inventoryTrain);
 
             // Inventory for School
             List<Inventory> inventorySchool = new List<Inventory> { coffe, food };
-            room.dictOfRoomAndInventory.Add(school, inventorySchool);
+            dictOfRoomAndInventory.Add(school, inventorySchool);
 
             //GetInventoryFromRoom(cab);
+
+        }
+
+        public void GetInventoryFrom(Room room)
+        {
+
+            //var items = dictOfRoomAndInventory[room];
+
+            foreach (var item in dictOfRoomAndInventory)
+            {
+                if (item.Key.ToString() == room.ToString())
+                {
+                    for (int i = 0; i < item.Value.Count; i++)
+                    {
+                        centerText.WriteTextAndCenter($"{i + 1}){item.Value[i].Name}");
+                    }
+                }
+            }
+
 
         }
     }

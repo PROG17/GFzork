@@ -64,7 +64,7 @@ namespace Zork
 
             centerText.WriteTextAndCenter("Welcome " + chosenCharacter.Name + "!");
 
-            game.Playing(charChoice);
+            game.Playing(chosenCharacter.Character);
 
             Console.ReadLine();   
         }

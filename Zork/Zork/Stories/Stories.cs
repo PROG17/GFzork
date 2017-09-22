@@ -10,10 +10,13 @@ namespace Zork
     {
         public HomeToTrain()
         {
-            base.Name = "Going from Home to Train";
-            base.Bio = "Story for home";
+            Name = "Going from Home to Train";
+            Bio = "Story for home";
         }
     }
+
+
+
     public class Stories: ContainerForBasicInfo
     {
         // Skapa dict i dict!!
@@ -39,6 +42,8 @@ namespace Zork
         CenterText centerText = new CenterText();
         Room position = new Room();
 
+
+        // MARK: Re-do!
         public void Home(ref string commando, ref string yourPosition)
         {
             if (commando == "inspect")
@@ -64,8 +69,8 @@ namespace Zork
             else if (commando == "pick")
             {
                 Console.WriteLine("Pick 3 items");
-                position.ItemsHome();
 
+               
                 myInventory.Add(Console.ReadLine());
                 myInventory.Add(Console.ReadLine());
                 myInventory.Add(Console.ReadLine());

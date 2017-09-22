@@ -4,8 +4,8 @@ namespace Zork
     {
         public Food()
         {
-            base.Name = "Food";
-            base.Bio = "Bio for food";
+            Name = "Food";
+            Bio = "Bio for food";
         }
     }
 }

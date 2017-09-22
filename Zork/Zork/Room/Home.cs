@@ -4,7 +4,7 @@
     {
         public Home()
         {
-            Name = "Bus";
+            Name = "Home";
             Bio = "You are home";
         }
     }

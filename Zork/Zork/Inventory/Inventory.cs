@@ -9,17 +9,8 @@ using System.Xml.Schema;
 namespace Zork
 {
     public class Inventory: ContainerForBasicInfo
-     {
-        //public string BusCard { get; set; } = "Buscard";
-        //public string Money { get; set; } = "Money";
-        //public string Coffee { get; set; } = "Coffee";
-        //public string Keys { get; set; } = "Keys";
-        //public string SmartPhone { get; set; } = "Smartphone";
-        //public string Food { get; set; } = "Food";
-        //public string Wallet { get; set; } = "Wallet";
-
-        //public int BusCardMoney { get; set; }
-        //public int WalletMoney { get; set; }
+    {
+ 
 
     }
 }

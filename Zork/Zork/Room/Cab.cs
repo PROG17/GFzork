@@ -6,8 +6,8 @@ namespace Zork
     {
         public Cab()
         {
-            base.Name = "Cab";
-            base.Bio = "This is a cab";
+            Name = "Cab";
+            Bio = "This is a cab";
 
         }
 

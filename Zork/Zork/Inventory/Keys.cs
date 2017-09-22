@@ -4,8 +4,8 @@ namespace Zork
     {
         public Keys()
         {
-            base.Name = "Keys";
-            base.Bio = "Bio of keys";
+            Name = "Keys";
+            Bio = "Bio of keys";
         }
     }
 }
