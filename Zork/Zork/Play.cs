@@ -81,7 +81,8 @@ namespace Zork
                     {
                         // Skriv ut vilka inventories som finns 
 
-                        position.ItemsHome();
+                        //position.ItemsHome();
+                        position.GetInventoryFrom(new Home());
 
                     }
                     else if (commando == "exit"){ story.Train(ref commando, yourPosition); }

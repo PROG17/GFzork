@@ -34,6 +34,7 @@ namespace Zork
         //    }
         //}
 
+
         CenterText centerText = new CenterText();
 
         //Vilka items finns i varje rum
@@ -82,21 +83,18 @@ namespace Zork
             List<Inventory> inventoryHome = new List<Inventory> { smartPhone };
             dictOfRoomAndInventory.Add(cab, inventoryHome);
 
-
-            //GetInventoryFromRoom(cab);
-
         }
 
         
-        public void GetInventoryFromRoom(Room room)
+        public void GetInventoryFrom(Room room)
         {
-            foreach (var item in dictOfRoomAndInventory)
+            var items = dictOfRoomAndInventory[room];
+
+            for (int i = 0; i < items.Count; i++)
             {
-                for (int i = 0; i < item.Value.Count; i++)
-                {
-                    if (item.Key == room) Console.WriteLine($"{i + 1}){item.Value[i].Name}");
-                }
+                Console.WriteLine($"{i + 1}){items[i].Name}");
             }
+            
         }
     }
 }

@@ -43,19 +43,19 @@ namespace Zork
         {
             if (commando == "inspect")
             {
-                if (yourPosition == position.Home)
-                {
-                    position.Describe(position.Home);
-                    commando = Console.ReadLine();
+                //if (yourPosition == position.Home)
+                //{
+                //    position.Describe(position.Home);
+                //    commando = Console.ReadLine();
 
-                    if (commando == "exit")
-                    {
-                        commando = "exit";
-                        yourPosition = position.Train;
+                //    if (commando == "exit")
+                //    {
+                //        commando = "exit";
+                //        yourPosition = position.Train;
 
-                    }
+                //    }
 
-                }
+                //}
                
             }
             
@@ -86,11 +86,11 @@ namespace Zork
             centerText.WriteTextAndCenter("look where you are [inspect]");
             if (commando == "inspect")
             {
-                if (yourPosition == position.Train)
-                {
-                    position.Describe(position.Train);
-                    commando = Console.ReadLine();
-                }
+                //if (yourPosition == position.Train)
+                //{
+                //    position.Describe(position.Train);
+                //    commando = Console.ReadLine();
+                //}
             } 
 
                     Console.WriteLine("train");
