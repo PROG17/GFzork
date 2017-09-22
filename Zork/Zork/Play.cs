@@ -53,11 +53,11 @@ namespace Zork
                 bool alive = true;
 
                 //Startposition        
-                yourPosition = position.Home;
+                //yourPosition = position.Home;
                 
                 
 
-                centerText.WriteTextAndCenter(position.Home);
+                //centerText.WriteTextAndCenter(position.Home);
                 while (alive)
                 {
 
@@ -79,6 +79,8 @@ namespace Zork
 
                     if (commando == "pick")
                     {
+                        // Skriv ut vilka inventories som finns 
+
                         position.ItemsHome();
 
                     }

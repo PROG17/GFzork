@@ -55,11 +55,11 @@ namespace Zork
         }
 
         //Detaljerad beskrivning beroende på position/vilket rum
-        public void Describe(string position)
-        {
-            if (position == _home) centerText.WriteTextAndCenter(_homeInspect);
-            if (position == Train) centerText.WriteTextAndCenter(_trainInspect);
-        }
+        //public void Describe(string position)
+        //{
+        //    if (position == _home) centerText.WriteTextAndCenter(_homeInspect);
+        //    if (position == Train) centerText.WriteTextAndCenter(_trainInspect);
+        //}
 
 
         // --------------- Markus....
@@ -69,12 +69,21 @@ namespace Zork
         {
             Cab cab = new Cab();
             SmartPhone smartPhone = new SmartPhone();
+            BusCard busCard = new BusCard();
+            Coffe coffe = new Coffe();
+            Food food = new Food();
+            Keys keys = new Keys();
+            Wallet wallet = new Wallet();
 
             // Inventory for Cab
-            List<Inventory> inventoryCab = new List<Inventory> {smartPhone};
-
+            List<Inventory> inventoryCab = new List<Inventory> {smartPhone, busCard, wallet, keys, wallet, food, coffe};
             dictOfRoomAndInventory.Add(cab, inventoryCab);
-            GetInventoryFromRoom(cab);
+
+            List<Inventory> inventoryHome = new List<Inventory> { smartPhone };
+            dictOfRoomAndInventory.Add(cab, inventoryHome);
+
+
+            //GetInventoryFromRoom(cab);
 
         }
 
