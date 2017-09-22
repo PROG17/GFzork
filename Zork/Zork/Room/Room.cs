@@ -66,24 +66,7 @@ namespace Zork
         // --------------- Markus....
         public Dictionary<Room, List<Inventory>> dictOfRoomAndInventory = new Dictionary<Room, List<Inventory>>();
 
-        public void CreateStartingPointForRooms()
-        {
-            Cab cab = new Cab();
-            SmartPhone smartPhone = new SmartPhone();
-            BusCard busCard = new BusCard();
-            Coffe coffe = new Coffe();
-            Food food = new Food();
-            Keys keys = new Keys();
-            Wallet wallet = new Wallet();
-
-            // Inventory for Cab
-            List<Inventory> inventoryCab = new List<Inventory> {smartPhone, busCard, wallet, keys, wallet, food, coffe};
-            dictOfRoomAndInventory.Add(cab, inventoryCab);
-
-            List<Inventory> inventoryHome = new List<Inventory> { smartPhone };
-            dictOfRoomAndInventory.Add(cab, inventoryHome);
-
-        }
+        
 
         
         public void GetInventoryFrom(Room room)

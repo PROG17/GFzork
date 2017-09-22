@@ -106,6 +106,46 @@ namespace Zork
             }
 
         }
+        public void CreateStartingPointForRooms()
+        {
+            //Objekt för rooms
+            Cab cab = new Cab();
+            Bus bus = new Bus();
+            Home home = new Home();
+            School school = new School();
+            Train train = new Train();
+
+            //Objekt för inventories
+            SmartPhone smartPhone = new SmartPhone();
+            BusCard busCard = new BusCard();
+            Coffe coffe = new Coffe();
+            Food food = new Food();
+            Keys keys = new Keys();
+            Wallet wallet = new Wallet();
+
+            // Inventory for Home
+            List<Inventory> inventoryHome = new List<Inventory> { smartPhone, busCard, wallet, keys, wallet, food, coffe };
+            room.dictOfRoomAndInventory.Add(home, inventoryHome);
+
+            // Inventory for Cab
+            List<Inventory> inventoryCab = new List<Inventory> { smartPhone };
+            room.dictOfRoomAndInventory.Add(cab, inventoryCab);
+
+            // Inventory for Bus
+            List<Inventory> inventoryBus = new List<Inventory> { smartPhone, busCard, wallet, keys };
+            room.dictOfRoomAndInventory.Add(bus, inventoryBus);
+
+            // Inventory for Train
+            List<Inventory> inventoryTrain = new List<Inventory> { };
+            room.dictOfRoomAndInventory.Add(train, inventoryTrain);
+
+            // Inventory for School
+            List<Inventory> inventorySchool = new List<Inventory> { coffe, food };
+            room.dictOfRoomAndInventory.Add(school, inventorySchool);
+
+            //GetInventoryFromRoom(cab);
+
+        }
     }
 }
 
