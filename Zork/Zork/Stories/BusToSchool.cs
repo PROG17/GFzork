@@ -7,6 +7,7 @@
 
             Name = "Going from Bus to School";
             Bio = "Story for bustoschool";
+            
         }
 
     }

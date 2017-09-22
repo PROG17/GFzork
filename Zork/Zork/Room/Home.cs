@@ -6,7 +6,7 @@
         {
             Name = "Home";
             Bio = "You are home";
-            Inspect = "Inspection of home, show exits";
+            
         }
     }
 }

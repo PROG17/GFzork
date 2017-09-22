@@ -12,10 +12,13 @@ namespace Zork
 
     public class Room : ContainerForBasicInfo, IRoom
     {
-   
+       
 
-        
-  
+        public void Describe(Room room)
+        {
+            Console.WriteLine(room.Bio);
+            
+        }
     }
 }
 
