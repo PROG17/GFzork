@@ -2,8 +2,9 @@
 {
     public interface IRoom
     {
-        void DescribeTest();
+        void Describe();
 
+     
     }
 }
 

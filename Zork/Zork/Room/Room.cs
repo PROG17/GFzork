@@ -9,8 +9,10 @@ namespace Zork
 {
 
 
-    public class Room : ContainerForBasicInfo
+
+    public class Room : ContainerForBasicInfo, IRoom
     {
+        public string Inspect { get; set; }
         // Alla room
         //public string _home = "This is your home";
         string _homeInspect = "You see a door, and the bed.. Do you want do exit the door or go back to bed?";
@@ -68,16 +70,33 @@ namespace Zork
 
         
 
+
+
         
         public void GetInventoryFrom(Room room)
         {
             var items = dictOfRoomAndInventory[room];
 
+
+         
             for (int i = 0; i < items.Count; i++)
             {
                 Console.WriteLine($"{i + 1}){items[i].Name}");
             }
             
+        }
+
+       public void DescribeTest(Room room)
+        {
+
+            Console.WriteLine(room.Inspect);
+            Console.ReadLine();
+            
+        }
+
+        public void Describe()
+        {
+            throw new NotImplementedException();
         }
     }
 }

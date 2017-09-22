@@ -6,7 +6,11 @@
         {
             Name = "Bus";
             Bio = "This is the bus";
+            Inspect = "Story";
         }
+
+
+        
     }
 }
 

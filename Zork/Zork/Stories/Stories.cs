@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    public class HomeToTrain: Stories
-    {
-        public HomeToTrain()
-        {
-            base.Name = "Going from Home to Train";
-            base.Bio = "Story for home";
-        }
-    }
     public class Stories: ContainerForBasicInfo
     {
+        public string Story { get; set; }
+
         // Skapa dict i dict!!
         Dictionary<Player, Dictionary<Room, List<Stories>>> storiesDictionary = new Dictionary<Player, Dictionary<Room, List<Stories>>>();
 
