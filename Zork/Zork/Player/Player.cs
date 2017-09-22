@@ -11,8 +11,11 @@ namespace Zork
 
     public class Player: ContainerForBasicInfo
     {
-        public CharacterIs Character { get; protected set; }        
+        public CharacterIs Character { get; protected set; }
+        public List<Inventory> inventoryList = new List<Inventory>();
+        
     }
+
 
     public enum CharacterIs
     {

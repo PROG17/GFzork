@@ -12,24 +12,52 @@ namespace Zork
         string yourPosition;
 
         Stories story = new Stories();
+        Room room = new Room();
+
+
 
 
         public void Playing(int player)
         {
+            // -----------Markus
+            room.CreateStartingPointForRooms();
+            Room current;
+            current = new Cab();
+            Console.WriteLine(current.Name);
+            Console.WriteLine(current.Bio);
+
+            if (current is Cab)
+            {
+                var cab = current as Cab;
+                cab.DescribeTest();
+            }
+
+            //BaseClass myBaseObject = new BaseClass();
+            //DerivedClass myDerivedObject = myBaseObject as DerivedClass;
+
+            //myDerivedObject.MyDerivedProperty = true;
+
+
             Room position = new Room();
             Inventory items = new Inventory();
             Stories story = new Stories();
             var centerText = new CenterText();
 
 
+
             //Mimmis värld
             if (player == 1)
             {
+
+
                 bool alive = true;
 
                 //Startposition        
                 yourPosition = position.Home;
-                Console.WriteLine(position.Home);
+                
+                
+
+                centerText.WriteTextAndCenter(position.Home);
                 while (alive)
                 {
 
@@ -57,7 +85,7 @@ namespace Zork
 
                     else
                     {
-                        Console.WriteLine("Try again");
+                        centerText.WriteTextAndCenter("Try again");
                     }
                 }
                 //Markus värld

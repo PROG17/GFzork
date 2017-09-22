@@ -30,6 +30,7 @@ namespace Zork
             centerText.WriteTextAndCenter("Character (3)");
             centerText.WriteTextAndCenter(charAhmad.Bio + "\n");
 
+
             //Väljer story att gå efter
             int charChoice;
             while (true)

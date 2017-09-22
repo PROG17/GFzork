@@ -8,6 +8,8 @@ namespace Zork
 {
     class Stories
     {
+        // Skapa dict i dict!!
+
         //Text strängar som ska kallas på
 
         //Hem
