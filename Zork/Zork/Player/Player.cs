@@ -22,6 +22,21 @@ namespace Zork
             {
                 centerText.WriteTextAndCenter($"{i + 1}){player.inventoryList[i].Name}");
             }
+            Console.WriteLine(inventoryList.Count);
+
+        }
+
+        public void Pick(Player player, string text, List<Inventory> helpList)
+        {
+            foreach (var item in helpList)
+            {
+                if (item.Name.ToLower() == text.ToLower())
+                {
+                    player.inventoryList.Add(item);
+                }
+   
+            }
+
         }
     }
 

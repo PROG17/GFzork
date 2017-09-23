@@ -11,7 +11,7 @@ namespace Zork
     {
         public string commando;
 
-        Dictionary<Room, List<Inventory>> dictOfRoomAndInventory = new Dictionary<Room, List<Inventory>>();
+        public Dictionary<Room, List<Inventory>> dictOfRoomAndInventory = new Dictionary<Room, List<Inventory>>();
         CenterText centerText = new CenterText();
         private Room currentPosition;
 
@@ -39,9 +39,14 @@ namespace Zork
                         if (commando == Commandos.Pick.ToString().ToLower())
                         {
                             GetInventoryFrom(currentPosition);
+                            List<Inventory> storage = TakeOutRoomList(currentPosition);
 
+                            string input = Console.ReadLine().ToLower();
+                            
+
+                            player.Pick(player, input, storage);
                             // add på player inventory list - metod i player
-
+                            
                             Console.WriteLine("\n");
                             WriteAndReadCommandos();
                             break;
@@ -160,11 +165,29 @@ namespace Zork
             commando = centerText.ReadTextAndCenter(5).ToLower();
 
         }
+
+        private List<Inventory> TakeOutRoomList(Room room)
+        {
+            List<Inventory> listHolder=new List<Inventory>();
+
+            foreach (var item in dictOfRoomAndInventory)
+            {
+                if (item.Key.ToString() == room.ToString())
+                {
+                    listHolder= item.Value;
+                }
+            }
+            return listHolder;
+            
+        }
+
     }
 
     public enum Commandos
     {
         Pick, Drop, Inpsect, Exit, Check, Use
     }
+
+
 }
 
