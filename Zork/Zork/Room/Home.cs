@@ -6,6 +6,7 @@
         {
             Name = "Home";
             Bio = "You are home";
+            
         }
     }
 }
