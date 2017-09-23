@@ -48,15 +48,19 @@ namespace Zork
                             // add på player inventory list - metod i player
                             
                             Console.WriteLine("\n");
-                            WriteAndReadCommandos();
+
                             break;
                         }
                         else if (commando == Commandos.Drop.ToString().ToLower())
                         {
+                            
                             // player ska droppa inventory - måst lägga till metod i player
+                            player.CheckInventoryList(player);
+                            string input = Console.ReadLine().ToLower();
+                            player.Drop(player,input);
 
                             Console.WriteLine("\n");
-                            WriteAndReadCommandos();
+                           
                             break;
                         }
                         else if (commando == Commandos.Exit.ToString().ToLower())
@@ -73,6 +77,12 @@ namespace Zork
                         else if (commando == Commandos.Check.ToString().ToLower())
                         {
                             player.CheckInventoryList(player);
+                            break;
+                        }
+                        else if (commando == Commandos.Quit.ToString().ToLower())
+                        {
+                            Console.WriteLine("You gave up!");
+                            alive = false;
                             break;
                         }
                         else
@@ -115,7 +125,7 @@ namespace Zork
             Wallet wallet = new Wallet();
 
             // Inventory for Home
-            List<Inventory> inventoryHome = new List<Inventory> { smartPhone, busCard, wallet, keys, wallet, food, coffe };
+            List<Inventory> inventoryHome = new List<Inventory> { smartPhone, busCard, wallet, keys, food, coffe };
             dictOfRoomAndInventory.Add(home, inventoryHome);
 
             // Inventory for Cab
@@ -185,7 +195,7 @@ namespace Zork
 
     public enum Commandos
     {
-        Pick, Drop, Inpsect, Exit, Check, Use
+        Pick, Drop, Inpsect, Exit, Check, Use, Quit
     }
 
 
