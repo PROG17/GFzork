@@ -13,7 +13,7 @@ namespace Zork
         public string ReadTextAndCenter(int lenght = 1)
         {
             Console.SetCursorPosition((Console.WindowWidth - lenght) / 2, Console.CursorTop);
-            return Console.ReadLine();
+            return Console.ReadLine().ToLower();
         }
     }
 }

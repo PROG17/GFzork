@@ -8,12 +8,21 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-
+    
     public class Player: ContainerForBasicInfo
     {
         public CharacterIs Character { get; protected set; }
         public List<Inventory> inventoryList = new List<Inventory>();
-        
+
+        public void CheckInventoryList(Player player)
+        {
+            CenterText centerText = new CenterText();
+
+            for (int i = 0; i < player.inventoryList.Count; i++)
+            {
+                centerText.WriteTextAndCenter($"{i + 1}){player.inventoryList[i].Name}");
+            }
+        }
     }
 
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,85 +10,89 @@ namespace Zork
     public class Play
     {
         public string commando;
-        string yourPosition;
 
         Dictionary<Room, List<Inventory>> dictOfRoomAndInventory = new Dictionary<Room, List<Inventory>>();
         CenterText centerText = new CenterText();
+        private Room currentPosition;
 
 
-        public void Playing(CharacterIs player)
+        public void Playing(Player player)
         {
-
-            Room position = new Room();
-            Inventory items = new Inventory();
-            Stories story = new Stories();
-            var centerText = new CenterText();
-
-
+            CreateStartingPointForRooms();
 
             //Mimmis värld
-            if (player == CharacterIs.Mimmi)
+            if (player.Character == CharacterIs.Mimmi)
             {
-
-
                 bool alive = true;
 
-                //Startposition        
-                //yourPosition = position.Home;
-                
-                
-
-                //centerText.WriteTextAndCenter(position.Home);
+                //Startposition
+                currentPosition = new Home();
+                                           
                 while (alive)
                 {
-                    CreateStartingPointForRooms();
-                    //Inspect eller välj inventory
-                    //Console.WriteLine("look where you are [inspect] | pick your inventory [pick]");
-                    //commando = Console.ReadLine();
-                    //centerText.WriteTextAndCenter(yourPosition);
+                    centerText.WriteTextAndCenter($"Current room -- {currentPosition.Name} --\n");
 
-                    //Inspect eller välj inventory
-                    centerText.WriteTextAndCenter("look where you are [inspect] | pick your inventory [pick]");
+                    WriteAndReadCommandos();
 
-
-                    commando = centerText.ReadTextAndCenter(5);
-
-
-
-
-
-                    if (commando == "pick")
+                    while (true)
                     {
-                        // Skriv ut vilka inventories som finns 
-                        Home home = new Home();
-                        //position.ItemsHome();
-                        GetInventoryFrom(home);
+                        if (commando == Commandos.Pick.ToString().ToLower())
+                        {
+                            GetInventoryFrom(currentPosition);
 
-                        story.Home(ref commando, ref yourPosition);
+                            // add på player inventory list - metod i player
 
+                            Console.WriteLine("\n");
+                            WriteAndReadCommandos();
+                            break;
+                        }
+                        else if (commando == Commandos.Drop.ToString().ToLower())
+                        {
+                            // player ska droppa inventory - måst lägga till metod i player
+
+                            Console.WriteLine("\n");
+                            WriteAndReadCommandos();
+                            break;
+                        }
+                        else if (commando == Commandos.Exit.ToString().ToLower())
+                        {
+                            // get story from one room to another
+                            // change current position
+                            break;
+                        }
+                        else if (commando == Commandos.Inpsect.ToString().ToLower())
+                        {   
+                            currentPosition.Inspect(currentPosition);
+                            break;
+                        }
+                        else if (commando == Commandos.Check.ToString().ToLower())
+                        {
+                            player.CheckInventoryList(player);
+                            break;
+                        }
+                        else
+                        {
+                            centerText.WriteTextAndCenter("Try again");
+                            commando = centerText.ReadTextAndCenter(5).ToLower();
+                        }
                     }
-                    else if (commando == "exit"){ story.Train(ref commando, yourPosition); }
 
-
-                    else
-                    {
-                        centerText.WriteTextAndCenter("Try again");
-                    }
                 }
-                //Markus värld
-                if (player == CharacterIs.Markus)
-                { }
-                // Ahmads värld
-                if (player == CharacterIs.Ahmad)
-                { }
+            }
 
-
-
-
+            //Markus värld
+            if (player.Character == CharacterIs.Markus)
+            {
+                
+            }
+            // Ahmads värld
+            if (player.Character == CharacterIs.Ahmad)
+            {
+                
             }
 
         }
-        public void CreateStartingPointForRooms()
+        private void CreateStartingPointForRooms()
         {
             //Objekt för rooms
             Cab cab = new Cab();
@@ -128,10 +133,12 @@ namespace Zork
 
         }
 
-        public void GetInventoryFrom(Room room)
+        private void GetInventoryFrom(Room room)
         {
 
             //var items = dictOfRoomAndInventory[room];
+            Console.WriteLine("\n");
+            centerText.WriteTextAndCenter($"Inventory available in {room.Name}: ");
 
             foreach (var item in dictOfRoomAndInventory)
             {
@@ -143,9 +150,21 @@ namespace Zork
                     }
                 }
             }
+        }
 
+        private void WriteAndReadCommandos()
+        {
+            centerText.WriteTextAndCenter("look where you are [inspect] || pick inventory [pick]");
+            centerText.WriteTextAndCenter("drop inventory [drop] || check your inventory [check]");
+            centerText.WriteTextAndCenter("take a path [exit]\n");
+            commando = centerText.ReadTextAndCenter(5).ToLower();
 
         }
+    }
+
+    public enum Commandos
+    {
+        Pick, Drop, Inpsect, Exit, Check, Use
     }
 }
 
