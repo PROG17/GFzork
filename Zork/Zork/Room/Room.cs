@@ -19,7 +19,7 @@ namespace Zork
         }
 
         
-        
+        //Metod som tar in första position (Home) och ändrar värdet för varje exit-commando
         public void Position(ref Room room)
         {
             if (room.Name == "Home") { room = new Train(); return; }

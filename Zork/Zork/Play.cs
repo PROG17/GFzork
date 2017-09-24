@@ -69,8 +69,7 @@ namespace Zork
                         }
                         else if (commando.Contains(Commandos.Exit.ToString().ToLower()))
                         {
-                            // get story from one room to another
-                            // change current position
+                            currentPosition.Position(ref currentPosition);
                             break;
                         }
                         else if (commando == Commandos.Look.ToString().ToLower())
