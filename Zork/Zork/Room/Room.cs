@@ -11,6 +11,7 @@ namespace Zork
     public class Room : ContainerForBasicInfo, IRoom
     {
 
+        
 
         public void Inspect(Room room)
         {
@@ -18,18 +19,28 @@ namespace Zork
 
         }
 
-        
+
+       
+
+
         //Metod som tar in första position (Home) och ändrar värdet för varje exit-commando
-        public void Position(ref Room room)
+        public void Position(ref Room room, ref Stories story)
         {
-            if (room.Name == "Home") { room = new Train(); return; }
-            if (room.Name == "Train") { room = new Bus(); return; }
+
+
+
+            if (room.Name == "Home") { room = new Train(); story = new TrainToBus(); return; }
+            if (room.Name == "Train") { room = new Bus(); story = new BusToSchool(); return; }
             if (room.Name == "Bus") { room = new School(); return; }
             
 
 
         }
 
+        public void Position(ref Room room)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

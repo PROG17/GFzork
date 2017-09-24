@@ -13,9 +13,9 @@ namespace Zork
 
         public List<string> myInventory = new List<string>();
 
-
+        
         public void CreateStories()
-        {
+        { 
             CharAhmad charAhmad = new CharAhmad();
             Room room = new Room();
 
@@ -88,6 +88,13 @@ namespace Zork
 
                     Console.WriteLine("train");
             Console.ReadLine();
+
+
+        }
+
+        public void Story(ref Stories story)
+        {
+            Console.WriteLine(story.Bio);
 
 
         }

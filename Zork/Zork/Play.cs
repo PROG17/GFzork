@@ -27,12 +27,13 @@ namespace Zork
 
                 //Startposition
                 Room currentPosition = new Home();
-                
-                
+                Stories story = new HomeToTrain();
+
+
 
                 while (alive)
                 {
-
+                    
                     WriteAndReadCommandos();
 
                     while (true)
@@ -69,7 +70,8 @@ namespace Zork
                         }
                         else if (commando.Contains(Commandos.Exit.ToString().ToLower()))
                         {
-                            currentPosition.Position(ref currentPosition);
+                            currentPosition.Position(ref currentPosition, ref story);
+                            story.Story(ref story);
                             break;
                         }
                         else if (commando == Commandos.Look.ToString().ToLower())
