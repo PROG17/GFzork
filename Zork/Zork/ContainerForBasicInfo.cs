@@ -4,6 +4,7 @@
     {
         public string Name { get; set; }
         public string Bio { get; protected set; }
-        
+        public Room currentPosition;
+
     }
 }

@@ -13,7 +13,7 @@ namespace Zork
 
         Dictionary<Room, List<Inventory>> dictOfRoomAndInventory = new Dictionary<Room, List<Inventory>>();
         CenterText centerText = new CenterText();
-        private Room currentPosition;
+        
 
 
         public void Playing(Player player)
@@ -26,8 +26,10 @@ namespace Zork
                 bool alive = true;
 
                 //Startposition
-                currentPosition = new Home();
-                                           
+                Room currentPosition = new Home();
+                
+                
+
                 while (alive)
                 {
                     centerText.WriteTextAndCenter($"Current room -- {currentPosition.Name} --\n");
@@ -56,8 +58,7 @@ namespace Zork
                         }
                         else if (commando == Commandos.Exit.ToString().ToLower())
                         {
-                            // get story from one room to another
-                            // change current position
+                            currentPosition.Position(ref currentPosition);
                             break;
                         }
                         else if (commando == Commandos.Inpsect.ToString().ToLower())
