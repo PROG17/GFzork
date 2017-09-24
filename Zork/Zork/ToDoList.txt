@@ -1,0 +1,64 @@
+﻿Programmet ska göra det möjligt att bygga upp en spelvärld (game) med följande
+funktionalitet:
+
+//KLAR
+• Spelkaraktär (player), detta är en representation av en person, som användaren kan flytta
+runt i spelvärlden mellan platser. En spelkaraktär har ett namn (fråga användaren vid spelets
+start) samt en lista med föremål som karaktären just nu bär på (inventory). 
+
+
+• Platser (room), som spelkaraktären kan flyttas mellan. Varje plats ska kunna ha en eller flera
+utgångar. En plats ska kunna markeras som "End Point" för spelet, dvs om man når dit har
+man klarat spelet.
+
+• Utgångar (exit) kan antingen vara öppna eller låsta. En låst utgång ska kunna öppnas genom
+att använda ett visst föremål på utgången (t ex ge kommandot "Use key on door" för att
+öppna en dörr eller ”Use stone on window” för att krossa ett fönster).
+
+//KLAR
+• Platser kan innehålla föremål. Föremål ska kunna plockas upp från en plats, varvid den
+istället placeras på spelkaraktären (inventory). Det ska även gå att släppa föremål som
+spelkaraktären innehar, dessa hamnar då på den plats som spelkaraktären just nu befinner
+sig.
+
+• Ett föremål ska kunna användas på ett annat föremål, för att ge spelkaraktären ett nytt
+föremål. T ex, om användaren skriver "Use corkscrew on bottle" och spelkaraktären innehar
+föremålen "corkscrew" och "bottle", så tas föremålet "bottle" bort och ersättas med
+föremålet "opened bottle".
+
+De typer av kommandon som spelet ska kunna hantera är:
+
+• Navigering mellan rum (t ex "go east"). Varje gång spelkaraktären flyttas in i ett rum, ska
+rummets beskrivning vis
+
+//KLAR
+• Ta upp och släppa föremål ("get key", "drop key"). Föremålet ska då flyttas från rummet till
+spelkaraktären eller tvärtom.
+
+• Använda föremål på utgångar ("use key on door"), för att låsa upp utgångarna.
+
+• Använda föremål på andra föremål ("use corkscrew on bottle"), för att byta ut det första
+föremålet mot något annat föremål.
+
+//KLAR
+• Visa rumsbeskrivning igen, tillsammans med listning över alla utgångar och föremål i rummet
+("Look").
+
+// KLAR MED FÖREMÅL
+• Visa detaljerad information om ett föremål eller en utgång. Båda dessa ska kunna ha en
+längre textbeskrivning kopplade till sig, genom att skriva t ex "inspect door" så visas denna
+text. 
+--- MÅSTE LÄGGA IN EN INSPECT METOD SOM VISAR BIO FÖR INVENTORY, MEN ÄVEN FÖR UTGÅNGAR
+
+Programmet ska meddela användaren om den inte förstår ett visst kommando, eller om
+kommandot inte går att utföra (t ex försöka gå till ett annat rum via en låst dörr).
+
+Meddelanden ska vara begripliga för användaren.
+
+Programmet MÅSTE skrivas objektorienterat!
+
+Det ska alltså finnas klasser för de olika typer av saker som finns i spelvärlden, klasserna har
+metoder och egenskaper och interagerar med varandra. Det ska sedan vara möjligt att skapa
+instanser av dessa klasser som "sätter upp" en spelvärld.
+
+Koden skall fungera och applikationen skall gå att köra utan fel. 
