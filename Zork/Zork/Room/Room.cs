@@ -15,7 +15,8 @@ namespace Zork
 
         public void Inspect(Room room)
         {
-            Console.WriteLine(room.Bio);
+            CenterText centerText = new CenterText();
+            centerText.WriteTextAndCenter(room.Bio);
 
         }
 

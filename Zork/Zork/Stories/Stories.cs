@@ -94,8 +94,7 @@ namespace Zork
 
         public void Story(ref Stories story)
         {
-            Console.WriteLine(story.Bio);
-
+            centerText.WriteTextAndCenter(story.Bio);
 
         }
     }

@@ -58,6 +58,23 @@ namespace Zork
                             
                             player.Pick(player, commando.Substring(5), storage);
                             Console.WriteLine("\n");
+
+                            // Ta bort föremålet från rummet
+                            Inventory checkInventory = player.ConvertTextToInventory(player, commando.Substring(5));
+                            foreach (var item in dictOfRoomAndInventory)
+                            {
+                                if (item.Key.Name.ToLower() == currentPosition.Name.ToLower())
+                                {
+                                    for (int i = 0; i < item.Value.Count; i++)
+                                    {
+                                        if (item.Value[i].Name.ToLower() == checkInventory.Name.ToString().ToLower())
+                                        {
+                                            item.Value.RemoveAt(i);
+                                        }
+                                    }
+                                }
+                            }
+
                             break;
                         }
                         else if (commando.Contains(Commandos.Drop.ToString().ToLower()))
@@ -65,13 +82,17 @@ namespace Zork
                             // Droppa något
                             player.Drop(player, commando.Substring(5));
 
+                            // Lägg till det som droppas i rummet
+                            Inventory checkInventory = player.ConvertTextToInventory(player, commando.Substring(5));
+                            dictOfRoomAndInventory[currentPosition].Add(checkInventory);
+
                             Console.WriteLine("\n");
                             break;
                         }
                         else if (commando.Contains(Commandos.Exit.ToString().ToLower()))
                         {
-                            currentPosition.Position(ref currentPosition, ref story);
                             story.Story(ref story);
+                            currentPosition.Position(ref currentPosition, ref story);
                             break;
                         }
                         else if (commando == Commandos.Look.ToString().ToLower())
@@ -96,6 +117,7 @@ namespace Zork
                         else if (commando.Contains(Commandos.Inspect.ToString().ToLower()))
                         {
                             Inventory checkInventory = new Inventory();
+
                             // Visa bio för föremål
                             if (player.CheckIfInventoryExist(player, commando.Substring(8)) == true)
                             {
@@ -215,8 +237,6 @@ namespace Zork
             List<Inventory> inventorySchool = new List<Inventory> { coffe, food };
             dictOfRoomAndInventory.Add(school, inventorySchool);
 
-            //GetInventoryFromRoom(cab);
-
         }
 
         private void GetInventoryFrom(Room room)
@@ -242,8 +262,8 @@ namespace Zork
         {
             Console.WriteLine("\n");
             centerText.WriteTextAndCenter("look where you are [look] || pick inventory [pick]");
-            centerText.WriteTextAndCenter("drop inventory [drop] || check your inventory [check]¨");
-            centerText.WriteTextAndCenter("take a path [exit] || use inventory on [use]¨");
+            centerText.WriteTextAndCenter("drop inventory [drop] || check your inventory [check]");
+            centerText.WriteTextAndCenter("take a path [exit] || use inventory on [use]");
             centerText.WriteTextAndCenter("inspect inventory or exit [inspect]\n");
             commando = centerText.ReadTextAndCenter(5).ToLower();
 
