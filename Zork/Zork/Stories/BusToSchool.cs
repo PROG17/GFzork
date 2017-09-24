@@ -6,8 +6,9 @@
         {
 
             Name = "Going from Bus to School";
-            Bio = "Story for bustoschool";
-            
+            Bio =
+                "It has been an eventful morning, {0} takes a seat next to an older lady trying to catch a moment of rest?"; // CharacterIs;
+
         }
 
     }

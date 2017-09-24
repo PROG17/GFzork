@@ -5,8 +5,9 @@
         public HomeToTrain()
         {
             Name = "Going from Home to Train";
-            Bio = "Story for home to train";
-           
+            Bio =
+                "{0} exits the appartment and starts walking towards the train, with a feeling that something is missing... as always "; //, CharacterName;
+
 
         }
     }
