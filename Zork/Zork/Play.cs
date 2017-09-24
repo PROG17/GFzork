@@ -41,7 +41,7 @@ namespace Zork
                         Console.WriteLine("\n");
 
                         // Felhantering om användaren skriver in enbart "pick", "drop", "exit", "inspect"
-                        if (commando == Commandos.Pick.ToString().ToLower() || commando == Commandos.Exit.ToString().ToLower()
+                        if (commando == Commandos.Pick.ToString().ToLower() /*|| commando == Commandos.Exit.ToString().ToLower()*/
                         || commando == Commandos.Drop.ToString().ToLower() || commando == Commandos.Inspect.ToString().ToLower())
                         {
                             centerText.WriteTextAndCenter($"{commando} what?\n");
