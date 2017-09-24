@@ -6,7 +6,7 @@
         {
             Name = "Going from Train to Cab";
             
-            Bio = "Story for Cab";
+            Bio = "There is not much time left, {0} waves her armes like a crazy person and screaming TAXI!!! TAXIII FÖR FA'AAN!!";
             
         }
 
