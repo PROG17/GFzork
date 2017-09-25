@@ -6,11 +6,12 @@ funktionalitet:
 runt i spelvärlden mellan platser. En spelkaraktär har ett namn (fråga användaren vid spelets
 start) samt en lista med föremål som karaktären just nu bär på (inventory). 
 
-
+// ANVÄND EX) EXIT DOOR - Lägg till end point - dö eller vinn
 • Platser (room), som spelkaraktären kan flyttas mellan. Varje plats ska kunna ha en eller flera
 utgångar. En plats ska kunna markeras som "End Point" för spelet, dvs om man når dit har
 man klarat spelet.
 
+// På G - Money merg with buscard => lås upp bus/tåg
 • Utgångar (exit) kan antingen vara öppna eller låsta. En låst utgång ska kunna öppnas genom
 att använda ett visst föremål på utgången (t ex ge kommandot "Use key on door" för att
 öppna en dörr eller ”Use stone on window” för att krossa ett fönster).
@@ -21,6 +22,7 @@ istället placeras på spelkaraktären (inventory). Det ska även gå att släpp
 spelkaraktären innehar, dessa hamnar då på den plats som spelkaraktären just nu befinner
 sig.
 
+//KLAR
 • Ett föremål ska kunna användas på ett annat föremål, för att ge spelkaraktären ett nytt
 föremål. T ex, om användaren skriver "Use corkscrew on bottle" och spelkaraktären innehar
 föremålen "corkscrew" och "bottle", så tas föremålet "bottle" bort och ersättas med
@@ -28,6 +30,7 @@ föremålet "opened bottle".
 
 De typer av kommandon som spelet ska kunna hantera är:
 
+// Ex) EXIT DOOR --- visa rumbeskrivningn varje gång du går in i ett rum
 • Navigering mellan rum (t ex "go east"). Varje gång spelkaraktären flyttas in i ett rum, ska
 rummets beskrivning vis
 
@@ -35,8 +38,10 @@ rummets beskrivning vis
 • Ta upp och släppa föremål ("get key", "drop key"). Föremålet ska då flyttas från rummet till
 spelkaraktären eller tvärtom.
 
+// LADDAT BUSSKORT PÅ BUSS/TÅG
 • Använda föremål på utgångar ("use key on door"), för att låsa upp utgångarna.
 
+//KLAR
 • Använda föremål på andra föremål ("use corkscrew on bottle"), för att byta ut det första
 föremålet mot något annat föremål.
 

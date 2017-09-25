@@ -10,7 +10,7 @@ namespace Zork
     
     public class Room : ContainerForBasicInfo, IRoom
     {
-
+        public string[] Exit { get; set; }
         
 
         public void Inspect(Room room)
@@ -34,7 +34,6 @@ namespace Zork
             if (room.Name == "Train") { room = new Bus(); story = new BusToSchool(); return; }
             if (room.Name == "Bus") { room = new School(); return; }
             
-
 
         }
 
