@@ -83,7 +83,7 @@ namespace Zork
                         else if (commando.Contains(Commandos.Exit.ToString().ToLower()))
                         {
                             story.Story(ref story);
-                            currentPosition.Position(ref currentPosition, ref story);
+                            currentPosition.Position(ref currentPosition, ref story, player);
                             break;
                         }
                         else if (commando == Commandos.Look.ToString().ToLower())
