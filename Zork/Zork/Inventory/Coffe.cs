@@ -1,6 +1,6 @@
 namespace Zork
 {
-    public class Coffe : Inventory
+    public class Coffe : Items
     {
         public Coffe()
         {

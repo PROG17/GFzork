@@ -1,6 +1,6 @@
 namespace Zork
 {
-    public class Keys : Inventory
+    public class Keys : Items
     {
         public Keys()
         {

@@ -1,6 +1,6 @@
 namespace Zork
 {
-    public class Wallet : Inventory
+    public class Wallet : Items
     {
 
         public Wallet()

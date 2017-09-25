@@ -2,7 +2,7 @@ using System;
 
 namespace Zork
 {
-    public class Money : Inventory
+    public class Money : Items
     {
         public int Cash { get; set; }
         public Money()

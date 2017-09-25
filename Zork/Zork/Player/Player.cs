@@ -12,34 +12,36 @@ namespace Zork
     public class Player: ContainerForBasicInfo
     {
         public CharacterIs Character { get; protected set; }
-        public List<Inventory> inventoryList = new List<Inventory>();
+        public List<Items> itemList = new List<Items>();
 
         public void WriteInventoryList(Player player)
         {
             CenterText centerText = new CenterText();
 
-            for (int i = 0; i < player.inventoryList.Count; i++)
+            for (int i = 0; i < player.itemList.Count; i++)
             {
-                centerText.WriteTextAndCenter($"{i + 1}){player.inventoryList[i].Name}");
+                centerText.WriteTextAndCenter($"{i + 1}){player.itemList[i].Name}");
             }          
         }
 
-        public Inventory ConvertTextToInventory(Player player, string text)
+        public Items ConvertTextToInventory(Player player, string text)
         {
-            Inventory inventory = new Inventory();
+            // default = keys... krävs att texten som kommer in finns för att kunna få korrekt inventory
 
-            foreach (var item in player.inventoryList)
+            Items items = new Keys();
+
+            foreach (var item in player.itemList)
             {
-                if (item.Name.ToLower() == text.ToLower()) inventory = item;
+                if (item.Name.ToLower() == text.ToLower()) items = item;
             }
 
-            return inventory;
+            return items;
         }
 
         public bool CheckIfInventoryExist(Player player, string text)
         {
             bool control = false;
-            foreach (var item in player.inventoryList)
+            foreach (var item in player.itemList)
             {
                 if (item.Name.ToLower() == text.ToLower()) control = true;
             }
@@ -47,13 +49,13 @@ namespace Zork
             return control;
         }
 
-        public void Pick(Player player, string text, List<Inventory> helpList)
+        public void Pick(Player player, string text, List<Items> helpList)
         {
             foreach (var item in helpList)
             {
                 if (item.Name.ToLower() == text.ToLower())
                 {
-                    player.inventoryList.Add(item);
+                    player.itemList.Add(item);
                     break;
                 }
             }
@@ -61,20 +63,20 @@ namespace Zork
 
         public void Drop(Player player, string text)
         {
-            for (int i = 0; i < player.inventoryList.Count; i++)
+            for (int i = 0; i < player.itemList.Count; i++)
             {
-                if (player.inventoryList[i].Name.ToLower() == text.ToLower())
+                if (player.itemList[i].Name.ToLower() == text.ToLower())
                 {
-                    player.inventoryList.RemoveAt(i);
+                    player.itemList.RemoveAt(i);
                 }
             }
         }
 
 
-        public void Inspect(Inventory inventory)
+        public void Inspect(Items items)
         {
             CenterText centerText = new CenterText();
-            centerText.WriteTextAndCenter(inventory.Bio);
+            centerText.WriteTextAndCenter(items.Bio);
         }
 
 

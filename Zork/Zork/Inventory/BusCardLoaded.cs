@@ -2,7 +2,7 @@ using System;
 
 namespace Zork
 {
-    public class BusCardLoaded : Inventory
+    public class BusCardLoaded : Items
     {
         public BusCardLoaded()
         {

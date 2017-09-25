@@ -13,14 +13,14 @@ namespace Zork
         bool alive = true;
         private Room currentPosition;
 
-        public Dictionary<Room, List<Inventory>> dictOfRoomAndInventory = new Dictionary<Room, List<Inventory>>();
+        //public Dictionary<Room, List<Items>> dictOfRoomAndInventory = new Dictionary<Room, List<Items>>();
         CenterText centerText = new CenterText();
         
 
 
         public void Playing(Player player)
         {
-            CreateStartingPointForRooms();
+            //CreateStartingPointForRooms();
 
             //Mimmis värld
             if (player.Character == CharacterIs.Mimmi)
@@ -57,14 +57,13 @@ namespace Zork
                         if (commando.Contains(Commandos.Get.ToString().ToLower()))
                         {
                             // Ta upp något
-                            List<Inventory> storage = TakeOutRoomList(currentPosition);
                             string[] wordSplit = commando.Split(' ');
-                            player.Pick(player, wordSplit[1], storage);
+                            player.Pick(player, wordSplit[1], currentPosition.itemsList);
                             Console.WriteLine("\n");
 
                             // Ta bort föremålet från rummet
-                            Inventory checkInventory = player.ConvertTextToInventory(player, wordSplit[1]);
-                            AddInventoryToRoom(checkInventory);
+                            Items checkItems = player.ConvertTextToInventory(player, wordSplit[1]);
+                            currentPosition.itemsList.Remove(checkItems);
 
                             break;
                         }
@@ -74,14 +73,15 @@ namespace Zork
                             player.Drop(player, commando.Substring(5));
 
                             // Lägg till det som droppas i rummet
-                            Inventory checkInventory = player.ConvertTextToInventory(player, commando.Substring(5));
-                            dictOfRoomAndInventory[currentPosition].Add(checkInventory);
+                            Items checkItems = player.ConvertTextToInventory(player, commando.Substring(5));
+                            currentPosition.itemsList.Add(checkItems);
 
                             Console.WriteLine("\n");
                             break;
                         }
                         else if (commando.Contains(Commandos.Exit.ToString().ToLower()))
                         {
+
                             story.Story(ref story);
                             currentPosition.Position(ref currentPosition, ref story, player);
                             break;
@@ -112,15 +112,15 @@ namespace Zork
                             if (player.CheckIfInventoryExist(player, wordSplit[1]) == true &&
                                 player.CheckIfInventoryExist(player, wordSplit[3]) == true)
                             {
-                                Inventory useInventory = player.ConvertTextToInventory(player, wordSplit[1]);
-                                Inventory onInventory = player.ConvertTextToInventory(player, wordSplit[3]);
+                                Items useItems = player.ConvertTextToInventory(player, wordSplit[1]);
+                                Items onItems = player.ConvertTextToInventory(player, wordSplit[3]);
 
-                                if (useInventory.Name == new Money().Name && onInventory.Name == new BusCard().Name)
+                                if (useItems.Name == new Money().Name && onItems.Name == new BusCard().Name)
                                 {
                                     player.Drop(player, wordSplit[1]);
                                     player.Drop(player, wordSplit[3]);
-                                    Inventory busCardLoaded = new BusCardLoaded();
-                                    player.inventoryList.Add(busCardLoaded);
+                                    Items busCardLoaded = new BusCardLoaded();
+                                    player.itemList.Add(busCardLoaded);
                                     centerText.WriteTextAndCenter($"Succesfully converted {wordSplit[1]} and " +
                                                                   $"{wordSplit[3]} to {busCardLoaded.Name}");
                                 }
@@ -137,23 +137,30 @@ namespace Zork
                         }
                         else if (commando.Contains(Commandos.Inspect.ToString().ToLower()))
                         {
-                            Inventory checkInventory = new Inventory();
+                            Items checkItems;
+                            string[] wordSplit = commando.Split(' ');
 
                             // Visa bio för föremål
-                            if (player.CheckIfInventoryExist(player, commando.Substring(8)) == true)
+                            if (player.CheckIfInventoryExist(player, wordSplit[1]) == true)
                             {
                                 // Kollar commando mot inventory i rummet
-                                checkInventory = player.ConvertTextToInventory(player, commando.Substring(8));
+                                checkItems = player.ConvertTextToInventory(player, wordSplit[1]);
+                                player.Inspect(checkItems);
 
                             }
-                            else if (CheckIfInventoryExistInRoom(currentPosition, commando.Substring(8)) == true)
+                            else if (CheckIfInventoryExistInRoom(currentPosition, wordSplit[1]) == true)
                             {
                                 // Kollar commando mot inventory i rummet
-                                checkInventory = ConvertTextToInventoryFromRoom(currentPosition, commando.Substring(8));
+                                checkItems = ConvertTextToInventoryFromRoom(currentPosition, wordSplit[1]);
+                                player.Inspect(checkItems);
+                            }
+                            else if (currentPosition.CheckIfExitExists(currentPosition, wordSplit[1]) == true)
+                            {
+
+                                centerText.WriteTextAndCenter(currentPosition.ExitWithDescription[wordSplit[1]]);
 
                             }
 
-                            player.Inspect(checkInventory);
 
 
                             // Visa bio for utgång
@@ -184,118 +191,46 @@ namespace Zork
         }
 
 
-        private Inventory ConvertTextToInventoryFromRoom(Room room, string text)
+        private Items ConvertTextToInventoryFromRoom(Room room, string text)
         {
-            Inventory inventory = new Inventory();
+            // Default blir keys... om inte texten kontrolleras innan
+            Items items = new Keys();
 
-            foreach (var item in dictOfRoomAndInventory)
+            foreach (var item in room.itemsList)
             {
-                if (item.Key.ToString() == room.ToString())
-                {
-                    foreach (var item2 in item.Value)
-                    {
-                        if (item2.Name.ToLower() == text.ToLower()) return item2;
-                    }
-                }
+                if (item.ToString().ToLower() == text.ToLower()) return item;
             }
 
-            return inventory;
+            return items;
         }
 
-        private void AddInventoryToRoom(Inventory checkInventory)
-        {
-            
-            foreach (var item in dictOfRoomAndInventory)
-            {
-                if (item.Key.Name.ToLower() == currentPosition.Name.ToLower())
-                {
-                    for (int i = 0; i < item.Value.Count; i++)
-                    {
-                        if (item.Value[i].Name.ToLower() == checkInventory.Name.ToLower())
-                        {
-                            item.Value.RemoveAt(i);
-                        }
-                    }
-                }
-            }
-        }
+
 
         public bool CheckIfInventoryExistInRoom(Room room, string text)
         {
             bool control = false;
 
-            foreach (var item in dictOfRoomAndInventory)
+            foreach (var item in room.itemsList)
             {
-                if (item.Key.ToString() == room.ToString())
-                {
-                    foreach (var item2 in item.Value)
-                    {
-                        if (item2.Name.ToLower() == text.ToLower()) control = true;
-                    }
-                }
+                if (item.ToString() == text.ToLower()) control = true;
             }
 
             return control;
         }
 
 
-        private void CreateStartingPointForRooms()
-        {
-            //Objekt för rooms
-            Cab cab = new Cab();
-            Bus bus = new Bus();
-            Home home = new Home();
-            School school = new School();
-            Train train = new Train();
-
-            //Objekt för inventories
-            SmartPhone smartPhone = new SmartPhone();
-            BusCard busCard = new BusCard();
-            Coffe coffe = new Coffe();
-            Food food = new Food();
-            Keys keys = new Keys();
-            Money money = new Money();
-            //Wallet wallet = new Wallet();
-
-            // Inventory for Home
-            List<Inventory> inventoryHome = new List<Inventory> { smartPhone, busCard, keys, food, coffe, money };
-            dictOfRoomAndInventory.Add(home, inventoryHome);
-
-            // Inventory for Cab
-            List<Inventory> inventoryCab = new List<Inventory> { smartPhone, money };
-            dictOfRoomAndInventory.Add(cab, inventoryCab);
-
-            // Inventory for Bus
-            List<Inventory> inventoryBus = new List<Inventory> { smartPhone, busCard, keys };
-            dictOfRoomAndInventory.Add(bus, inventoryBus);
-
-            // Inventory for Train
-            List<Inventory> inventoryTrain = new List<Inventory> { };
-            dictOfRoomAndInventory.Add(train, inventoryTrain);
-
-            // Inventory for School
-            List<Inventory> inventorySchool = new List<Inventory> { coffe, food };
-            dictOfRoomAndInventory.Add(school, inventorySchool);
-
-        }
-
         private void GetInventoryFrom(Room room)
         {
 
-            //var items = dictOfRoomAndInventory[room];
             Console.WriteLine("\n");
-            centerText.WriteTextAndCenter($"Inventory available in {room.Name}: ");
+            centerText.WriteTextAndCenter($"Items available in {room.Name}: ");
 
-            foreach (var item in dictOfRoomAndInventory)
+            for (int i = 0; i < room.itemsList.Count; i++)
             {
-                if (item.Key.ToString() == room.ToString())
-                {
-                    for (int i = 0; i < item.Value.Count; i++)
-                    {
-                        centerText.WriteTextAndCenter($"{i + 1}){item.Value[i].Name}");
-                    }
-                }
+                centerText.WriteTextAndCenter($"{i + 1}){room.itemsList[i].Name}");
             }
+                
+            
         }
 
         private void WriteAndReadCommandos()
@@ -309,20 +244,7 @@ namespace Zork
 
         }
 
-        private List<Inventory> TakeOutRoomList(Room room)
-        {
-            List<Inventory> listHolder=new List<Inventory>();
-
-            foreach (var item in dictOfRoomAndInventory)
-            {
-                if (item.Key.ToString() == room.ToString())
-                {
-                    listHolder= item.Value;
-                }
-            }
-            return listHolder;
-            
-        }
+  
 
     }
 

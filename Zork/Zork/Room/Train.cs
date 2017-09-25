@@ -11,7 +11,12 @@ namespace Zork
                   /*if(commando==pick)*/"{0} turns to the last page and finds a sudoku puzzle, nice.. better practice on this to make sure the next assignmet will go smoothley!!" +
                   /*If(commando==skip)*/"{0} uses the newspaper as an asswarmer." +
                   "Inspect the surrounding? Jump off the train? Wait until Odenplan? Check your inventory?" ;
-            
+
+            SmartPhone smartPhone = new SmartPhone();
+            Money money = new Money();
+
+            itemsList.Add(smartPhone);
+            itemsList.Add(money);
         }
     }
 }

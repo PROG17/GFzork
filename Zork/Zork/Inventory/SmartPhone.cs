@@ -1,6 +1,6 @@
 ﻿namespace Zork
 {
-    public class SmartPhone : Inventory
+    public class SmartPhone : Items
     {
         public SmartPhone()
         {

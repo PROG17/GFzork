@@ -56,7 +56,7 @@
     <Compile Include="Player\CharMarkus.cs" />
     <Compile Include="Player\CharMimmi.cs" />
     <Compile Include="ContainerForBasicInfo.cs" />
-    <Compile Include="Inventory\Inventory.cs" />
+    <Compile Include="Inventory\Items.cs" />
     <Compile Include="Room\Home.cs" />
     <Compile Include="Room\IRoom.cs" />
     <Compile Include="Play.cs" />

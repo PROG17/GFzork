@@ -1,6 +1,6 @@
 namespace Zork
 {
-    public class Food : Inventory
+    public class Food : Items
     {
         public Food()
         {

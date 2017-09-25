@@ -11,7 +11,9 @@ namespace Zork
     public class Room : ContainerForBasicInfo, IRoom
     {
         public string[] Exit { get; set; }
-        
+        public Dictionary<string, string> ExitWithDescription = new Dictionary<string, string>();
+        public List<Items> itemsList = new List<Items>();
+
 
         public void Inspect(Room room)
         {
@@ -20,7 +22,18 @@ namespace Zork
 
         }
 
-         
+        public bool CheckIfExitExists(Room room, string text)
+        {
+            bool control = false;
+            for (int i = 0; i < room.ExitWithDescription.Count; i++)
+            {
+                if (room.ExitWithDescription.Keys.ToString().ToLower() == text.ToLower())
+                {
+                    control = true;
+                }
+            }
+            return control;
+        } 
        
 
 
@@ -48,10 +61,6 @@ namespace Zork
             }
         }
 
-        public void Position(ref Room room)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 
