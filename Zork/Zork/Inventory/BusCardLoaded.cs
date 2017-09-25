@@ -2,12 +2,12 @@ using System;
 
 namespace Zork
 {
-    public class BusCardLoaded : Inventory
+    public class BusCardLoaded : Items
     {
         public BusCardLoaded()
         {
-            Name = "Loaded buscard";
-            Bio = "Bio for loaded buscard";
+            Name = "loaded buscard";
+            Bio = "A loaded buscard can be used to unlock certain transportation doors";
         }
     }
 }

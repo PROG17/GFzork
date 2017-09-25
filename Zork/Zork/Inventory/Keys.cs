@@ -1,11 +1,11 @@
 namespace Zork
 {
-    public class Keys : Inventory
+    public class Keys : Items
     {
         public Keys()
         {
             Name = "Keys";
-            Bio = "Bio of keys";
+            Bio = "The keys are used to open certain locked doors.";
         }
     }
 }

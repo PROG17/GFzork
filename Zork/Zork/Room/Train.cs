@@ -22,6 +22,16 @@ namespace Zork
         }
     }
 }
+       
+
+            SmartPhone smartPhone = new SmartPhone();
+            Money money = new Money();
+
+            itemsList.Add(smartPhone);
+            itemsList.Add(money);
+        }
+    }
+}
 
    
 

@@ -1,11 +1,11 @@
 namespace Zork
 {
-    public class Coffe : Inventory
+    public class Coffe : Items
     {
         public Coffe()
         {
             Name = "Coffe";
-            Bio = "Bio for coffe";
+            Bio = "Coffe is a must have to be able to get through school.";
         }
     }
 }

@@ -31,8 +31,22 @@ namespace Zork
 
 
 
-            Exit = new[] {"Door", "Bed"};
             
+            SmartPhone smartPhone = new SmartPhone();
+            BusCard busCard = new BusCard();
+            Coffe coffe = new Coffe();
+            Food food = new Food();
+            Keys keys = new Keys();
+            Money money = new Money();
+
+            itemsList.Add(smartPhone);
+            itemsList.Add(busCard);
+            itemsList.Add(coffe);
+            itemsList.Add(food);
+            itemsList.Add(keys);
+            itemsList.Add(money);
+            ;
+
         }
     }
 }
