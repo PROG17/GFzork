@@ -20,7 +20,7 @@ namespace Zork
 
             for (int i = 0; i < player.itemList.Count; i++)
             {
-                centerText.WriteTextAndCenter($"{i + 1}){player.itemList[i].Name}");
+                centerText.WriteTextAndCenter($"{i + 1}) {player.itemList[i].Name}");
             }          
         }
 

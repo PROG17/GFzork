@@ -5,7 +5,7 @@ namespace Zork
         public Coffe()
         {
             Name = "Coffe";
-            Bio = "Bio for coffe";
+            Bio = "Coffe is a must have to be able to get through school.";
         }
     }
 }

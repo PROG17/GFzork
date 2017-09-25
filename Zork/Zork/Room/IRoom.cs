@@ -2,7 +2,7 @@
 {
     public interface IRoom
     {
-        void Inspect(Room room);
+        void Describe(Room room);
         
 
     }

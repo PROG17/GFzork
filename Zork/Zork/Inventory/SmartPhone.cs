@@ -5,7 +5,7 @@
         public SmartPhone()
         {
             Name = "SmartPhone";
-            Bio = "A smartphone can be used to get at cab";
+            Bio = "A smartphone is very smart to have. Apps as Uber is especially helpful.";
         }
     }
 }

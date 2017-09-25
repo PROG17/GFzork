@@ -15,179 +15,160 @@ namespace Zork
 
         //public Dictionary<Room, List<Items>> dictOfRoomAndInventory = new Dictionary<Room, List<Items>>();
         CenterText centerText = new CenterText();
-        
+
 
 
         public void Playing(Player player)
         {
             //CreateStartingPointForRooms();
 
-            //Mimmis värld
-            if (player.Character == CharacterIs.Mimmi)
+            //Startposition
+            currentPosition = new Home();
+            Stories story = new HomeToTrain();
+
+            while (alive)
             {
-                //Startposition
-                currentPosition = new Home();
-                Stories story = new HomeToTrain();
 
-                while (alive)
+                WriteAndReadCommandos();
+
+                while (true)
                 {
-                    
-                    WriteAndReadCommandos();
+                    //Console.Clear();
+                    Console.WriteLine("\n");
 
-                    while (true)
+                    // Felhantering om användaren skriver in enbart "pick", "drop", "exit", "inspect"
+                    if (commando == Commandos.Get.ToString().ToLower() || commando == Commandos.Exit.ToString().ToLower()
+                    || commando == Commandos.Drop.ToString().ToLower() || commando == Commandos.Inspect.ToString().ToLower()
+                    )
                     {
-                        //Console.Clear();
-                        Console.WriteLine("\n");
-
-                        // Felhantering om användaren skriver in enbart "pick", "drop", "exit", "inspect"
-                        if (commando == Commandos.Get.ToString().ToLower() || commando == Commandos.Exit.ToString().ToLower()
-                        || commando == Commandos.Drop.ToString().ToLower() || commando == Commandos.Inspect.ToString().ToLower()
-                        )
-                        {
-                            centerText.WriteTextAndCenter($"{commando} what?\n");
-                            break;
-                        } else if (commando == Commandos.Use.ToString().ToLower())
-                        {
-                            centerText.WriteTextAndCenter($"{commando} what on what?\n");
-                            break;
-                        }
-
-
-                        // Fortsättning av att kolla commandot
-                        if (commando.Contains(Commandos.Get.ToString().ToLower()))
-                        {
-                            // Ta upp något
-                            string[] wordSplit = commando.Split(' ');
-                            player.Pick(player, wordSplit[1], currentPosition.itemsList);
-                            Console.WriteLine("\n");
-
-                            // Ta bort föremålet från rummet
-                            Items checkItems = player.ConvertTextToInventory(player, wordSplit[1]);
-                            currentPosition.itemsList.Remove(checkItems);
-
-                            break;
-                        }
-                        else if (commando.Contains(Commandos.Drop.ToString().ToLower()))
-                        {
-                            // Droppa något
-                            player.Drop(player, commando.Substring(5));
-
-                            // Lägg till det som droppas i rummet
-                            Items checkItems = player.ConvertTextToInventory(player, commando.Substring(5));
-                            currentPosition.itemsList.Add(checkItems);
-
-                            Console.WriteLine("\n");
-                            break;
-                        }
-                        else if (commando.Contains(Commandos.Exit.ToString().ToLower()))
-                        {
-
-                            story.Story(ref story);
-                            currentPosition.Position(ref currentPosition, ref story, player);
-                            break;
-                        }
-                        else if (commando == Commandos.Look.ToString().ToLower())
-                        {
-                            // Inspektera current position och dess inventory
-                            currentPosition.Inspect(currentPosition);
-                            GetInventoryFrom(currentPosition);
-                            break;
-                        }
-                        else if (commando == Commandos.Check.ToString().ToLower())
-                        {
-                            // Inspektera spelarens invetory
-                            player.WriteInventoryList(player);
-                            break;
-                        }
-                        else if (commando == Commandos.Quit.ToString().ToLower())
-                        {
-                            centerText.WriteTextAndCenter("You gave up!");
-                            alive = false;
-                            break;
-                        }
-                        else if (commando.Contains(Commandos.Use.ToString().ToLower()))
-                        {
-                            string[] wordSplit = commando.Split(' ');
-
-                            if (player.CheckIfInventoryExist(player, wordSplit[1]) == true &&
-                                player.CheckIfInventoryExist(player, wordSplit[3]) == true)
-                            {
-                                Items useItems = player.ConvertTextToInventory(player, wordSplit[1]);
-                                Items onItems = player.ConvertTextToInventory(player, wordSplit[3]);
-
-                                if (useItems.Name == new Money().Name && onItems.Name == new BusCard().Name)
-                                {
-                                    player.Drop(player, wordSplit[1]);
-                                    player.Drop(player, wordSplit[3]);
-                                    Items busCardLoaded = new BusCardLoaded();
-                                    player.itemList.Add(busCardLoaded);
-                                    centerText.WriteTextAndCenter($"Succesfully converted {wordSplit[1]} and " +
-                                                                  $"{wordSplit[3]} to {busCardLoaded.Name}");
-                                }
-                                else
-                                {
-                                    centerText.WriteTextAndCenter("Try another combo, but");
-                                    centerText.WriteTextAndCenter("to be able to travel you need to convert money to another object");
-                                }
-                            }
-
-
-
-                            break;
-                        }
-                        else if (commando.Contains(Commandos.Inspect.ToString().ToLower()))
-                        {
-                            Items checkItems;
-                            string[] wordSplit = commando.Split(' ');
-
-                            // Visa bio för föremål
-                            if (player.CheckIfInventoryExist(player, wordSplit[1]) == true)
-                            {
-                                // Kollar commando mot inventory i rummet
-                                checkItems = player.ConvertTextToInventory(player, wordSplit[1]);
-                                player.Inspect(checkItems);
-
-                            }
-                            else if (CheckIfInventoryExistInRoom(currentPosition, wordSplit[1]) == true)
-                            {
-                                // Kollar commando mot inventory i rummet
-                                checkItems = ConvertTextToInventoryFromRoom(currentPosition, wordSplit[1]);
-                                player.Inspect(checkItems);
-                            }
-                            else if (currentPosition.CheckIfExitExists(currentPosition, wordSplit[1]) == true)
-                            {
-
-                                centerText.WriteTextAndCenter(currentPosition.ExitWithDescription[wordSplit[1]]);
-
-                            }
-
-
-
-                            // Visa bio for utgång
-
-                            break;
-                        }
-                        else
-                        {
-                            centerText.WriteTextAndCenter("Try again");
-                            commando = centerText.ReadTextAndCenter(5).ToLower();
-                        }
+                        centerText.WriteTextAndCenter($"{commando} what?\n");
+                        break;
+                    }
+                    else if (commando == Commandos.Use.ToString().ToLower())
+                    {
+                        centerText.WriteTextAndCenter($"{commando} what on what?\n");
+                        break;
                     }
 
+
+                    // Fortsättning av att kolla commandot
+                    if (commando.Contains(Commandos.Get.ToString().ToLower()))
+                    {
+                        // Ta upp något
+                        string[] wordSplit = commando.Split(' ');
+                        player.Pick(player, wordSplit[1], currentPosition.itemsList);
+                        Console.WriteLine("\n");
+
+                        // Ta bort föremålet från rummet
+                        Items checkItems = player.ConvertTextToInventory(player, wordSplit[1]);
+                        currentPosition.itemsList.Remove(checkItems);
+
+                        break;
+                    }
+                    else if (commando.Contains(Commandos.Drop.ToString().ToLower()))
+                    {
+                        // Droppa något
+                        player.Drop(player, commando.Substring(5));
+
+                        // Lägg till det som droppas i rummet
+                        Items checkItems = player.ConvertTextToInventory(player, commando.Substring(5));
+                        currentPosition.itemsList.Add(checkItems);
+
+                        Console.WriteLine("\n");
+                        break;
+                    }
+                    else if (commando.Contains(Commandos.Exit.ToString().ToLower()))
+                    {
+
+                        story.Story(ref story);
+                        currentPosition.Position(ref currentPosition, ref story, player);
+                        break;
+                    }
+                    else if (commando == Commandos.Look.ToString().ToLower())
+                    {
+                        // Inspektera current position och dess inventory
+                        currentPosition.Describe(currentPosition);
+                        GetInventoryFrom(currentPosition);
+                        break;
+                    }
+                    else if (commando == Commandos.Check.ToString().ToLower())
+                    {
+                        // Inspektera spelarens invetory
+                        player.WriteInventoryList(player);
+                        break;
+                    }
+                    else if (commando == Commandos.Quit.ToString().ToLower())
+                    {
+                        centerText.WriteTextAndCenter("You gave up!");
+                        alive = false;
+                        break;
+                    }
+                    else if (commando.Contains(Commandos.Use.ToString().ToLower()))
+                    {
+                        string[] wordSplit = commando.Split(' ');
+
+                        if (player.CheckIfInventoryExist(player, wordSplit[1]) == true &&
+                            player.CheckIfInventoryExist(player, wordSplit[3]) == true)
+                        {
+                            Items useItems = player.ConvertTextToInventory(player, wordSplit[1]);
+                            Items onItems = player.ConvertTextToInventory(player, wordSplit[3]);
+
+                            if (useItems.Name == new Money().Name && onItems.Name == new BusCard().Name)
+                            {
+                                player.Drop(player, wordSplit[1]);
+                                player.Drop(player, wordSplit[3]);
+                                Items busCardLoaded = new BusCardLoaded();
+                                player.itemList.Add(busCardLoaded);
+                                centerText.WriteTextAndCenter($"Succesfully converted {wordSplit[1]} and " +
+                                                              $"{wordSplit[3]} to {busCardLoaded.Name}");
+                            }
+                            else
+                            {
+                                centerText.WriteTextAndCenter("Try another combo, but");
+                                centerText.WriteTextAndCenter("to be able to travel you need to convert money to another object");
+                            }
+                        }
+                        break;
+                    }
+                    else if (commando.Contains(Commandos.Inspect.ToString().ToLower()))
+                    {
+                        Items checkItems;
+                        string[] wordSplit = commando.Split(' ');
+
+                        // Visa bio för föremål
+                        if (player.CheckIfInventoryExist(player, wordSplit[1]) == true)
+                        {
+                            // Kollar commando mot inventory i rummet
+                            checkItems = player.ConvertTextToInventory(player, wordSplit[1]);
+                            player.Inspect(checkItems);
+
+                        }
+                        else if (CheckIfInventoryExistInRoom(currentPosition, wordSplit[1]) == true)
+                        {
+                            // Kollar commando mot inventory i rummet
+                            checkItems = ConvertTextToInventoryFromRoom(currentPosition, wordSplit[1]);
+                            player.Inspect(checkItems);
+                        }
+                        else if (currentPosition.CheckIfExitExists(currentPosition, wordSplit[1]) == true)
+                        {
+
+                            centerText.WriteTextAndCenter(currentPosition.ExitWithDescription[wordSplit[1]]);
+
+                        }
+
+
+
+                        // Visa bio for utgång
+
+                        break;
+                    }
+                    else
+                    {
+                        centerText.WriteTextAndCenter("Try again");
+                        commando = centerText.ReadTextAndCenter(5).ToLower();
+                    }
                 }
             }
-
-            //Markus värld
-            if (player.Character == CharacterIs.Markus)
-            {
-                
-            }
-            // Ahmads värld
-            if (player.Character == CharacterIs.Ahmad)
-            {
-                
-            }
-
         }
 
 
@@ -198,7 +179,7 @@ namespace Zork
 
             foreach (var item in room.itemsList)
             {
-                if (item.ToString().ToLower() == text.ToLower()) return item;
+                if (item.Name.ToLower() == text.ToLower()) return item;
             }
 
             return items;
@@ -212,7 +193,7 @@ namespace Zork
 
             foreach (var item in room.itemsList)
             {
-                if (item.ToString() == text.ToLower()) control = true;
+                if (item.Name.ToLower() == text.ToLower()) control = true;
             }
 
             return control;
@@ -229,8 +210,8 @@ namespace Zork
             {
                 centerText.WriteTextAndCenter($"{i + 1}){room.itemsList[i].Name}");
             }
-                
-            
+
+
         }
 
         private void WriteAndReadCommandos()
@@ -244,7 +225,7 @@ namespace Zork
 
         }
 
-  
+
 
     }
 

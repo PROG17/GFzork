@@ -10,7 +10,7 @@ namespace Zork
             Random rnd = new Random();
             Cash = rnd.Next(0, 100 + 1);
             Name = "Money";
-            Bio = "Bio for money";
+            Bio = $"You have {Cash} SEK available to bring with you. Cash can be useful!";
 
         }
 

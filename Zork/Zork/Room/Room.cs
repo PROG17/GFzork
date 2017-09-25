@@ -10,12 +10,11 @@ namespace Zork
     
     public class Room : ContainerForBasicInfo, IRoom
     {
-        public string[] Exit { get; set; }
         public Dictionary<string, string> ExitWithDescription = new Dictionary<string, string>();
         public List<Items> itemsList = new List<Items>();
 
 
-        public void Inspect(Room room)
+        public void Describe(Room room)
         {
             CenterText centerText = new CenterText();
             centerText.WriteTextAndCenter(room.Bio);

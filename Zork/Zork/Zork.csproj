@@ -48,7 +48,6 @@
     <Compile Include="Inventory\Food.cs" />
     <Compile Include="Inventory\Keys.cs" />
     <Compile Include="Inventory\Money.cs" />
-    <Compile Include="Inventory\Wallet.cs" />
     <Compile Include="Room\Bus.cs" />
     <Compile Include="Room\Cab.cs" />
     <Compile Include="CenterText.cs" />
