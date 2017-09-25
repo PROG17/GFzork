@@ -63,6 +63,7 @@
     <Compile Include="Player\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Room\Odenplan.cs" />
     <Compile Include="Room\Room.cs" />
     <Compile Include="Inventory\SmartPhone.cs" />
     <Compile Include="Room\School.cs" />
