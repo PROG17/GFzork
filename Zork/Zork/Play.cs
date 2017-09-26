@@ -194,9 +194,16 @@ namespace Zork
                         }
                         else if (currentPosition.CheckIfExitExists(currentPosition, wordSplit[1]) == true)
                         {
-                            // Visa bio for utgång
-                            centerText.WriteTextAndCenter(currentPosition.ExitWithDescription[wordSplit[1].ToLower()]);
-                        }
+                            Console.WriteLine(currentPosition.ExitWithDescription[wordSplit[1]]);
+                            
+                            Console.WriteLine();
+                            
+                            
+                            }
+
+
+                        // Visa bio for utgång
+
                         break;
                     }
                     else

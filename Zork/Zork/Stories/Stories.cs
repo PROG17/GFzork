@@ -14,6 +14,7 @@ namespace Zork
 
         public void Story(ref Stories story)
         {
+
             centerText.WriteTextAndCenter(story.Bio);
         }
     }

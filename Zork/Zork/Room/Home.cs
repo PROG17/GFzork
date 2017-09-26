@@ -6,6 +6,7 @@ namespace Zork
     {
         public Home(CharacterIs character)
         {
+
             Name = "Home";
 
             //"You are at home. " +
@@ -26,7 +27,16 @@ namespace Zork
                    If exit{"You put on your clothes and exit your house"*/
             } else if (character == CharacterIs.Mimmi)
             {
-                Bio = "";
+                Bio = "You wake up! Everything is ready and in its place, you shut the alarm off before it starts ringing."
+                      /*"inspect{All your items are neatly placed on the night stand}" +
+                      "exit{everything is set, you exit the building"*/;
+            }
+            else if(character==CharacterIs.Markus)
+            {
+                Bio = "Birds are chirping, the smell of lotus flowers enters the room as you breate your first morning breath."
+                      /*"inspect{your partner has woken up before you and have had your things ready" +
+                      "-What do you need to take with you today, she says while hands you your daily items}" +
+                      "exit{your partner gives you a kiss on your cheek, sprays some rose water on you and you are off}"*/;
             }
 
             ExitWithDescription.Add("door", "description of door");
@@ -45,6 +55,9 @@ namespace Zork
             itemsList.Add(keys);
             itemsList.Add(money);
             ;
+            //Skapar exits i rummet
+            ExitWithDescription.Add("door", "door Descriptionn");
+            ExitWithDescription.Add("bed", "Bed description");
 
         }
     }
