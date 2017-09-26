@@ -155,9 +155,6 @@ namespace Zork
                             }
 
 
-                                player.Inspect(checkInventory);
-
-
                         // Visa bio for utgång
 
                         break;
