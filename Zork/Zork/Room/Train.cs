@@ -7,6 +7,13 @@ namespace Zork
         public Train(CharacterIs character)
         {
             Name = "Train";
+            isLocked = true;
+
+            SmartPhone smartPhone = new SmartPhone();
+            Money money = new Money();
+
+            itemsList.Add(smartPhone);
+            itemsList.Add(money);
 
             if (character == CharacterIs.Ahmad)
             {
@@ -24,16 +31,7 @@ namespace Zork
 }
        
 
-            isLocked = true;
-
-            SmartPhone smartPhone = new SmartPhone();
-            Money money = new Money();
-
-            itemsList.Add(smartPhone);
-            itemsList.Add(money);
-        }
-    }
-}
-
+           
+  
    
 
