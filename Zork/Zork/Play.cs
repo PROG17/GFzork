@@ -28,6 +28,7 @@ namespace Zork
                 //Startposition
                 currentPosition = new Home();
                 Stories story = new HomeToTrain();
+                Room exits = new Room();
 
                 while (alive)
                 {
@@ -138,22 +139,33 @@ namespace Zork
                         else if (commando.Contains(Commandos.Inspect.ToString().ToLower()))
                         {
                             Inventory checkInventory = new Inventory();
+                            string[] wordSplit = commando.Split(' ');
 
                             // Visa bio för föremål
-                            if (player.CheckIfInventoryExist(player, commando.Substring(8)) == true)
+                            if (player.CheckIfInventoryExist(player, wordSplit[1]) == true)
                             {
                                 // Kollar commando mot inventory i rummet
                                 checkInventory = player.ConvertTextToInventory(player, commando.Substring(8));
 
                             }
-                            else if (CheckIfInventoryExistInRoom(currentPosition, commando.Substring(8)) == true)
+                            else if (CheckIfInventoryExistInRoom(currentPosition, wordSplit[1]) == true)
                             {
                                 // Kollar commando mot inventory i rummet
-                                checkInventory = ConvertTextToInventoryFromRoom(currentPosition, commando.Substring(8));
+                                checkInventory = ConvertTextToInventoryFromRoom(currentPosition, wordSplit[1]);
 
                             }
+                            else if (currentPosition.CheckIfExitExist(currentPosition, wordSplit[1] ) == true)
+                            {
+                                centerText.WriteTextAndCenter(currentPosition.ExitWithDescription[wordSplit[1]]);
+                                ;
+                            }
 
-                            player.Inspect(checkInventory);
+
+                                player.Inspect(checkInventory);
+
+                            
+
+                            
 
 
                             // Visa bio for utgång
