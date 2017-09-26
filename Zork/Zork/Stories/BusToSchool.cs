@@ -13,8 +13,20 @@
                       "inspect{The bus is filled with people,}" +
                       "";
             }
-            Bio =
-                "It has been an eventful morning, {0} takes a seat next to an older lady trying to catch a moment of rest?"; // CharacterIs;
+            else if (character == CharacterIs.Mimmi)
+            { 
+                Bio =
+                    "It has been an eventful morning, " +
+                    "You take a seat next to an older lady trying to catch a moment of rest?";
+            } 
+            else if (character == CharacterIs.Markus)
+            {
+                
+            }
+
+
+
+
 
         }
 

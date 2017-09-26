@@ -6,15 +6,18 @@ namespace Zork
     {
         public void WriteTextAndCenter(string text)
         {
-            if ((Console.WindowWidth - text.Length) < 0)
+            if (text != null)
             {
-                // Lägg inte texten i mitten om texten är för stor
+                if ((Console.WindowWidth - text.Length) < 0)
+                {
+                    // Lägg inte texten i mitten om texten är för stor
+                }
+                else
+                {
+                    Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.CursorTop);
+                }
             }
-            else
-            {
-                Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.CursorTop);
-            }
-
+           
             Console.WriteLine(text);
         }
 

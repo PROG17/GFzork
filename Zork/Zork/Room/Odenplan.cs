@@ -10,7 +10,7 @@ namespace Zork
     {
         public Odenplan(CharacterIs character)
         {
-            Name = "Odenplan station";
+            Name = "Odenplan";
 
             if (character == CharacterIs.Ahmad)
             {

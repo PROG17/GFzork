@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    public class Stories: ContainerForBasicInfo
+    public abstract class Stories: ContainerForBasicInfo
     {
 
         public List<string> myitems = new List<string>();
@@ -15,7 +15,6 @@ namespace Zork
         public void Story(ref Stories story)
         {
             centerText.WriteTextAndCenter(story.Bio);
-
         }
     }
 }

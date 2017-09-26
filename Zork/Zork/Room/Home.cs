@@ -29,8 +29,7 @@ namespace Zork
                 Bio = "";
             }
 
-
-
+            ExitWithDescription.Add("door", "description of door");
             
             SmartPhone smartPhone = new SmartPhone();
             BusCard busCard = new BusCard();

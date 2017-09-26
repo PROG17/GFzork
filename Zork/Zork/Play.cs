@@ -12,11 +12,7 @@ namespace Zork
         public string commando;
         bool alive = true;
         private Room currentPosition;
-
-        //public Dictionary<Room, List<Items>> dictOfRoomAnditems = new Dictionary<Room, List<Items>>();
         CenterText centerText = new CenterText();
-
-
 
         public void Playing(Player player)
         {
@@ -26,7 +22,6 @@ namespace Zork
 
             while (alive)
             {
-
                 WriteAndReadCommandos();
 
                 while (true)
@@ -38,82 +33,132 @@ namespace Zork
                     || commando == Commandos.Drop.ToString().ToLower() || commando == Commandos.Inspect.ToString().ToLower()
                     )
                     {
+                        Console.Clear();
                         centerText.WriteTextAndCenter($"{commando} what?\n");
                         break;
                     }
                     else if (commando == Commandos.Use.ToString().ToLower())
                     {
+                        Console.Clear();
                         centerText.WriteTextAndCenter($"{commando} what on what?\n");
                         break;
                     }
 
+                    // Dela upp commandot till en array
+                    string[] wordSplit = commando.Split(' ');
 
                     // Fortsättning av att kolla commandot
                     if (commando.Contains(Commandos.Get.ToString().ToLower()))
                     {
+                        Console.Clear();
+                        Console.WriteLine("\n\n\n\n");
+
                         // Ta upp något
-                        string[] wordSplit = commando.Split(' ');
                         player.Pick(player, wordSplit[1], currentPosition.itemsList);
                         Console.WriteLine("\n");
 
-                        // Ta bort föremålet från rummet
-                        Items checkItems = player.ConvertTextToitems(player, wordSplit[1]);
-                        currentPosition.itemsList.Remove(checkItems);
-
+                        // Inspektera spelarens items
+                        centerText.WriteTextAndCenter("Items in your bag: ");
+                        player.WriteitemsList(player);
                         break;
                     }
                     else if (commando.Contains(Commandos.Drop.ToString().ToLower()))
                     {
+                        Console.Clear();
+                        Console.WriteLine("\n\n\n\n");
+
                         // Droppa något
-                        player.Drop(player, commando.Substring(5));
+                        player.Drop(player, wordSplit[1], currentPosition.itemsList);
 
-                        // Lägg till det som droppas i rummet
-                        Items checkItems = player.ConvertTextToitems(player, commando.Substring(5));
-                        currentPosition.itemsList.Add(checkItems);
-
+                        // Inspektera spelarens items
+                        centerText.WriteTextAndCenter("Items in your bag: ");
+                        player.WriteitemsList(player);
                         Console.WriteLine("\n");
                         break;
                     }
                     else if (commando.Contains(Commandos.Exit.ToString().ToLower()))
                     {
-
+                        Console.Clear();
+                        Console.WriteLine("\n\n\n\n");
                         story.Story(ref story);
-                        currentPosition.Position(ref currentPosition, ref story, player);
+                        currentPosition.Position(ref currentPosition, ref story, player, CheckIfItemsExist(player, "keys"));
+
+                        if (currentPosition.isLocked == true)
+                        {
+                            if (CheckIfItemsExist(player, new BusCardLoaded().Name))
+                            {
+                                currentPosition.isLocked = false;
+                                //centerText.WriteTextAndCenter("It's okey to enter!");
+
+                                // Inspektera current position och dess items
+                                currentPosition.Describe(currentPosition);
+                                GetItemsFrom(currentPosition);
+                                GetExitsFrom(currentPosition);
+                            }
+                            else
+                            {
+                                centerText.WriteTextAndCenter($"To be able to enter the {currentPosition.Name}, " +
+                                                              $"you need to unlock the door with an item.");
+                            }
+                        }
+                        else
+                        {
+
+                            // Inspektera current position och dess items
+                            currentPosition.Describe(currentPosition);
+                            GetItemsFrom(currentPosition);
+                            GetExitsFrom(currentPosition);
+                        }
+
+
                         break;
                     }
                     else if (commando == Commandos.Look.ToString().ToLower())
                     {
+                        Console.Clear();
+                        Console.WriteLine("\n\n\n\n");
+
                         // Inspektera current position och dess items
                         currentPosition.Describe(currentPosition);
-                        GetitemsFrom(currentPosition);
+                        GetItemsFrom(currentPosition);
+                        GetExitsFrom(currentPosition);
                         break;
                     }
                     else if (commando == Commandos.Check.ToString().ToLower())
                     {
-                        // Inspektera spelarens invetory
+                        Console.Clear();
+                        Console.WriteLine("\n\n\n\n");
+
+                        // Inspektera spelarens items
+                        centerText.WriteTextAndCenter("Items in your bag: ");
                         player.WriteitemsList(player);
                         break;
                     }
                     else if (commando == Commandos.Quit.ToString().ToLower())
                     {
+                        Console.Clear();
+                        Console.WriteLine("\n\n\n\n");
+
                         centerText.WriteTextAndCenter("You gave up!");
                         alive = false;
                         break;
                     }
                     else if (commando.Contains(Commandos.Use.ToString().ToLower()))
                     {
-                        string[] wordSplit = commando.Split(' ');
+                        Console.Clear();
+                        Console.WriteLine("\n\n\n\n");
 
-                        if (player.CheckIfitemsExist(player, wordSplit[1]) == true &&
-                            player.CheckIfitemsExist(player, wordSplit[3]) == true)
+                        if (CheckIfItemsExist(player, wordSplit[1]) == true &&
+                            CheckIfItemsExist(player, wordSplit[3]) == true)
                         {
-                            Items useItems = player.ConvertTextToitems(player, wordSplit[1]);
-                            Items onItems = player.ConvertTextToitems(player, wordSplit[3]);
+                            Items useItems = ConvertTextToitems(player, wordSplit[1]);
+                            Items onItems = ConvertTextToitems(player, wordSplit[3]);
 
                             if (useItems.Name == new Money().Name && onItems.Name == new BusCard().Name)
                             {
                                 player.Drop(player, wordSplit[1]);
                                 player.Drop(player, wordSplit[3]);
+
                                 Items busCardLoaded = new BusCardLoaded();
                                 player.itemList.Add(busCardLoaded);
                                 centerText.WriteTextAndCenter($"Succesfully converted {wordSplit[1]} and " +
@@ -129,31 +174,29 @@ namespace Zork
                     }
                     else if (commando.Contains(Commandos.Inspect.ToString().ToLower()))
                     {
+                        Console.Clear();
+                        Console.WriteLine("\n\n\n\n");
                         Items checkItems;
-                        string[] wordSplit = commando.Split(' ');
 
                         // Visa bio för föremål
-                        if (player.CheckIfitemsExist(player, wordSplit[1]) == true)
+                        if (CheckIfItemsExist(player, wordSplit[1]) == true)
                         {
                             // Kollar commando mot items i rummet
-                            checkItems = player.ConvertTextToitems(player, wordSplit[1]);
+                            checkItems = ConvertTextToitems(player, wordSplit[1]);
                             player.Inspect(checkItems);
 
                         }
-                        else if (CheckIfitemsExistInRoom(currentPosition, wordSplit[1]) == true)
+                        else if (CheckIfItemsExist(currentPosition, wordSplit[1]) == true)
                         {
                             // Kollar commando mot items i rummet
-                            checkItems = ConvertTextToitemsFromRoom(currentPosition, wordSplit[1]);
+                            checkItems = ConvertTextToitems(currentPosition, wordSplit[1]);
                             player.Inspect(checkItems);
                         }
                         else if (currentPosition.CheckIfExitExists(currentPosition, wordSplit[1]) == true)
                         {
-
-                            }
-
-
-                        // Visa bio for utgång
-
+                            // Visa bio for utgång
+                            centerText.WriteTextAndCenter(currentPosition.ExitWithDescription[wordSplit[1].ToLower()]);
+                        }
                         break;
                     }
                     else
@@ -166,7 +209,7 @@ namespace Zork
         }
 
 
-        private Items ConvertTextToitemsFromRoom(Room room, string text)
+        private Items ConvertTextToitems(Room room, string text)
         {
             // Default blir keys... om inte texten kontrolleras innan
             Items items = new Keys();
@@ -179,9 +222,22 @@ namespace Zork
             return items;
         }
 
+        public Items ConvertTextToitems(Player player, string text)
+        {
+            // Default blir keys... om inte texten kontrolleras innan
+            Items items = new Keys();
+
+            foreach (var item in player.itemList)
+            {
+                if (item.Name.ToLower() == text.ToLower()) items = item;
+            }
+
+            return items;
+        }
 
 
-        public bool CheckIfitemsExistInRoom(Room room, string text)
+
+        public bool CheckIfItemsExist(Room room, string text)
         {
             bool control = false;
 
@@ -193,10 +249,20 @@ namespace Zork
             return control;
         }
 
-
-        private void GetitemsFrom(Room room)
+        public bool CheckIfItemsExist(Player player, string text)
         {
+            bool control = false;
+            foreach (var item in player.itemList)
+            {
+                if (item.Name.ToLower() == text.ToLower()) control = true;
+            }
 
+            return control;
+        }
+
+
+        private void GetItemsFrom(Room room)
+        {
             Console.WriteLine("\n");
             centerText.WriteTextAndCenter($"Items available in {room.Name}: ");
 
@@ -204,8 +270,19 @@ namespace Zork
             {
                 centerText.WriteTextAndCenter($"{i + 1}){room.itemsList[i].Name}");
             }
+        }
 
+        private void GetExitsFrom(Room room)
+        {
+            Console.WriteLine("\n");
+            centerText.WriteTextAndCenter($"Exits available in {room.Name}: ");
 
+            int counter = 0;
+            foreach (var item in room.ExitWithDescription)
+            {
+                centerText.WriteTextAndCenter($"{counter + 1}){item.Key}");
+                counter++;
+            }
         }
 
         private void WriteAndReadCommandos()

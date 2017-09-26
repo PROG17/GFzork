@@ -18,6 +18,7 @@ namespace Zork
         public void Describe(Room room)
         {
             CenterText centerText = new CenterText();
+            centerText.WriteTextAndCenter($"Current room: {room.Name}\n");
             centerText.WriteTextAndCenter(room.Bio);
             
         }
@@ -25,9 +26,9 @@ namespace Zork
         public bool CheckIfExitExists(Room room, string text)
         {
             bool control = false;
-            for (int i = 0; i < room.ExitWithDescription.Count; i++)
+            foreach (var item in room.ExitWithDescription)
             {
-                if (room.ExitWithDescription.Keys.ToString().ToLower() == text.ToLower())
+                if (item.Key.ToLower() == text.ToLower())
                 {
                     control = true;
                 }
@@ -38,7 +39,7 @@ namespace Zork
 
 
         //Metod som tar in första position (Home) och ändrar värdet för varje exit-commando
-        public void Position(ref Room room, ref Stories story, Player player)
+        public void Position(ref Room room, ref Stories story, Player player, bool control)
         {
 
 
@@ -49,7 +50,7 @@ namespace Zork
             {
 
                 room = new School();
-                if (room.Name == "School" && player.CheckIfitemsExist(player, "Keys"))
+                if (room.Name == "School" && control)
                 {
                     Console.WriteLine("YOU WIN!");
                     Console.ReadLine();

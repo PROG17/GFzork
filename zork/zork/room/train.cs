@@ -18,7 +18,7 @@ namespace Zork
             if (character == CharacterIs.Ahmad)
             {
                 Bio = "You enter the train and immediately find a seat further in! \n" +
-                    "[Inspect] [Jump off the train] [Wait until Odenplan] [Check your inventory]" +
+                    "[Inspect] [Jump off the train] [Wait until Odenplan] [Check your items]" +
                       "if Inspect{There is a lady sleeping in front of you, and on the seat next to you there is a newspaper"+
                 "if(commando==pick)you turn to the last page and find a sudoku puzzle, nice.. better practice on this to make sure the next assignmet will go smoothely!!" +
                     "if jump off train{who in their right mind would jump off the train in mid speed? You died!}" +
