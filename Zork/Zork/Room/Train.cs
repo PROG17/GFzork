@@ -12,6 +12,8 @@ namespace Zork
                   /*If(commando==skip)*/"{0} uses the newspaper as an asswarmer." +
                   "Inspect the surrounding? Jump off the train? Wait until Odenplan? Check your inventory?" ;
 
+            isLocked = true;
+
             SmartPhone smartPhone = new SmartPhone();
             Money money = new Money();
 

@@ -12,6 +12,7 @@ namespace Zork
     {
         public Dictionary<string, string> ExitWithDescription = new Dictionary<string, string>();
         public List<Items> itemsList = new List<Items>();
+        public bool isLocked = true;
 
 
         public void Describe(Room room)
