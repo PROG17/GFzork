@@ -23,8 +23,8 @@ namespace Zork
             //CreateStartingPointForRooms();
 
             //Startposition
-            currentPosition = new Home();
-            Stories story = new HomeToTrain();
+            currentPosition = new Home(player.Character);
+            Stories story = new HomeToTrain(player.Character);
 
             while (alive)
             {
