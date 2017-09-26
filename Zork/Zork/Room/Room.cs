@@ -27,14 +27,16 @@ namespace Zork
             bool control = false;
             for (int i = 0; i < room.ExitWithDescription.Count; i++)
             {
-                if (room.ExitWithDescription.Keys.ToString().ToLower() == text.ToLower())
+                if (room.ExitWithDescription.Keys.Contains(text.ToLower()))
                 {
                     control = true;
+                    Console.WriteLine(ExitWithDescription.Values);
+
                 }
             }
             return control;
-        } 
-       
+        }
+
 
 
         //Metod som tar in första position (Home) och ändrar värdet för varje exit-commando
@@ -49,7 +51,7 @@ namespace Zork
             {
 
                 room = new School();
-                if (room.Name == "School" && player.CheckIfInventoryExist(player, "Keys"))
+                if (room.Name == "School" && player.CheckIfitemsExist(player, "Keys"))
                 {
                     Console.WriteLine("YOU WIN!");
                     Console.ReadLine();

@@ -17,7 +17,7 @@ namespace Zork
                 Bio = "You find yourself outside the metro station"
                       /*"If [inspect]{To the left you find the bus 73 going for School, on the right side you find" +
                       "bus 69 which also takes you to school but 5 min faster" +
-                      "if[phone is in inventory]{Check which bus gets you there faster}" +
+                      "if[phone is in items]{Check which bus gets you there faster}" +
                       "if go to bus 73{you will be late}" +
                       "if go to bus 69{you will be on time}"*/;
             }

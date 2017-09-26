@@ -14,7 +14,7 @@ namespace Zork
         public CharacterIs Character { get; protected set; }
         public List<Items> itemList = new List<Items>();
 
-        public void WriteInventoryList(Player player)
+        public void WriteitemsList(Player player)
         {
             CenterText centerText = new CenterText();
 
@@ -24,9 +24,9 @@ namespace Zork
             }          
         }
 
-        public Items ConvertTextToInventory(Player player, string text)
+        public Items ConvertTextToitems(Player player, string text)
         {
-            // default = keys... krävs att texten som kommer in finns för att kunna få korrekt inventory
+            // default = keys... krävs att texten som kommer in finns för att kunna få korrekt items
 
             Items items = new Keys();
 
@@ -38,7 +38,7 @@ namespace Zork
             return items;
         }
 
-        public bool CheckIfInventoryExist(Player player, string text)
+        public bool CheckIfitemsExist(Player player, string text)
         {
             bool control = false;
             foreach (var item in player.itemList)

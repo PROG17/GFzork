@@ -4,7 +4,7 @@ funktionalitet:
 //KLAR
 • Spelkaraktär (player), detta är en representation av en person, som användaren kan flytta
 runt i spelvärlden mellan platser. En spelkaraktär har ett namn (fråga användaren vid spelets
-start) samt en lista med föremål som karaktären just nu bär på (inventory). 
+start) samt en lista med föremål som karaktären just nu bär på (items). 
 
 // ANVÄND EX) EXIT DOOR - Lägg till end point - dö eller vinn
 • Platser (room), som spelkaraktären kan flyttas mellan. Varje plats ska kunna ha en eller flera
@@ -18,7 +18,7 @@ att använda ett visst föremål på utgången (t ex ge kommandot "Use key on do
 
 //KLAR
 • Platser kan innehålla föremål. Föremål ska kunna plockas upp från en plats, varvid den
-istället placeras på spelkaraktären (inventory). Det ska även gå att släppa föremål som
+istället placeras på spelkaraktären (items). Det ska även gå att släppa föremål som
 spelkaraktären innehar, dessa hamnar då på den plats som spelkaraktären just nu befinner
 sig.
 
@@ -53,7 +53,7 @@ föremålet mot något annat föremål.
 • Visa detaljerad information om ett föremål eller en utgång. Båda dessa ska kunna ha en
 längre textbeskrivning kopplade till sig, genom att skriva t ex "inspect door" så visas denna
 text. 
---- MÅSTE LÄGGA IN EN INSPECT METOD SOM VISAR BIO FÖR INVENTORY, MEN ÄVEN FÖR UTGÅNGAR
+--- MÅSTE LÄGGA IN EN INSPECT METOD SOM VISAR BIO FÖR items, MEN ÄVEN FÖR UTGÅNGAR
 
 Programmet ska meddela användaren om den inte förstår ett visst kommando, eller om
 kommandot inte går att utföra (t ex försöka gå till ett annat rum via en låst dörr).

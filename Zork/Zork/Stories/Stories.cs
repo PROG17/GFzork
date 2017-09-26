@@ -9,7 +9,7 @@ namespace Zork
     public class Stories: ContainerForBasicInfo
     {
 
-        public List<string> myInventory = new List<string>();
+        public List<string> myitems = new List<string>();
         CenterText centerText = new CenterText();
 
         public void Story(ref Stories story)
