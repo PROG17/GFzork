@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Zork
 {
     
-    public class Room : ContainerForBasicInfo, IRoom
+    public abstract class Room : ContainerForBasicInfo, IRoom
     {
         public Dictionary<string, string> ExitWithDescription = new Dictionary<string, string>();
         public List<Items> itemsList = new List<Items>();
@@ -35,18 +35,6 @@ namespace Zork
             return control;
         } 
        
-
-            bool control = false;
-            for (int i = 0; i < room.ExitWithDescription.Count; i++)
-            {
-                if(room.ExitWithDescription.ToString().ToLower() == text.ToLower())
-                {
-
-                    control = true;
-                }
-            }
-            return control;
-        }
 
 
         //Metod som tar in första position (Home) och ändrar värdet för varje exit-commando
