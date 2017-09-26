@@ -1,15 +1,14 @@
 namespace Zork
 {
-    public class BusCard : Inventory
+    public class BusCard : Items
     {
-        //public int BusCardMoney { get; set; }
-        //Random rnd = new Random();
 
         public BusCard()
         {
             Name = "BusCard";
-            Bio = "Bio for BusCard";
-            //BusCardMoney = rnd.Next(0, 100 + 1);
+            Bio = "A buscard is nice to have if you would like to travel with the local traffic." +
+                  "The buscard is empty at first";
+                
         }
     }
 }

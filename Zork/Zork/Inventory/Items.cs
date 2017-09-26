@@ -8,11 +8,11 @@ using System.Xml.Schema;
 
 namespace Zork
 {
-    public class Inventory: ContainerForBasicInfo
+    public abstract class Items: ContainerForBasicInfo
     {
 
 
     }
 
-    
+
 }

@@ -12,6 +12,9 @@ namespace Zork
                            "Soon you will be att your destianation.... \n" +
                              "What will you do with the wallet? (get) or (drop)";
 
+            SmartPhone smartPhone = new SmartPhone();
+
+            itemsList.Add(smartPhone);
 
         }
 
