@@ -49,7 +49,7 @@ namespace Zork
             {
 
                 room = new School();
-                if (room.Name == "School" && player.CheckIfInventoryExist(player, "Keys"))
+                if (room.Name == "School" && player.CheckIfitemsExist(player, "Keys"))
                 {
                     Console.WriteLine("YOU WIN!");
                     Console.ReadLine();

@@ -21,8 +21,12 @@ namespace Zork
 
             //Title Screen
             Console.WriteLine("\n\n\n\n");
-            centerText.WriteTextAndCenter("Welcome to Travel Adventure");
-            centerText.WriteTextAndCenter("Choose your character bio\n\n");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            centerText.WriteTextAndCenter("Welcome to Travel Adventure\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            centerText.WriteTextAndCenter("Your mission is to get to school!\n");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            centerText.WriteTextAndCenter("But first, choose your character bio\n\n");
             centerText.WriteTextAndCenter("Character (1)");
             centerText.WriteTextAndCenter(charMimmi.Bio + "\n");
             centerText.WriteTextAndCenter("Character (2)");
