@@ -152,6 +152,8 @@ namespace Zork
                         else if (currentPosition.CheckIfExitExists(currentPosition, wordSplit[1]) == true)
                         {
 
+                            Console.WriteLine(currentPosition.ExitWithDescription[wordSplit[1]]);
+                            Console.ReadLine();
                             }
 
 
