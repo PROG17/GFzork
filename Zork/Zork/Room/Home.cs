@@ -47,8 +47,8 @@ namespace Zork
             itemsList.Add(money);
             ;
             //Skapar exits i rummet
-            ExitWithDescription.Add("door", "Descriptionn");
-            ExitWithDescription.Add("Bed", Name);
+            ExitWithDescription.Add("door", "door Descriptionn");
+            ExitWithDescription.Add("bed", "Bed description");
 
         }
     }

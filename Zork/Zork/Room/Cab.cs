@@ -16,9 +16,11 @@ namespace Zork
 
             itemsList.Add(smartPhone);
 
+            ExitWithDescription.Add("door", "cab Descriptionn");
         }
 
 
         
     }
+
 }

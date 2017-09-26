@@ -30,7 +30,7 @@ namespace Zork
                 if (room.ExitWithDescription.Keys.Contains(text.ToLower()))
                 {
                     control = true;
-                    Console.WriteLine(ExitWithDescription.Values);
+                    //Console.WriteLine(ExitWithDescription.Values);
 
                 }
             }

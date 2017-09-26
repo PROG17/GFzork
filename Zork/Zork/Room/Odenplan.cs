@@ -21,6 +21,7 @@ namespace Zork
                       "if go to bus 73{you will be late}" +
                       "if go to bus 69{you will be on time}";
             }
+            ExitWithDescription.Add("door", "odenplan door Descriptionn");
         }
         
     }

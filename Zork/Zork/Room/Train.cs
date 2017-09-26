@@ -4,6 +4,7 @@ namespace Zork
 {
     public class Train: Room
     {
+
         public Train(CharacterIs character)
         {
             Name = "Train";
@@ -26,8 +27,11 @@ namespace Zork
 
 
             }
+            ExitWithDescription.Add("door", "train Descriptionn");
         }
+
     }
+
 }
        
 
