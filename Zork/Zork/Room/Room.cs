@@ -43,8 +43,8 @@ namespace Zork
 
 
 
-            if (room.Name == "Home") { room = new Train(); story = new TrainToBus(); return; }
-            if (room.Name == "Train") { room = new Bus(); story = new BusToSchool(); return; }
+            if (room.Name == "Home") { room = new Train(player.Character); story = new TrainToBus(); return; }
+            if (room.Name == "Train") { room = new Bus(); story = new BusToSchool(player.Character); return; }
             if (room.Name == "Bus")
             {
 
