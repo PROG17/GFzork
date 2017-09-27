@@ -81,7 +81,7 @@ namespace Zork
                         Console.Clear();
                         Console.WriteLine("\n\n\n\n");
                         story.Story(ref story);
-                        currentPosition.Position(ref currentPosition, ref story, player, CheckIfItemsExist(player, "keys"));
+                        currentPosition.Position(ref currentPosition, ref story, player, CheckIfItemsExist(player, new BusCardLoaded().Name), CheckIfItemsExist(player, "keys"), CheckIfItemsExist(player, "smartphone"));
 
                         if (currentPosition.isLocked == true)
                         {

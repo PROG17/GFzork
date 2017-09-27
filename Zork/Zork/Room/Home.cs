@@ -39,7 +39,7 @@ namespace Zork
                       "exit{your partner gives you a kiss on your cheek, sprays some rose water on you and you are off}"*/;
             }
 
-            ExitWithDescription.Add("door", "description of door");
+            
             
             SmartPhone smartPhone = new SmartPhone();
             BusCard busCard = new BusCard();

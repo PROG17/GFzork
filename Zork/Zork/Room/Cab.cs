@@ -4,7 +4,7 @@ namespace Zork
 {
     public class Cab: Room
     {
-        public Cab()
+        public Cab(CharacterIs character)
         {
             Name = "Cab";
             Bio = "Your'e inside a cab, in the backseat behind the driver. \n" +

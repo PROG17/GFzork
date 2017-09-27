@@ -48,6 +48,7 @@
     <Compile Include="Items\Food.cs" />
     <Compile Include="Items\Keys.cs" />
     <Compile Include="Items\Money.cs" />
+    <Compile Include="Room\BetweenRooms.cs" />
     <Compile Include="Room\Bus.cs" />
     <Compile Include="Room\Cab.cs" />
     <Compile Include="CenterText.cs" />
@@ -71,7 +72,7 @@
     <Compile Include="Stories\HomeToTrain.cs" />
     <Compile Include="Stories\Stories.cs" />
     <Compile Include="Stories\TrainToBus.cs" />
-    <Compile Include="Stories\TrainToCab.cs" />
+    <Compile Include="Stories\CabToSchool.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

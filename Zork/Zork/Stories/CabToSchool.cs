@@ -1,8 +1,8 @@
 ﻿namespace Zork
 {
-    public class TrainToCab: Stories
+    public class CabToSchool: Stories
     {
-        public TrainToCab()
+        public CabToSchool()
         {
             Name = "Going from Train to Cab";
             
