@@ -30,8 +30,10 @@ namespace Zork
                     Console.WriteLine("\n");
 
                     // Felhantering om användaren skriver in enbart "pick", "drop", "exit", "inspect"
-                    if (commando == Commandos.Get.ToString().ToLower() || commando == Commandos.Exit.ToString().ToLower()
-                    || commando == Commandos.Drop.ToString().ToLower() || commando == Commandos.Inspect.ToString().ToLower()
+                    if (commando == Commandos.Get.ToString().ToLower() ||
+                        commando == Commandos.Exit.ToString().ToLower()
+                        || commando == Commandos.Drop.ToString().ToLower() ||
+                        commando == Commandos.Inspect.ToString().ToLower()
                     )
                     {
                         Console.Clear();
@@ -81,7 +83,8 @@ namespace Zork
                         }
                         else
                         {
-                            centerText.WriteTextAndCenter("The item you are trying to drop are missing in the your bag");
+                            centerText.WriteTextAndCenter(
+                                "The item you are trying to drop are missing in the your bag");
                         }
 
                         // Inspektera spelarens items
@@ -99,39 +102,6 @@ namespace Zork
                         if (CheckIfExitExists(currentPosition, wordSplit[1]) && wordSplit.Length == 2)
                         {
                             Exit(player);
-
-                            currentPosition.Position(ref currentPosition, ref story, player,
-                                CheckIfItemsExist(player, "keys"), CheckIfItemsExist(player, "loaded buscard"),
-                                CheckIfItemsExist(player, "smartphone"));
-
-                            if (currentPosition.isLocked)
-                            {
-                                if (CheckIfItemsExist(player, new BusCardLoaded().Name))
-                                {
-
-
-                                    currentPosition.isLocked = false;
-                                    //centerText.WriteTextAndCenter("It's okey to enter!");
-
-                                    // Inspektera current position och dess items
-                                    currentPosition.Describe(currentPosition);
-                                    GetItemsFrom(currentPosition);
-                                    GetExitsFrom(currentPosition);
-                                }
-                                else
-                                {
-                                    centerText.WriteTextAndCenter($"To be able to enter the {currentPosition.Name}, " +
-                                                                  $"you need to unlock the door with an item.");
-                                }
-                            }
-                            else
-                            {
-
-                                // Inspektera current position och dess items
-                                currentPosition.Describe(currentPosition);
-                                GetItemsFrom(currentPosition);
-                                GetExitsFrom(currentPosition);
-                            }
 
                         }
                         else
@@ -191,63 +161,65 @@ namespace Zork
                                     player.Drop(player, wordSplit[1]);
                                     player.Drop(player, wordSplit[3]);
 
-                                Items busCardLoaded = new BusCardLoaded();
-                                player.itemList.Add(busCardLoaded);
-                                centerText.WriteTextAndCenter($"Succesfully converted {wordSplit[1]} and " +
-                                                              $"{wordSplit[3]} to {busCardLoaded.Name}");
-                                GetItemsFrom(currentPosition);
+                                    Items busCardLoaded = new BusCardLoaded();
+                                    player.itemList.Add(busCardLoaded);
+                                    centerText.WriteTextAndCenter($"Succesfully converted {wordSplit[1]} and " +
+                                                                  $"{wordSplit[3]} to {busCardLoaded.Name}");
+                                    GetItemsFrom(currentPosition);
+                                }
+                                else
+                                {
+                                    centerText.WriteTextAndCenter("Try another combo, but");
+                                    centerText.WriteTextAndCenter(
+                                        "to be able to travel you need to convert money to another object");
+                                }
                             }
                             else
                             {
-                                centerText.WriteTextAndCenter("Try another combo, but");
-                                centerText.WriteTextAndCenter("to be able to travel you need to convert money to another object");
+                                centerText.WriteTextAndCenter("You need to have items in your " +
+                                                              "bag to be able to use item on item");
                             }
+                            break;
+                        }
+                        else if (commando.Contains(Commandos.Inspect.ToString().ToLower()))
+                        {
+                            Console.Clear();
+                            Console.WriteLine("\n\n\n\n");
+                            Items checkItems;
+
+                            // Visa bio för föremål
+                            if (CheckIfItemsExist(player, wordSplit[1]) == true)
+                            {
+                                // Kollar commando mot items i rummet
+                                checkItems = ConvertTextToitems(player, wordSplit[1]);
+                                player.Inspect(checkItems);
+
+                            }
+                            else if (CheckIfItemsExist(currentPosition, wordSplit[1]) == true)
+                            {
+                                // Kollar commando mot items i rummet
+                                checkItems = ConvertTextToitems(currentPosition, wordSplit[1]);
+                                player.Inspect(checkItems);
+                            }
+                            else if (CheckIfExitExists(currentPosition, wordSplit[1]) == true)
+                            {
+                                Console.WriteLine(currentPosition.ExitWithDescription[wordSplit[1]]);
+
+                                Console.WriteLine();
+
+
+                            }
+
+
+                            // Visa bio for utgång
+
+                            break;
                         }
                         else
                         {
-                                centerText.WriteTextAndCenter("You need to have items in your " +
-                                                              "bag to be able to use item on item");
+                            centerText.WriteTextAndCenter("Try again");
+                            commando = centerText.ReadTextAndCenter(5).ToLower();
                         }
-                        break;
-                    }
-                    else if (commando.Contains(Commandos.Inspect.ToString().ToLower()))
-                    {
-                        Console.Clear();
-                        Console.WriteLine("\n\n\n\n");
-                        Items checkItems;
-
-                        // Visa bio för föremål
-                        if (CheckIfItemsExist(player, wordSplit[1]) == true)
-                        {
-                            // Kollar commando mot items i rummet
-                            checkItems = ConvertTextToitems(player, wordSplit[1]);
-                            player.Inspect(checkItems);
-
-                        }
-                        else if (CheckIfItemsExist(currentPosition, wordSplit[1]) == true)
-                        {
-                            // Kollar commando mot items i rummet
-                            checkItems = ConvertTextToitems(currentPosition, wordSplit[1]);
-                            player.Inspect(checkItems);
-                        }
-                        else if (CheckIfExitExists(currentPosition, wordSplit[1]) == true)
-                        {
-                            Console.WriteLine(currentPosition.ExitWithDescription[wordSplit[1]]);
-                            
-                            Console.WriteLine();
-                            
-                            
-                            }
-
-
-                        // Visa bio for utgång
-
-                        break;
-                    }
-                    else
-                    {
-                        centerText.WriteTextAndCenter("Try again");
-                        commando = centerText.ReadTextAndCenter(5).ToLower();
                     }
                 }
             }
@@ -401,6 +373,6 @@ namespace Zork
         Get, Drop, Look, Exit, Use, Quit, Check, Inspect
     }
 
-
+}
 }
 
