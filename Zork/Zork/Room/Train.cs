@@ -1,20 +1,20 @@
-﻿//using System.Runtime.Serialization.Formatters;
+﻿using System.Runtime.Serialization.Formatters;
 
-//namespace Zork
-//{
-//    public class Train: Room
-//    {
+namespace Zork
+{
+    public class Train : Room
+    {
 
-//        public Train(CharacterIs character)
-//        {
-//            Name = "Train";
-//            isLocked = true;
+        public Train(CharacterIs character)
+        {
+            Name = "Train";
+            isLocked = true;
 
-//            SmartPhone smartPhone = new SmartPhone();
-//            Money money = new Money();
+            SmartPhone smartPhone = new SmartPhone();
+            Money money = new Money();
 
-//            itemsList.Add(smartPhone);
-//            itemsList.Add(money);
+            itemsList.Add(smartPhone);
+            itemsList.Add(money);
 
             if (character == CharacterIs.Ahmad)
             {
@@ -36,10 +36,10 @@
             ExitWithDescription.Add("door", "To be able to get off the train you need to exit the door");
         }
 
-//    }
+    }
 
-//}
-       
+}
 
-   
+
+
 

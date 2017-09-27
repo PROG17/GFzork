@@ -363,10 +363,8 @@ namespace Zork
             commando = centerText.ReadTextAndCenter(5).ToLower();
 
         }
-
-
-
     }
+
 
     public enum Commandos
     {
@@ -374,5 +372,5 @@ namespace Zork
     }
 
 }
-}
+
 
