@@ -10,7 +10,7 @@
             if (character == CharacterIs.Ahmad)
             {
                 Bio =
-                    "You start walking straight towards the train, with a feeling that something is missing... as always.";/* +
+                    "You start walking straight towards the train, with a feeling that something is missing... as always."; /* +
                     "If cash less than 60kr you cant enter the station and you miss your train. directed to cab" +
                     "{to train}" +
                     "{to cab}Takes you all the way to school but might get stuck in traffic  ";*/

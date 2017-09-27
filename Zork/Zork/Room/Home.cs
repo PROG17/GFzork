@@ -38,8 +38,6 @@ namespace Zork
                       "-What do you need to take with you today, she says while hands you your daily items}" +
                       "exit{your partner gives you a kiss on your cheek, sprays some rose water on you and you are off}"*/;
             }
-
-            
             
             SmartPhone smartPhone = new SmartPhone();
             BusCard busCard = new BusCard();
