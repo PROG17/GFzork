@@ -23,22 +23,6 @@ namespace Zork
             
         }
 
-        public bool CheckIfExitExists(Room room, string text)
-        {
-            bool control = false;
-            foreach (var item in room.ExitWithDescription)
-            {
-                if (item.Key.ToLower() == text.ToLower())
-                {
-                    control = true;
-                    //Console.WriteLine(ExitWithDescription.Values);
-
-                }
-            }
-            return control;
-        }
-
-
 
         //Metod som tar in första position (Home) och ändrar värdet för varje exit-commando
         public void Position(ref Room room, ref Stories story, Player player, bool control)

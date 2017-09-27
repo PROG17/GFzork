@@ -52,12 +52,18 @@ namespace Zork
                     {
                         Console.Clear();
                         Console.WriteLine("\n\n\n\n");
-
-                        // Ta upp något
-                        player.Pick(player, wordSplit[1], currentPosition.itemsList);
-                        Console.WriteLine("\n");
+                        if (CheckIfItemsExist(currentPosition, wordSplit[1]))
+                        {
+                            // Ta upp något
+                            player.Pick(player, wordSplit[1], currentPosition.itemsList);
+                        }
+                        else
+                        {
+                            centerText.WriteTextAndCenter("The item you are trying to get are missing in the room");
+                        }
 
                         // Inspektera spelarens items
+                        Console.WriteLine("\n");
                         centerText.WriteTextAndCenter("Items in your bag: ");
                         player.WriteitemsList(player);
                         break;
@@ -67,10 +73,18 @@ namespace Zork
                         Console.Clear();
                         Console.WriteLine("\n\n\n\n");
 
-                        // Droppa något
-                        player.Drop(player, wordSplit[1], currentPosition.itemsList);
+                        if (CheckIfItemsExist(player, wordSplit[1]))
+                        {
+                            // Droppa något
+                            player.Drop(player, wordSplit[1], currentPosition.itemsList);
+                        }
+                        else
+                        {
+                            centerText.WriteTextAndCenter("The item you are trying to drop are missing in the your bag");
+                        }
 
                         // Inspektera spelarens items
+                        Console.WriteLine("\n");
                         centerText.WriteTextAndCenter("Items in your bag: ");
                         player.WriteitemsList(player);
                         Console.WriteLine("\n");
@@ -80,34 +94,43 @@ namespace Zork
                     {
                         Console.Clear();
                         Console.WriteLine("\n\n\n\n");
-                        story.Story(ref story);
-                        currentPosition.Position(ref currentPosition, ref story, player, CheckIfItemsExist(player, "keys"));
 
-                        if (currentPosition.isLocked == true)
+                        if (CheckIfExitExists(currentPosition, wordSplit[1]))
                         {
-                            if (CheckIfItemsExist(player, new BusCardLoaded().Name))
+                            story.Story(ref story);
+                            currentPosition.Position(ref currentPosition, ref story, player, CheckIfItemsExist(player, "keys"));
+
+                            if (currentPosition.isLocked == true)
                             {
-                                currentPosition.isLocked = false;
-                                //centerText.WriteTextAndCenter("It's okey to enter!");
+                                if (CheckIfItemsExist(player, new BusCardLoaded().Name))
+                                {
+                                    currentPosition.isLocked = false;
+                                    //centerText.WriteTextAndCenter("It's okey to enter!");
+
+                                    // Inspektera current position och dess items
+                                    currentPosition.Describe(currentPosition);
+                                    GetItemsFrom(currentPosition);
+                                    GetExitsFrom(currentPosition);
+                                }
+                                else
+                                {
+                                    centerText.WriteTextAndCenter($"To be able to enter the {currentPosition.Name}, " +
+                                                                  $"you need to unlock the door with an item.");
+                                }
+                            }
+                            else
+                            {
 
                                 // Inspektera current position och dess items
                                 currentPosition.Describe(currentPosition);
                                 GetItemsFrom(currentPosition);
                                 GetExitsFrom(currentPosition);
                             }
-                            else
-                            {
-                                centerText.WriteTextAndCenter($"To be able to enter the {currentPosition.Name}, " +
-                                                              $"you need to unlock the door with an item.");
-                            }
+
                         }
                         else
                         {
-
-                            // Inspektera current position och dess items
-                            currentPosition.Describe(currentPosition);
-                            GetItemsFrom(currentPosition);
-                            GetExitsFrom(currentPosition);
+                            centerText.WriteTextAndCenter("The exit you are trying to use doesn't exist");
                         }
 
 
@@ -163,12 +186,18 @@ namespace Zork
                                 player.itemList.Add(busCardLoaded);
                                 centerText.WriteTextAndCenter($"Succesfully converted {wordSplit[1]} and " +
                                                               $"{wordSplit[3]} to {busCardLoaded.Name}");
+                                GetItemsFrom(currentPosition);
                             }
                             else
                             {
                                 centerText.WriteTextAndCenter("Try another combo, but");
                                 centerText.WriteTextAndCenter("to be able to travel you need to convert money to another object");
                             }
+                        }
+                        else
+                        {
+                                centerText.WriteTextAndCenter("You need to have items in your " +
+                                                              "bag to be able to use item on item");
                         }
                         break;
                     }
@@ -192,7 +221,7 @@ namespace Zork
                             checkItems = ConvertTextToitems(currentPosition, wordSplit[1]);
                             player.Inspect(checkItems);
                         }
-                        else if (currentPosition.CheckIfExitExists(currentPosition, wordSplit[1]) == true)
+                        else if (CheckIfExitExists(currentPosition, wordSplit[1]) == true)
                         {
                             Console.WriteLine(currentPosition.ExitWithDescription[wordSplit[1]]);
                             
@@ -266,6 +295,21 @@ namespace Zork
 
             return control;
         }
+
+
+        public bool CheckIfExitExists(Room room, string text)
+        {
+            bool control = false;
+            foreach (var item in room.ExitWithDescription)
+            {
+                if (item.Key.ToLower() == text.ToLower())
+                {
+                    control = true;
+                }
+            }
+            return control;
+        }
+
 
 
         private void GetItemsFrom(Room room)
