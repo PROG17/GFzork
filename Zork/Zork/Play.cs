@@ -18,7 +18,7 @@ namespace Zork
         {
             //Startposition
             currentPosition = new Home(player.Character);
-            Stories story = new HomeToTrain(player.Character);
+            Stories story = new HomeToBus(player.Character);
 
             while (alive)
             {
@@ -112,16 +112,17 @@ namespace Zork
                                     currentPosition.isLocked = false;
                                     //centerText.WriteTextAndCenter("It's okey to enter!");
 
+                                    
                                     // Inspektera current position och dess items
                                     currentPosition.Describe(currentPosition);
                                     GetItemsFrom(currentPosition);
                                     GetExitsFrom(currentPosition);
                                 }
-                                else
-                                {
-                                    centerText.WriteTextAndCenter($"To be able to enter the {currentPosition.Name}, " +
-                                                                  $"you need to unlock the door with an item.");
-                                }
+                                //else
+                                //{
+                                //    centerText.WriteTextAndCenter($"To be able to enter the  " +
+                                //                                  $"you need to unlock the door with an item.");
+                                //}
                             }
                             else
                             {
@@ -199,10 +200,15 @@ namespace Zork
                                 centerText.WriteTextAndCenter("to be able to travel you need to convert money to another object");
                             }
                         }
+                        else if (CheckIfItemsExist(player, wordSplit[1]) && (CheckIfExitExists(currentPosition, wordSplit[3])))
+                        {
+
+
+                        }
                         else
                         {
-                                centerText.WriteTextAndCenter("You need to have items in your " +
-                                                              "bag to be able to use item on item");
+                            centerText.WriteTextAndCenter("You need to have items in your " +
+                                                          "bag to be able to use item on item");
                         }
                         break;
                     }
@@ -295,7 +301,7 @@ namespace Zork
             bool control = false;
             foreach (var item in player.itemList)
             {
-                if (item.Name == text.ToLower()) control = true;
+                if (item.Name.ToLower() == text.ToLower()) control = true;
             }
 
             return control;

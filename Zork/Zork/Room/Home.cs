@@ -24,7 +24,8 @@ namespace Zork
                  
                    [inspect] [pick] [exit]
                    If inspect{" You see your stuff lying on the table, you should maybe take them with you"}
-                   If exit{"You put on your clothes and exit your house"*/
+                   If exit{"You put on your clothes and exit your ho
+                   "*/
             } else if (character == CharacterIs.Mimmi)
             {
                 Bio = "You wake up! Everything is ready and in its place, you shut the alarm off before it starts ringing."

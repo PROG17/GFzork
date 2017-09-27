@@ -41,12 +41,11 @@ namespace Zork
         
 
         //Metod som tar in första position (Home) och ändrar värdet för varje exit-commando
-        public void Position(ref Room room, ref Stories story, Player player, bool controlBusCard, bool controlKeys, bool controlSmartPhone)
+        public void Position(ref Room room, ref Stories story, Player player, bool controlKeys, bool controlBusCard, bool controlSmartPhone)
         {
 
-            if(room.Name == "Home" && controlBusCard ) { room = new Train(player.Character); story = new HomeToTrain(player.Character);  return; }
+            if(room.Name == "Home" && controlBusCard ) { room = new Bus(player.Character); story = new HomeToBus(player.Character);  return; }
             if(room.Name == "Home" && controlSmartPhone) { room = new Cab(player.Character); story = new CabToSchool(); return; }
-            if (room.Name == "Train") { room = new Bus(); story = new BusToSchool(player.Character); return; }
             if (room.Name == "Bus" || room.Name == "Cab")
             {
                 room = new School();
@@ -58,8 +57,17 @@ namespace Zork
                     Console.WriteLine("You have entered the school and won the game");
                     Console.ReadLine();
                     Environment.Exit(1);
-                }
 
+                    
+                }
+                if (room.Name == "School" && !controlKeys)
+                {
+                    Console.WriteLine("You dont have the keys, you loose!");
+                    Console.ReadLine();
+                    //boolvärde alive
+                    
+
+                }
                 return;
 
             }
