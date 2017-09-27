@@ -10,6 +10,10 @@ namespace Zork
     {
         static void Main(string[] args)
         {
+            bool gameOver = false;
+            while (gameOver == false)
+            {
+                
             //Declaration
             var charMimmi = new CharMimmi();
             var charMarkus = new CharMarkus();
@@ -71,7 +75,19 @@ namespace Zork
 
             game.Playing(chosenCharacter);
 
-            Console.ReadLine();   
+                centerText.WriteTextAndCenter("Play again?(Y/N)");
+                string answer = centerText.ReadTextAndCenter().ToUpper();
+                Console.Clear();
+
+                if (answer=="N")
+                {
+                gameOver = true;
+                Console.WriteLine("\n\n\n\n\n\n\n\n");
+                centerText.WriteTextAndCenter("GAME OVER!");
+                }
+
+                Console.ReadLine();
+            }
         }
 
 
