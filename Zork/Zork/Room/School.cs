@@ -16,7 +16,7 @@ namespace Zork
 
             itemsList.Add(coffe);
             itemsList.Add(food);
-            ExitWithDescription.Add("door", "school door Descriptionn");
+            ExitWithDescription.Add("door", "To be able to win the game you need unlock the door to the school and exit the door");
 
         }
     }
