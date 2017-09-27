@@ -100,6 +100,39 @@ namespace Zork
                         {
                             Exit(player);
 
+                            currentPosition.Position(ref currentPosition, ref story, player,
+                                CheckIfItemsExist(player, "keys"), CheckIfItemsExist(player, "loaded buscard"),
+                                CheckIfItemsExist(player, "smartphone"));
+
+                            if (currentPosition.isLocked)
+                            {
+                                if (CheckIfItemsExist(player, new BusCardLoaded().Name))
+                                {
+
+
+                                    currentPosition.isLocked = false;
+                                    //centerText.WriteTextAndCenter("It's okey to enter!");
+
+                                    // Inspektera current position och dess items
+                                    currentPosition.Describe(currentPosition);
+                                    GetItemsFrom(currentPosition);
+                                    GetExitsFrom(currentPosition);
+                                }
+                                else
+                                {
+                                    centerText.WriteTextAndCenter($"To be able to enter the {currentPosition.Name}, " +
+                                                                  $"you need to unlock the door with an item.");
+                                }
+                            }
+                            else
+                            {
+
+                                // Inspektera current position och dess items
+                                currentPosition.Describe(currentPosition);
+                                GetItemsFrom(currentPosition);
+                                GetExitsFrom(currentPosition);
+                            }
+
                         }
                         else
                         {
@@ -158,30 +191,23 @@ namespace Zork
                                     player.Drop(player, wordSplit[1]);
                                     player.Drop(player, wordSplit[3]);
 
-                                    Items busCardLoaded = new BusCardLoaded();
-                                    player.itemList.Add(busCardLoaded);
-                                    centerText.WriteTextAndCenter($"Succesfully converted {wordSplit[1]} and " +
-                                                                  $"{wordSplit[3]} to {busCardLoaded.Name}");
-                                    GetItemsFrom(currentPosition);
-                                }
-                                else
-                                {
-                                    centerText.WriteTextAndCenter("Try another combo, but");
-                                    centerText.WriteTextAndCenter("to be able to travel you need to convert money to another object");
-                                }
+                                Items busCardLoaded = new BusCardLoaded();
+                                player.itemList.Add(busCardLoaded);
+                                centerText.WriteTextAndCenter($"Succesfully converted {wordSplit[1]} and " +
+                                                              $"{wordSplit[3]} to {busCardLoaded.Name}");
+                                GetItemsFrom(currentPosition);
                             }
                             else
                             {
-                                centerText.WriteTextAndCenter("You need to have items in your " +
-                                                              "bag to be able to use item on item");
+                                centerText.WriteTextAndCenter("Try another combo, but");
+                                centerText.WriteTextAndCenter("to be able to travel you need to convert money to another object");
                             }
                         }
                         else
                         {
-                            centerText.WriteTextAndCenter("Something went wrong, please try again: " +
-                                                          "Use [item] on [item]");
+                                centerText.WriteTextAndCenter("You need to have items in your " +
+                                                              "bag to be able to use item on item");
                         }
-                        
                         break;
                     }
                     else if (commando.Contains(Commandos.Inspect.ToString().ToLower()))
@@ -309,7 +335,7 @@ namespace Zork
             bool control = false;
             foreach (var item in player.itemList)
             {
-                if (item.Name == text.ToLower()) control = true;
+                if (item.Name.ToLower() == text.ToLower()) control = true;
             }
 
             return control;

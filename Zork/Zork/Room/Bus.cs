@@ -2,7 +2,7 @@
 {
     public class Bus : Room
     {
-        public Bus()
+        public Bus(CharacterIs character)
         {
             Name = "Bus";
             Bio = "The bus is packed with people"/* +
