@@ -13,12 +13,13 @@ namespace Zork
         bool alive = true;
         private Room currentPosition;
         CenterText centerText = new CenterText();
+        Stories story = new HomeToBus(player.Character);
+
 
         public void Playing(Player player)
         {
             //Startposition
             currentPosition = new Home(player.Character);
-            Stories story = new HomeToBus(player.Character);
 
             while (alive)
             {
@@ -95,9 +96,9 @@ namespace Zork
                         Console.Clear();
                         Console.WriteLine("\n\n\n\n");
 
-                        if (CheckIfExitExists(currentPosition, wordSplit[1]))
+                        if (CheckIfExitExists(currentPosition, wordSplit[1]) && wordSplit.Length == 2)
                         {
-                            story.Story(ref story);
+                            Exit(player);
 
                             currentPosition.Position(ref currentPosition, ref story, player,
                                 CheckIfItemsExist(player, "keys"), CheckIfItemsExist(player, "loaded buscard"),
@@ -112,17 +113,16 @@ namespace Zork
                                     currentPosition.isLocked = false;
                                     //centerText.WriteTextAndCenter("It's okey to enter!");
 
-                                    
                                     // Inspektera current position och dess items
                                     currentPosition.Describe(currentPosition);
                                     GetItemsFrom(currentPosition);
                                     GetExitsFrom(currentPosition);
                                 }
-                                //else
-                                //{
-                                //    centerText.WriteTextAndCenter($"To be able to enter the  " +
-                                //                                  $"you need to unlock the door with an item.");
-                                //}
+                                else
+                                {
+                                    centerText.WriteTextAndCenter($"To be able to enter the {currentPosition.Name}, " +
+                                                                  $"you need to unlock the door with an item.");
+                                }
                             }
                             else
                             {
@@ -176,17 +176,20 @@ namespace Zork
                     {
                         Console.Clear();
                         Console.WriteLine("\n\n\n\n");
-
-                        if (CheckIfItemsExist(player, wordSplit[1]) == true &&
-                            CheckIfItemsExist(player, wordSplit[3]) == true)
+                        if (wordSplit.Length == 4)
                         {
-                            Items useItems = ConvertTextToitems(player, wordSplit[1]);
-                            Items onItems = ConvertTextToitems(player, wordSplit[3]);
-
-                            if (useItems.Name == new Money().Name && onItems.Name == new BusCard().Name)
+                            if (wordSplit[0].ToLower() == "use" &&
+                                CheckIfItemsExist(player, wordSplit[1]) == true &&
+                                wordSplit[2].ToLower() == "on" &&
+                                CheckIfItemsExist(player, wordSplit[3]) == true)
                             {
-                                player.Drop(player, wordSplit[1]);
-                                player.Drop(player, wordSplit[3]);
+                                Items useItems = ConvertTextToitems(player, wordSplit[1]);
+                                Items onItems = ConvertTextToitems(player, wordSplit[3]);
+
+                                if (useItems.Name == new Money().Name && onItems.Name == new BusCard().Name)
+                                {
+                                    player.Drop(player, wordSplit[1]);
+                                    player.Drop(player, wordSplit[3]);
 
                                 Items busCardLoaded = new BusCardLoaded();
                                 player.itemList.Add(busCardLoaded);
@@ -200,15 +203,10 @@ namespace Zork
                                 centerText.WriteTextAndCenter("to be able to travel you need to convert money to another object");
                             }
                         }
-                        else if (CheckIfItemsExist(player, wordSplit[1]) && (CheckIfExitExists(currentPosition, wordSplit[3])))
-                        {
-
-
-                        }
                         else
                         {
-                            centerText.WriteTextAndCenter("You need to have items in your " +
-                                                          "bag to be able to use item on item");
+                                centerText.WriteTextAndCenter("You need to have items in your " +
+                                                              "bag to be able to use item on item");
                         }
                         break;
                     }
@@ -255,6 +253,42 @@ namespace Zork
             }
         }
 
+        private void Exit(Player player)
+        {
+            story.Story(ref story);
+
+            currentPosition.Position(ref currentPosition, ref story, player,
+                CheckIfItemsExist(player, "keys"), CheckIfItemsExist(player, "loaded buscard"),
+                CheckIfItemsExist(player, "smartphone"));
+
+            if (currentPosition.isLocked)
+            {
+                if (CheckIfItemsExist(player, new BusCardLoaded().Name))
+                {
+                    currentPosition.isLocked = false;
+                    //centerText.WriteTextAndCenter("It's okey to enter!");
+
+                    // Inspektera current position och dess items
+                    currentPosition.Describe(currentPosition);
+                    GetItemsFrom(currentPosition);
+                    GetExitsFrom(currentPosition);
+                }
+                else
+                {
+                    centerText.WriteTextAndCenter($"To be able to enter the {currentPosition.Name}, " +
+                                                  $"you need to unlock the door with an item.");
+                }
+            }
+            else
+            {
+
+                // Inspektera current position och dess items
+                currentPosition.Describe(currentPosition);
+                GetItemsFrom(currentPosition);
+                GetExitsFrom(currentPosition);
+            }
+
+        }
 
         private Items ConvertTextToitems(Room room, string text)
         {
