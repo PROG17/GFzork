@@ -98,12 +98,17 @@ namespace Zork
                         if (CheckIfExitExists(currentPosition, wordSplit[1]))
                         {
                             story.Story(ref story);
-                            currentPosition.Position(ref currentPosition, ref story, player, CheckIfItemsExist(player, "keys"));
 
-                            if (currentPosition.isLocked == true)
+                            currentPosition.Position(ref currentPosition, ref story, player,
+                                CheckIfItemsExist(player, "keys"), CheckIfItemsExist(player, "loaded buscard"),
+                                CheckIfItemsExist(player, "smartphone"));
+
+                            if (currentPosition.isLocked)
                             {
                                 if (CheckIfItemsExist(player, new BusCardLoaded().Name))
                                 {
+
+
                                     currentPosition.isLocked = false;
                                     //centerText.WriteTextAndCenter("It's okey to enter!");
 
@@ -290,7 +295,7 @@ namespace Zork
             bool control = false;
             foreach (var item in player.itemList)
             {
-                if (item.Name.ToLower() == text.ToLower()) control = true;
+                if (item.Name == text.ToLower()) control = true;
             }
 
             return control;

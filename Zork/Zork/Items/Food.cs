@@ -4,7 +4,7 @@ namespace Zork
     {
         public Food()
         {
-            Name = "Food";
+            Name = "food";
             Bio = "You cooked spaghetti with meatballs yesterdays.";
         }
     }

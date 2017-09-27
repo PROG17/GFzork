@@ -13,6 +13,8 @@
             
             Money money = new Money();
             itemsList.Add(money);
+
+            ExitWithDescription.Add("door", "bus Descriptionn");
         }
 
 

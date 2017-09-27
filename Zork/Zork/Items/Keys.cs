@@ -4,7 +4,7 @@ namespace Zork
     {
         public Keys()
         {
-            Name = "Keys";
+            Name = "keys";
             Bio = "The keys are used to open certain locked doors.";
         }
     }

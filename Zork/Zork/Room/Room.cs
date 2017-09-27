@@ -44,17 +44,16 @@ namespace Zork
         public void Position(ref Room room, ref Stories story, Player player, bool controlBusCard, bool controlKeys, bool controlSmartPhone)
         {
 
-            if(room.Name == "Home") { room = new BetweenRooms(); return; }
-            if (room.Name == "Limbo" && controlBusCard == true){ room = new Train(player.Character); story = new TrainToBus(); return; }
-            if(room.Name == "Limbo" && controlSmartPhone == true) { room = new Cab(player.Character); story = new CabToSchool(); return; }
+            if(room.Name == "Home" && controlBusCard ) { room = new Train(player.Character); story = new HomeToTrain(player.Character);  return; }
+            if(room.Name == "Home" && controlSmartPhone) { room = new Cab(player.Character); story = new CabToSchool(); return; }
             if (room.Name == "Train") { room = new Bus(); story = new BusToSchool(player.Character); return; }
             if (room.Name == "Bus" || room.Name == "Cab")
             {
-                room = new BetweenRooms();
-                
-                if (room.Name == "Limbo" && controlKeys)
+                room = new School();
+
+                if (room.Name == "School" && controlKeys)
                 {
-                    room = new School();
+                    
 
                     Console.WriteLine("You have entered the school and won the game");
                     Console.ReadLine();
