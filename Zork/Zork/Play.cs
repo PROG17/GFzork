@@ -13,7 +13,7 @@ namespace Zork
         bool alive = true;
         private Room currentPosition;
         CenterText centerText = new CenterText();
-        Stories story = new HomeToTrain(player.Character);
+        private Stories story;
 
 
         public void Playing(Player player)
