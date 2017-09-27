@@ -65,6 +65,7 @@ namespace Zork
             chosenCharacter.Name = name;
 
             Console.Clear();
+            Console.WriteLine("\n\n\n\n");
 
             centerText.WriteTextAndCenter("Welcome " + chosenCharacter.Name + "!");
 

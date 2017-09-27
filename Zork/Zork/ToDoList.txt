@@ -49,12 +49,12 @@ föremålet mot något annat föremål.
 • Visa rumsbeskrivning igen, tillsammans med listning över alla utgångar och föremål i rummet
 ("Look").
 
-// KLAR MED FÖREMÅL
+//KLAR
 • Visa detaljerad information om ett föremål eller en utgång. Båda dessa ska kunna ha en
 längre textbeskrivning kopplade till sig, genom att skriva t ex "inspect door" så visas denna
 text. 
---- MÅSTE LÄGGA IN EN INSPECT METOD SOM VISAR BIO FÖR items, MEN ÄVEN FÖR UTGÅNGAR
 
+// MÅSTE FIXA
 Programmet ska meddela användaren om den inte förstår ett visst kommando, eller om
 kommandot inte går att utföra (t ex försöka gå till ett annat rum via en låst dörr).
 
