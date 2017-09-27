@@ -24,39 +24,29 @@ namespace Zork
             }          
         }
 
-        public Items ConvertTextToitems(Player player, string text)
+        public void Pick(Player player, string text, List<Items> roomItems)
         {
-            // default = keys... krävs att texten som kommer in finns för att kunna få korrekt items
-
-            Items items = new Keys();
-
-            foreach (var item in player.itemList)
-            {
-                if (item.Name.ToLower() == text.ToLower()) items = item;
-            }
-
-            return items;
-        }
-
-        public bool CheckIfitemsExist(Player player, string text)
-        {
-            bool control = false;
-            foreach (var item in player.itemList)
-            {
-                if (item.Name.ToLower() == text.ToLower()) control = true;
-            }
-
-            return control;
-        }
-
-        public void Pick(Player player, string text, List<Items> helpList)
-        {
-            foreach (var item in helpList)
+            int counter = 0;
+            foreach (var item in roomItems)
             {
                 if (item.Name.ToLower() == text.ToLower())
                 {
                     player.itemList.Add(item);
+                    roomItems.RemoveAt(counter);
                     break;
+                }
+                counter++;
+            }
+        }
+
+        public void Drop(Player player, string text, List<Items> roomItems)
+        {
+            for (int i = 0; i < player.itemList.Count; i++)
+            {
+                if (player.itemList[i].Name.ToLower() == text.ToLower())
+                {
+                    roomItems.Add(player.itemList[i]);
+                    player.itemList.RemoveAt(i);
                 }
             }
         }

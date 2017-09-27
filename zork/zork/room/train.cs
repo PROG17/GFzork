@@ -4,6 +4,7 @@ namespace Zork
 {
     public class Train: Room
     {
+
         public Train(CharacterIs character)
         {
             Name = "Train";
@@ -32,8 +33,11 @@ namespace Zork
             {
                 Bio = "You enter the train, find your way to a seat close to the window, gazing out the window and enjoying the view! ";
             }
+            ExitWithDescription.Add("door", "train Descriptionn");
         }
+
     }
+
 }
        
 

@@ -16,6 +16,7 @@ namespace Zork
 
             itemsList.Add(coffe);
             itemsList.Add(food);
+            ExitWithDescription.Add("door", "school door Descriptionn");
 
         }
     }

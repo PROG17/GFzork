@@ -10,7 +10,7 @@ namespace Zork
     {
         public Odenplan(CharacterIs character)
         {
-            Name = "Odenplan station";
+            Name = "Odenplan";
 
             if (character == CharacterIs.Ahmad)
             {
@@ -33,7 +33,7 @@ namespace Zork
                       "if Walk{-why take the bus when you can enjoy nature and exercise at the same time?} Gets hit by a bus and dies"*/;
 
             }
-
+            ExitWithDescription.Add("door", "odenplan door Descriptionn");
         }
         
     }
