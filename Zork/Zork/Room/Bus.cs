@@ -14,7 +14,7 @@
             Money money = new Money();
             itemsList.Add(money);
 
-            ExitWithDescription.Add("door", "bus Descriptionn");
+            ExitWithDescription.Add("door", "To be able to get off the bus you need to exit door");
         }
 
 

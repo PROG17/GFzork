@@ -33,7 +33,7 @@ namespace Zork
             {
                 Bio = "You enter the train, find your way to a seat close to the window, gazing out the window and enjoying the view! ";
             }
-            ExitWithDescription.Add("door", "train Descriptionn");
+            ExitWithDescription.Add("door", "To be able to get off the train you need to exit the door");
         }
 
     }

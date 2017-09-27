@@ -16,7 +16,7 @@ namespace Zork
 
             itemsList.Add(smartPhone);
 
-            ExitWithDescription.Add("door", "cab Descriptionn");
+            ExitWithDescription.Add("door", "To be able to get off the cab you need to exit door");
         }
 
 
