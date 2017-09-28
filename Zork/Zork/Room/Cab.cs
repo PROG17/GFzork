@@ -8,13 +8,13 @@ namespace Zork
         {
             Name = "Cab";
             Bio = "Your'e inside a cab, in the backseat behind the driver. \n" +
-                       "Suddenly you realise that someone has dropped a wallet between the seats. \n" +
-                           "Soon you will be att your destianation.... \n" +
-                             "What will you do with the wallet? (get) or (drop)";
+                  "Suddenly you realise that someone has dropped a wallet between the seats. \n" +
+                  "Soon you will be att your destination.... \n";
 
-            SmartPhone smartPhone = new SmartPhone();
+            Wallet wallet = new Wallet();
 
-            itemsList.Add(smartPhone);
+            itemsList.Add(wallet);
+            isLocked = false;
 
             ExitWithDescription.Add("door", "To be able to get off the cab you need to exit door");
         }

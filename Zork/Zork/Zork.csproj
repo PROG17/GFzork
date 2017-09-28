@@ -48,6 +48,8 @@
     <Compile Include="Items\Food.cs" />
     <Compile Include="Items\Keys.cs" />
     <Compile Include="Items\Money.cs" />
+    <Compile Include="Items\Rock.cs" />
+    <Compile Include="Items\Wallet.cs" />
     <Compile Include="Room\Bus.cs" />
     <Compile Include="Room\Cab.cs" />
     <Compile Include="CenterText.cs" />
@@ -62,15 +64,12 @@
     <Compile Include="Player\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Room\Odenplan.cs" />
     <Compile Include="Room\Room.cs" />
     <Compile Include="Items\SmartPhone.cs" />
     <Compile Include="Room\School.cs" />
-    <Compile Include="Room\Train.cs" />
-    <Compile Include="Stories\BusToSchool.cs" />
-    <Compile Include="Stories\HomeToBus.cs" />
+    <Compile Include="Room\ToSchool.cs" />
+    <Compile Include="Room\ToBus.cs" />
     <Compile Include="Stories\Stories.cs" />
-    <Compile Include="Stories\TrainToBus.cs" />
     <Compile Include="Stories\CabToSchool.cs" />
   </ItemGroup>
   <ItemGroup>

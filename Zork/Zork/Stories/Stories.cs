@@ -8,13 +8,9 @@ namespace Zork
 {
     public abstract class Stories: ContainerForBasicInfo
     {
-
-        public List<string> myitems = new List<string>();
-        CenterText centerText = new CenterText();
-
-        public void Story(ref Stories story)
+        public void PrintStory(ref Stories story)
         {
-
+            CenterText centerText = new CenterText();
             centerText.WriteTextAndCenter(story.Bio);
         }
     }
