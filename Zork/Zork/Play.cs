@@ -109,6 +109,13 @@ namespace Zork
                                 centerText.WriteTextAndCenter("GAME OVER\n\n");
                                 alive = false;
                             }
+                            else if (wordSplit[1].ToLower() == "home")
+                            {
+                                centerText.WriteTextAndCenter("You chose to go home... You will never make it to school today!" +
+                                                              " You better call in sick today!\n");
+                                centerText.WriteTextAndCenter("GAME OVER\n\n");
+                                alive = false;
+                            }
                             else
                             {
                                 currentPosition.Position(ref currentPosition, player,
@@ -158,6 +165,7 @@ namespace Zork
                         Console.Clear();
                         Console.WriteLine("\n\n\n\n");
 
+                        //Use item on item
                         if (wordSplit[0].ToLower() == "use" &&
                             CheckIfItemsExist(player, wordSplit[1]) == true &&
                             wordSplit[2].ToLower() == "on" &&
@@ -179,16 +187,16 @@ namespace Zork
                                 GetItemsFrom(currentPosition);
                                 currentPosition.isLocked = false;
                             }
-                            else if (useItems.Name == new Keys().Name && onItems.Name == "door")
-                            {
-                                centerText.WriteTextAndCenter("You have succesfully opened the door!");
-                                currentPosition.isLocked = false;
-                            }
-                            else if (useItems.Name == new SmartPhone().Name && onItems.Name == "door")
-                            {
-                                centerText.WriteTextAndCenter("You have succesfully opened the door!");
-                                currentPosition.isLocked = false;
-                            }
+                            //else if (useItems.Name == new Keys().Name && onItems.Name == "door")
+                            //{
+                            //    centerText.WriteTextAndCenter("You have succesfully opened the door!");
+                            //    currentPosition.isLocked = false;
+                            //}
+                            //else if (useItems.Name == new SmartPhone().Name && onItems.Name == "door")
+                            //{
+                            //    centerText.WriteTextAndCenter("You have succesfully opened the door!");
+                            //    currentPosition.isLocked = false;
+                            //}
                             else
                             {
                                 centerText.WriteTextAndCenter("Try another combo, but");
@@ -196,6 +204,7 @@ namespace Zork
                                     "to be able to travel you need to convert money to another object");
                             }
                         }
+                        //Use item on exit
                         else if (wordSplit[0].ToLower() == "use" &&
                                  CheckIfItemsExist(player, wordSplit[1]) == true &&
                                  wordSplit[2].ToLower() == "on" &&
@@ -206,23 +215,23 @@ namespace Zork
                             Items useItems = ConvertTextToitems(player, wordSplit[1]);
 
                             if (useItems.Name.ToLower() == new SmartPhone().Name.ToLower() && 
-                                wordSplit[3] == new Cab(player.Character).Name.ToLower())
+                                wordSplit[3].ToLower() == new Cab(player.Character).Name.ToLower())
                             {
    
                                 SuccesfullyOpenedExit(player);
                                 Look();
                             }
                             else if (useItems.Name.ToLower() == "keys" &&
-                                     wordSplit[3] == "door" && currentPosition.Name ==
-                                     new ToSchool(player.Character).Name.ToLower()) 
+                                     wordSplit[3].ToLower() == "door" && currentPosition.Name ==
+                                     new ToSchool(player.Character).Name) 
                             {
 
                                 SuccesfullyOpenedExit(player);
                                 Look();
                             }
                             else if (useItems.Name.ToLower() == new BusCardLoaded().Name.ToLower() &&
-                                     wordSplit[3] == "bus" && currentPosition.Name ==
-                                     new ToBus(player.Character).Name.ToLower())
+                                     wordSplit[3].ToLower() == "bus" && currentPosition.Name ==
+                                     new ToBus(player.Character).Name)
                             {
 
                                 SuccesfullyOpenedExit(player);

@@ -7,7 +7,7 @@ namespace Zork
         public ToSchool(CharacterIs character)
         {
 
-            Name = "At the School";
+            Name = "In front of the School";
             Bio = "You are walking directly to the door.";
             
 

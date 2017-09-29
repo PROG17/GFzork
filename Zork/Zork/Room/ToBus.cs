@@ -30,6 +30,8 @@
             ExitWithDescription.Add("bus", "To be able to enter you need to have a valid item" +
                                             "that must be used. Otherwise you might need to take an Uber.");
             ExitWithDescription.Add("cab", "If you have a smartphone you can get an Uber right away!");
+            ExitWithDescription.Add("home", "Forgot something? Do you need to go home?");
+
             Rock rock = new Rock();
             itemsList.Add(rock);
 

@@ -77,14 +77,19 @@ namespace Zork
                 {
                     if (controlCoffe)
                     {
-                        centerText.WriteTextAndCenter("You have got to school in time for Fredriks lecture " +
-                                                      "and have bring the most importent item. COFFE! \n\n" +
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        centerText.WriteTextAndCenter("You made it in time for Fredriks lecture " +
+                                                      "and you have brought the most important item. COFFE! \n\n" +
                                                       "YOU WIN!");
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         centerText.WriteTextAndCenter("Did you forget to bring COFFE!! " +
                                                       "You will die a slowly death...");
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         alive = false;
                     }
                 }
