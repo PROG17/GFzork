@@ -56,7 +56,8 @@ namespace Zork
                     }
                     else
                     {
-                        Console.WriteLine("Try with numbers instead");
+                        centerText.WriteTextAndCenter("Try with numbers instead");
+
 
                     }
                 }

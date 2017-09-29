@@ -10,19 +10,17 @@ namespace Zork
     public class Play
     {
         public string commando;
-        bool alive = true;
+        private bool alive = true;
         private Room currentPosition;
         CenterText centerText = new CenterText();
-        //private Stories story;
-
 
         public void Playing(Player player)
         {
             //Startposition
             currentPosition = new Home(player.Character);
-            //story = new HomeToBus(player.Character);
 
-            while (alive)
+            // loopen fortsätter så länge du lever && du inte har nått endpoint (klassrummet)
+            while (alive && currentPosition.endpoint == false)
             {
                 WriteAndReadCommandos();
 
@@ -101,6 +99,7 @@ namespace Zork
                         Console.Clear();
                         Console.WriteLine("\n\n\n\n");
 
+                        // Kolla om exit finns på rummet och ifall enbart 2 ord skrivits in
                         if (CheckIfExitExists(currentPosition, wordSplit[1]) && wordSplit.Length == 2)
                         {
                             if (wordSplit[1].ToLower() == "bed")
@@ -123,10 +122,12 @@ namespace Zork
                                     CheckIfItemsExist(player, "smartphone"), CheckIfItemsExist(player, "coffe"), ref alive);
 
                                 // Inspektera current position och dess items
-                                Look();
+                                if (currentPosition.endpoint == false && alive == true) Look();
+
                             }
 
                         }
+                        // Felmeddelande om exit inte finns
                         else
                         {
                             centerText.WriteTextAndCenter("The exit you are trying to use doesn't exist");
@@ -175,28 +176,23 @@ namespace Zork
                             Items useItems = ConvertTextToitems(player, wordSplit[1]);
                             Items onItems = ConvertTextToitems(player, wordSplit[3]);
 
-                            if (useItems.Name == new Money().Name && onItems.Name == new BusCard().Name)
+                            // kolla money mot tomt busskort
+                            if (useItems.Name == new Money().Name && onItems.Name == new BusCardEmpty().Name)
                             {
                                 player.Drop(player, wordSplit[1]);
                                 player.Drop(player, wordSplit[3]);
 
                                 Items busCardLoaded = new BusCardLoaded();
                                 player.itemList.Add(busCardLoaded);
+
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 centerText.WriteTextAndCenter($"Succesfully converted {wordSplit[1]} and " +
                                                               $"{wordSplit[3]} to {busCardLoaded.Name}");
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+
                                 GetItemsFrom(currentPosition);
                                 currentPosition.isLocked = false;
                             }
-                            //else if (useItems.Name == new Keys().Name && onItems.Name == "door")
-                            //{
-                            //    centerText.WriteTextAndCenter("You have succesfully opened the door!");
-                            //    currentPosition.isLocked = false;
-                            //}
-                            //else if (useItems.Name == new SmartPhone().Name && onItems.Name == "door")
-                            //{
-                            //    centerText.WriteTextAndCenter("You have succesfully opened the door!");
-                            //    currentPosition.isLocked = false;
-                            //}
                             else
                             {
                                 centerText.WriteTextAndCenter("Try another combo, but");
@@ -214,21 +210,24 @@ namespace Zork
                             // Ifall items används på exit 
                             Items useItems = ConvertTextToitems(player, wordSplit[1]);
 
+                            // Kolla smartphone och cab
                             if (useItems.Name.ToLower() == new SmartPhone().Name.ToLower() && 
-                                wordSplit[3].ToLower() == new Cab(player.Character).Name.ToLower())
+                                wordSplit[3].ToLower() == new Cab().Name.ToLower())
                             {
    
                                 SuccesfullyOpenedExit(player);
                                 Look();
                             }
+                            //kolla keys mot door
                             else if (useItems.Name.ToLower() == "keys" &&
                                      wordSplit[3].ToLower() == "door" && currentPosition.Name ==
-                                     new ToSchool(player.Character).Name) 
+                                     new ToSchool().Name) 
                             {
 
                                 SuccesfullyOpenedExit(player);
                                 Look();
                             }
+                            // kolla laddat busskort mot bussen
                             else if (useItems.Name.ToLower() == new BusCardLoaded().Name.ToLower() &&
                                      wordSplit[3].ToLower() == "bus" && currentPosition.Name ==
                                      new ToBus(player.Character).Name)
@@ -269,8 +268,7 @@ namespace Zork
                         }
                         else if (CheckIfExitExists(currentPosition, wordSplit[1]) == true)
                         {
-                            Console.WriteLine(currentPosition.ExitWithDescription[wordSplit[1]]);
-
+                            centerText.WriteTextAndCenter(currentPosition.ExitWithDescription[wordSplit[1]]);
                             Console.WriteLine();
                         }
 
@@ -297,7 +295,7 @@ namespace Zork
 
             // get into a new room
             currentPosition.Position(ref currentPosition, player,
-                CheckIfItemsExist(player, "keys"), CheckIfItemsExist(player, "loaded buscard"),
+                CheckIfItemsExist(player, "keys"), CheckIfItemsExist(player, new BusCardLoaded().Name),
                 CheckIfItemsExist(player, "smartphone"), CheckIfItemsExist(player, "coffe"), ref alive);
         }
 
@@ -308,44 +306,6 @@ namespace Zork
             GetExitsFrom(currentPosition);
         }
 
-        private void Exit(Player player)
-        {
-            //centerText.WriteTextAndCenter($"You are {room.Name.ToLower()}\n");
-            //story.PrintStory(ref story);
-
-            //currentPosition.Position(ref currentPosition, player,
-            //    CheckIfItemsExist(player, "keys"), CheckIfItemsExist(player, "loaded buscard"),
-            //    CheckIfItemsExist(player, "smartphone"), ref alive);
-
-            //if (currentPosition.isLocked)
-            //{
-            //    if (CheckIfItemsExist(player, new BusCardLoaded().Name))
-            //    {
-            //        currentPosition.isLocked = false;
-            //        //centerText.WriteTextAndCenter("It's okey to enter!");
-
-            //        // Inspektera current position och dess items
-            //        currentPosition.Describe(currentPosition);
-            //        GetItemsFrom(currentPosition);
-            //        GetExitsFrom(currentPosition);
-            //    }
-            //    else
-            //    {
-            //        centerText.WriteTextAndCenter($"To be able to enter the {currentPosition.Name}, " +
-            //                                      $"you need to unlock the door with an item.");
-            //    }
-            //}
-            //else
-            //{
-
-               
-            //}
-            // Inspektera current position och dess items
-            //currentPosition.Describe(currentPosition);
-            //GetItemsFrom(currentPosition);
-            //GetExitsFrom(currentPosition);
-
-        }
 
         private Items ConvertTextToitems(Room room, string text)
         {

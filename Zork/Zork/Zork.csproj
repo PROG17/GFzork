@@ -42,13 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Items\BusCard.cs" />
+    <Compile Include="Items\BusCardEmpty.cs" />
     <Compile Include="Items\BusCardLoaded.cs" />
     <Compile Include="Items\Coffe.cs" />
     <Compile Include="Items\Food.cs" />
     <Compile Include="Items\Keys.cs" />
     <Compile Include="Items\Money.cs" />
-    <Compile Include="Items\Rock.cs" />
     <Compile Include="Items\Wallet.cs" />
     <Compile Include="Room\Bus.cs" />
     <Compile Include="Room\Cab.cs" />
@@ -69,8 +68,6 @@
     <Compile Include="Room\School.cs" />
     <Compile Include="Room\ToSchool.cs" />
     <Compile Include="Room\ToBus.cs" />
-    <Compile Include="Stories\Stories.cs" />
-    <Compile Include="Stories\CabToSchool.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

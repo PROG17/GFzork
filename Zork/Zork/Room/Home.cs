@@ -33,13 +33,13 @@ namespace Zork
             }
             
             SmartPhone smartPhone = new SmartPhone();
-            BusCard busCard = new BusCard();
+            BusCardEmpty busCardEmpty = new BusCardEmpty();
             Food food = new Food();
             Keys keys = new Keys();
             Money money = new Money();
 
             itemsList.Add(smartPhone);
-            itemsList.Add(busCard);
+            itemsList.Add(busCardEmpty);
             itemsList.Add(food);
             itemsList.Add(keys);
             itemsList.Add(money);

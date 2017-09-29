@@ -13,6 +13,7 @@ namespace Zork
         public Dictionary<string, string> ExitWithDescription = new Dictionary<string, string>();
         public List<Items> itemsList = new List<Items>();
         public bool isLocked = true;
+        public bool endpoint = false;
            
 
         public void Describe(Room room)
@@ -59,17 +60,21 @@ namespace Zork
                 }
                 else if (room.Name == new ToBus(player.Character).Name && controlBusCard)
                 {
-                    room = new School();
+                    room = new Bus();
+                }
+                else if (room.Name == new Bus().Name)
+                {
+                    room = new ToSchool();
                 }
                 else if (room.Name == new ToBus(player.Character).Name && controlSmartPhone)
                 {
-                    room = new Cab(player.Character);
+                    room = new Cab();
                 }
-                else if (room.Name == new Cab(player.Character).Name)
+                else if (room.Name == new Cab().Name)
                 {
-                    room = new ToSchool(player.Character);
+                    room = new ToSchool();
                 }
-                else if (room.Name == new ToSchool(player.Character).Name && controlKeys)
+                else if (room.Name == new ToSchool().Name && controlKeys)
                 {
                     room = new School();
                 }
@@ -79,63 +84,24 @@ namespace Zork
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         centerText.WriteTextAndCenter("You made it in time for Fredriks lecture " +
-                                                      "and you have brought the most important item. COFFE! \n\n" +
-                                                      "YOU WIN!");
+                                                      "and you have brought the most important item. COFFE! \n\n");
+                        centerText.WriteTextAndCenter("YOU WIN!");
                         Console.ForegroundColor = ConsoleColor.Cyan;
+
+                        // Sätt endpoint på rummet så att spelet avslutas
+                        room.endpoint = true;
 
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        centerText.WriteTextAndCenter("Did you forget to bring COFFE!! " +
+                        centerText.WriteTextAndCenter("Did you forget to bring COFFE?? " +
                                                       "You will die a slowly death...");
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         alive = false;
                     }
                 }
             }
-            
-
-            ////Metod som tar in första position (Home) och ändrar värdet för varje exit-commando
-            //public void Position(ref Room room, ref Stories story, Player player, 
-            //    bool controlKeys, bool controlBusCard, bool controlSmartPhone, ref bool alive)
-            //{
-            //    CenterText centerText = new CenterText();
-
-            //    if (room.isLocked == true)
-            //    {
-            //        centerText.WriteTextAndCenter($"To be able to enter " +
-            //                                      $"you need to unlock the door with an item.");
-
-            //    }
-            //    //else
-            //    //{
-            //    //    if (room.Name == "Home" && controlBusCard)
-            //    //    {
-            //    //        //room = new Bus(player.Character);
-            //    //        //story = new HomeToBus(player.Character); return;
-            //    //    }
-            //    //    if (room.Name == "Home" && controlSmartPhone)
-            //    //    {
-            //    //        //room = new Cab(player.Character);
-            //    //        //story = new CabToSchool(); return;
-            //    //    }
-            //    //    if (room.Name == "Bus" || room.Name == "Cab")
-            //    //    {
-            //    //        room = new School();
-
-            //    //        if (room.Name == "School" && controlKeys)
-            //    //        {
-            //    //            Console.WriteLine("You have entered the school and won the game");
-            //    //            Environment.Exit(1);
-            //    //        }
-            //    //        if (room.Name == "School" && !controlKeys)
-            //    //        {
-            //    //            Console.WriteLine("You dont have the keys with you and can't enter the school...");
-            //    //            alive = false;
-            //    //        }
-            //    //    }
-            //    //}
         }
     }
 }

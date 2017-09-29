@@ -6,7 +6,7 @@ namespace Zork
     {
         public BusCardLoaded()
         {
-            Name = "loaded buscard";
+            Name = "BuscardL";
             Bio = "A loaded buscard can be used to unlock certain transportation doors";
         }
     }

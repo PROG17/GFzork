@@ -32,9 +32,6 @@
             ExitWithDescription.Add("cab", "If you have a smartphone you can get an Uber right away!");
             ExitWithDescription.Add("home", "Forgot something? Do you need to go home?");
 
-            Rock rock = new Rock();
-            itemsList.Add(rock);
-
             isLocked = true;
 
         }
