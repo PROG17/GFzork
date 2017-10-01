@@ -48,7 +48,7 @@ namespace Zork
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 centerText.WriteTextAndCenter($"To be able to enter " +
-                                              $"you need to unlock the door with an item.\n\n");
+                                              $"you need to unlock the exit with an item.\n\n");
                 Console.ForegroundColor = ConsoleColor.Cyan;
 
             }

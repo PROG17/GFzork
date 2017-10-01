@@ -236,6 +236,10 @@ namespace Zork
                                 SuccesfullyOpenedExit(player);
                                 Look();
                             }
+                            else
+                            {
+                                centerText.WriteTextAndCenter("The item you are trying to use on the exit doesn't work.");
+                            }
                         }
                         else
                         {
